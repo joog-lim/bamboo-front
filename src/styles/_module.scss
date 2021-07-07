@@ -6,8 +6,22 @@ $black-colro: #000000;
 $green-color: #57cc4d;
 $red-color: #e75858;
 $yellow-color: #ecd06b;
-$shadow-color: #40000000;
-$shadow-color-green: #4057cc4d;
+$shadow-color: rgba(0, 0, 0, 0.25);
+$shadow-color-green: rgba(87, 204, 77, 0.25);
+
+//...ect
+
+@mixin is-radius {
+  border-radius: 5px;
+}
+
+@mixin black-shadow {
+  box-shadow: 0px 1px 4px $shadow-color;
+}
+
+@mixin green-shadow {
+  box-shadow: 1px 0px 10px $shadow-color-green;
+}
 
 // button styles
 .every-btn {
@@ -58,18 +72,4 @@ $shadow-color-green: #4057cc4d;
     color: #c4c4c4;
     font-size: 14px;
   }
-}
-
-//...ect
-
-@mixin radius {
-  border-radius: 5px;
-}
-
-@mixin black-shadow {
-  box-shadow: 0px 1px 4px $shadow-color;
-}
-
-@mixin green-shadow {
-  box-shadow: 1px 0px 10px $shadow-color-green;
 }
