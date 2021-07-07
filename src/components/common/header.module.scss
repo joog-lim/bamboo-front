@@ -1,0 +1,34 @@
+@use "styles/module" as c;
+
+.header {
+  @include c.green-shadow;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 16vw;
+}
+
+.nav {
+  display: flex;
+  li {
+    margin: 7px 1.5vw;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: c.$gray-color;
+  }
+
+  a {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    line-height: 1.4;
+  }
+
+  .highligth > a {
+    color: c.$green-color;
+  }
+}

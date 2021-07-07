@@ -1,4 +1,4 @@
-import HeaderPresenter from "src/components/common/headerPresenter";
+import HeaderPresenter from "components/common/headerPresenter";
 import config from "constants/config.json";
 
 import Head from "next/head";
@@ -11,7 +11,7 @@ const Index: React.FC = () => {
         <meta name="description" content="광대숲" />
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
-      <HeaderPresenter location={config.LINK.HOME} />
+      <HeaderPresenter location={config.LINK.ABOUT} />
     </>
   );
 };
