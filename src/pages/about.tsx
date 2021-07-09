@@ -7,6 +7,7 @@ const About: React.FC = () => {
   return (
     <>
       <Head>
+        <title>광대숲 더보기</title>
         <meta name="description" content="광대숲 더보기" />
       </Head>
       <HeaderPresenter location={config.LINK.ABOUT} />

@@ -7,6 +7,7 @@ const Rule: React.FC = () => {
   return (
     <>
       <Head>
+        <title>광대숲 규칙</title>
         <meta name="description" content="광대숲 규칙" />
       </Head>
       <HeaderPresenter location={config.LINK.ABOUT} />

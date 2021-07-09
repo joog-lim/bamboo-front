@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>광대숲</title>
           <meta name="description" content="광대숲" />
           <link rel="icon" href="/img/favicon.ico" />
         </Head>

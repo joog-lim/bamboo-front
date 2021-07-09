@@ -10,6 +10,7 @@ const Index: React.FC = () => {
   return (
     <>
       <Head>
+        <title>광대숲</title>
         <meta name="description" content="광대숲" />
       </Head>
       <HeaderPresenter location={config.LINK.HOME} />
