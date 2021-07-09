@@ -7,9 +7,11 @@ import config from "constants/config.json";
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
   return (
     <header className={S.header}>
-      <h1>
-        <I.Logo />
-      </h1>
+      <Link href={config.LINK.HOME}>
+        <h1>
+          <I.Logo />
+        </h1>
+      </Link>
       <nav>
         <ul className={S.nav}>
           {

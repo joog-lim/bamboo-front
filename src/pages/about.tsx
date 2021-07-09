@@ -3,7 +3,7 @@ import config from "constants/config.json";
 
 import Head from "next/head";
 
-const Index: React.FC = () => {
+const About: React.FC = () => {
   return (
     <>
       <Head>
@@ -15,4 +15,4 @@ const Index: React.FC = () => {
     </>
   );
 };
-export default Index;
+export default About;
