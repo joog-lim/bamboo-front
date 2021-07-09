@@ -8,6 +8,7 @@
   },
   "LINK": {
     "HOME": "/",
-    "ABOUT": "/about"
+    "ABOUT": "/about",
+    "RULE": "/rule"
   }
 }

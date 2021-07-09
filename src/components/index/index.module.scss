@@ -1,0 +1,78 @@
+@use "styles/module" as c;
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputWrapper {
+  width: 320px;
+}
+
+.title {
+  @include c.every-input;
+  width: 235px;
+}
+
+.tagBtn {
+  @include c.green-short-btn;
+  text-align: center;
+  margin-left: 5px;
+  position: absolute;
+  li {
+    display: none;
+    padding: 7px 0;
+    border: 1px solid c.$green-color;
+    background-color: c.$white-color;
+    color: c.$black-color;
+  }
+  li:nth-child(1) {
+    margin-top: 10px;
+  }
+  &:hover {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    width: 57px;
+    li {
+      display: block;
+    }
+  }
+}
+
+.fullInput {
+  @include c.every-input;
+  width: 295px;
+  margin: 5px 0;
+}
+
+.textareaBox {
+  @include c.every-box;
+  padding: 0;
+  width: 315px;
+}
+
+.fullTextarea {
+  @include c.every-input;
+  width: 295px;
+  resize: none;
+  box-shadow: none;
+  height: 80px;
+}
+
+.submitBtn {
+  @include c.green-short-btn;
+  margin: 0 0 10px 79%;
+}
+
+.nav {
+  margin-top: 61px;
+  ul {
+    display: flex;
+    justify-content: space-between;
+    button {
+      color: c.$red-color;
+      margin-left: 30px;
+    }
+  }
+}
