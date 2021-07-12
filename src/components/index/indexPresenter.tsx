@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./index.module.scss";
 import config from "constants/config.json";
 import HeadingPresenter from "components/heading/headingPresenter";
+import Algorithms from "components/algorithms/algorithms";
 
 const onclick = () => {
   alert("태그 누름");
@@ -44,16 +45,21 @@ const IndexPresenter: React.FC = () => {
         </aside>
       </div>
       <article>
-        <nav className={s.nav}>
-          <ul>
-            <li>
-              <Link href={config.LINK.RULE}>규칙</Link>
-            </li>
-            <li>
-              <button>신고하기</button>
-            </li>
-          </ul>
-        </nav>
+        <section>
+          <nav className={s.nav}>
+            <ul>
+              <li>
+                <Link href={config.LINK.RULE}>규칙</Link>
+              </li>
+              <li>
+                <button>신고하기</button>
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <article className={s.algorithms}>
+          <Algorithms />
+        </article>
       </article>
     </main>
   );
