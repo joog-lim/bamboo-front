@@ -11,6 +11,7 @@ const Index: React.FC = () => {
     <>
       <Head>
         <title>광대숲</title>
+        <link rel="icon" href="/img/favicon.ico" />
         <meta name="description" content="광대숲" />
       </Head>
       <HeaderPresenter location={config.LINK.HOME} />
