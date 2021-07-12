@@ -6,12 +6,12 @@
 }
 
 .inputWrapper {
-  width: 320px;
+  width: 350px;
 }
 
 .title {
   @include c.every-input;
-  width: 235px;
+  width: 78%;
 }
 
 .tagBtn {
@@ -42,19 +42,19 @@
 
 .fullInput {
   @include c.every-input;
-  width: 295px;
+  width: 95%;
   margin: 5px 0;
 }
 
 .textareaBox {
   @include c.every-box;
   padding: 0;
-  width: 315px;
+  width: 100%;
 }
 
 .fullTextarea {
   @include c.every-input;
-  width: 295px;
+  width: 78%;
   resize: none;
   box-shadow: none;
   min-height: 80px;
@@ -62,17 +62,21 @@
 
 .submitBtn {
   @include c.green-short-btn;
-  margin: 0 0 10px 79%;
+  margin: 0 0 10px 82%;
 }
 
 .nav {
   margin-top: 61px;
   ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     button {
-      color: c.$red-color;
       margin-left: 30px;
+      color: c.$red-color;
     }
   }
+}
+
+.algorithms {
+  margin-top: 50px;
 }
