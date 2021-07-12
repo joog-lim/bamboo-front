@@ -1,0 +1,22 @@
+@use "styles/module" as c;
+
+.algorithmsBox {
+  @include c.every-box;
+  padding: 15px;
+  margin: 0 0 20px 20px;
+  header {
+    display: flex;
+    font-size: 14px;
+    color: c.$gray-color;
+    h3 {
+      margin-right: 10px;
+      font-size: 18px;
+      color: c.$green-color;
+    }
+  }
+  h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+}
