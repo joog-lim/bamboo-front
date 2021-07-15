@@ -38,7 +38,7 @@ export const descHeading: React.FC<descHeadingProps> = ({
         heading={ headingObj[descType] }
         explanation={ explanationObj[descType] }
     />
-    { descType && (
+    { descType === "about" && (
       <>
         <p className={s.explanation}>
             누구한테도 말하기 어려웠던 이야기부터<br />
