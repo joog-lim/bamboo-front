@@ -5,23 +5,30 @@ interface descHeadingProps {
   descType: string,
 }
 
-export const descHeading: React.FC<descHeadingProps> = (
-    p: descHeadingProps
-) => {
+/*
+ * This component is made for descPresenter.
+ * This component has a different result from the string due to prop.
+ * If you want to produce another result, you can modify the object and use it.
+ * props : about, rule
+*/
+
+const headingObj = {
+  about: "안녕하세요! 이곳은",
+  rule: "규칙"
+}
+
+const explanationObj = {
+  about: "광대숲입니다!",
+  rule: ""
+}
+
+export const descHeading: React.FC<descHeadingProps> = ({
+  descType
+}) => {
   return (
     <HeadingPresenter
-        heading={
-            {
-                about: "안녕하세요! 이곳은",
-                rule: "규칙"
-            }[p.descType]
-        }
-        explanation={
-            {
-                about: "광대숲입니다!",
-                rule: null
-            }[p.descType]
-        }
+        heading={ headingObj[descType] }
+        explanation={ explanationObj[descType] }
     />
   );
 }
