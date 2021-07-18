@@ -11,7 +11,7 @@
 
 .title {
   @include c.every-input;
-  width: 78%;
+  width: 76.5%;
 }
 
 .tagBtn {
@@ -42,7 +42,7 @@
 
 .fullInput {
   @include c.every-input;
-  width: 95%;
+  width: 94.5%;
   margin: 5px 0;
 }
 
@@ -54,7 +54,7 @@
 
 .fullTextarea {
   @include c.every-input;
-  width: 78%;
+  width: 94%;
   resize: none;
   box-shadow: none;
   min-height: 80px;
