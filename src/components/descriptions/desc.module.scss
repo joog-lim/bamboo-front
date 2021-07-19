@@ -1,0 +1,68 @@
+@use "styles/module" as c;
+
+@mixin commonTextStyle {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+}
+
+@mixin greenText {
+  color: c.$green-color;
+}
+
+@keyframes widthAnimation {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 320px;
+  }
+}
+
+.explanation {
+  @include commonTextStyle;
+  @include greenText;
+}
+
+.greenLine {
+  margin: 40px 0;
+  border: 0;
+  width: 320px;
+  height: 1px;
+  background-color: c.$green-color;
+  animation: widthAnimation 2s ease;
+}
+
+.descAboutWrapper {
+  * {
+    @include commonTextStyle;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+    margin: {
+      top: 30px;
+      bottom: 20px;
+    }
+  }
+  .href {
+    text-decoration: underline;
+    @include greenText;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  p {
+    padding: 20px 0;
+    &:last-child {
+      margin-bottom: 134px;
+    }
+  }
+}
+
+.descRuleWrapper {
+  * {
+    @include commonTextStyle;
+  }
+}
