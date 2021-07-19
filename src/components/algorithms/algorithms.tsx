@@ -1,12 +1,10 @@
 import style from "./style.module.scss";
+import Header from "./item/headerPresenter";
 
 const Algorithms: React.FC = () => {
   return (
     <article className={style.algorithmsBox}>
-      <header>
-        <h3>#833번째 알고리즘</h3>
-        <p>2022년 5월 30일 새벽</p>
-      </header>
+      <Header state="" />
       <h4>오늘은 뭐할까</h4>
       <p>
         오늘은 뭐할까. 무슨 이상한 이 피그마는 자꾸 내가 쓰는 글 못 알아먹기만
