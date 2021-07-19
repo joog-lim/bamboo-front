@@ -53,7 +53,7 @@ export const descHeading: React.FC<descHeadingProps> = ({
 
 export const descAbout = () => {
   return (
-    <article className={s.descContentWrapper}>
+    <article className={s.descAboutWrapper}>
       <h1 className={s.bold}>안녕하세요, 광대숲 개발자입니다.</h1>
       <p>
         광대숲은 저희 학교만의 익명 커뮤니티를 만들고 운영하며<br />
@@ -100,3 +100,11 @@ export const descAbout = () => {
     </article>
   )
 }
+
+export const descRule = () => {
+  return (
+    <div>
+      <h1>규칙페이지</h1>
+    </div>
+  )
+};

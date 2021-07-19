@@ -33,7 +33,7 @@
   animation: widthAnimation 2s ease;
 }
 
-.descContentWrapper {
+.descAboutWrapper {
   * {
     @include commonTextStyle;
   }
@@ -58,5 +58,11 @@
     &:last-child {
       margin-bottom: 134px;
     }
+  }
+}
+
+.descRuleWrapper {
+  * {
+    @include commonTextStyle;
   }
 }
