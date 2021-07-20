@@ -9,6 +9,7 @@ const About: React.FC = () => {
     <>
       <Head>
         <title>광대숲 더보기</title>
+        <link rel="icon" href="/img/favicon.ico" />
         <meta name="description" content="광대숲 더보기" />
       </Head>
       <HeaderPresenter location={config.LINK.ABOUT} />
