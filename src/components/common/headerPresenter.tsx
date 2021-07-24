@@ -3,8 +3,19 @@ import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
 import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
+import { headerContainer } from "./headerContainer";
+
+import { pageState } from "recoil/atom";
+import { useRecoilState } from "recoil";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
+  const [page, setPage] = useRecoilState(pageState);
+
+  const changePageState = () => {
+    if (page === "admin") setPage("user");
+    else setPage("admin");
+  };
+
   return (
     <header className={S.header}>
       <Link href={config.LINK.HOME}>
@@ -39,7 +50,11 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             }[p.location]
           }
           <li>
-            <button>관리자</button>
+            {page === "admin" ? (
+              <button onClick={changePageState}>관리자</button>
+            ) : (
+              <button onClick={changePageState}>사용자</button>
+            )}
           </li>
         </ul>
       </nav>
