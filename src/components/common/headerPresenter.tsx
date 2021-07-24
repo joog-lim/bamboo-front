@@ -3,7 +3,6 @@ import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
 import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
-import { headerContainer } from "./headerContainer";
 
 import { pageState } from "recoil/atom";
 import { useRecoilState } from "recoil";
