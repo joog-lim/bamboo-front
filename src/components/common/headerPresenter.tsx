@@ -48,11 +48,9 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             }[p.location]
           }
           <li>
-            {page === "admin" ? (
-              <button onClick={changePageState}>관리자</button>
-            ) : (
-              <button onClick={changePageState}>사용자</button>
-            )}
+             <button onClick={changePageState}>
+              {page === "admin" ? 관리자 : 사용자}
+            </button>
           </li>
         </ul>
       </nav>
