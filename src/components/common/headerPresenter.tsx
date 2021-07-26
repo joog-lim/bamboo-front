@@ -11,7 +11,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
   const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
   const changePageState = () => {
-    setIsAdmin(isAdmin ? false : true);
+    setIsAdmin(!isAdmin);
   };
 
   return (
