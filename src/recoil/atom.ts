@@ -1,9 +1,9 @@
 import { atom } from "recoil";
-import { UserType, AlgorithmType } from "types/types";
+import { AlgorithmType } from "types/types";
 
-export const pageState = atom<UserType>({
+export const isAdminState = atom<boolean>({
   key: "pageState",
-  default: "user",
+  default: false,
 });
 
 export const algorithmState = atom<AlgorithmType>({

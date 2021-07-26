@@ -4,14 +4,14 @@ import * as I from "src/assets/svg/index";
 import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
 
-import { pageState } from "recoil/atom";
+import { isAdminState } from "recoil/atom";
 import { useRecoilState } from "recoil";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const [page, setPage] = useRecoilState(pageState);
+  const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
   const changePageState = () => {
-    setPage(page === "admin" ? "user" : "admin");
+    setIsAdmin(isAdmin ? false : true);
   };
 
   return (
@@ -48,8 +48,8 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             }[p.location]
           }
           <li>
-             <button onClick={changePageState}>
-              {page === "admin" ? 관리자 : 사용자}
+            <button onClick={changePageState}>
+              {isAdmin ? "관리자" : "사용자"}
             </button>
           </li>
         </ul>
