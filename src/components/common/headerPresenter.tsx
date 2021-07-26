@@ -11,8 +11,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
   const [page, setPage] = useRecoilState(pageState);
 
   const changePageState = () => {
-    if (page === "admin") setPage("user");
-    else setPage("admin");
+    setPage(page === "admin" ? "user" : "admin");
   };
 
   return (
