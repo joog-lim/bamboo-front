@@ -10,5 +10,6 @@
     "HOME": "/",
     "ABOUT": "/about",
     "RULE": "/rule"
-  }
+  },
+  "BASE_URL": "https://baseurl/api"
 }
