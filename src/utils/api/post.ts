@@ -58,7 +58,7 @@ class Post {
       };
       return await RequestApi({
         method: "PATCH",
-        url: postController.petchPost(id),
+        url: postController.patchPost(id),
         data: data,
       });
     } catch (e) {

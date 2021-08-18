@@ -11,7 +11,7 @@ export const postController = {
   deletePost: (id: string) => {
     return `/post/delete/${id}`;
   },
-  petchPost: (id: string) => {
+  patchPost: (id: string) => {
     return `/post/patch/${id}`;
   },
 };
