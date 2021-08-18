@@ -11,5 +11,5 @@
     "ABOUT": "/about",
     "RULE": "/rule"
   },
-  "BASE_URL": "https://baseurl/api"
+  "BASE_URL": "https://xdjffzeil5.execute-api.ap-northeast-2.amazonaws.com/api"
 }
