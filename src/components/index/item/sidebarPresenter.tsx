@@ -17,7 +17,7 @@ const SideBar: React.FC = () => {
           태그
           <ul>
             {React.Children.map(tags, (child) => (
-              <li onClick={onclick}>&num;{child}</li>
+              <li onClick={onclick}>#{child}</li>
             ))}
           </ul>
         </button>
