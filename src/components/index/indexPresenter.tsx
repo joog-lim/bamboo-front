@@ -5,8 +5,12 @@ import s from "./index.module.scss";
 import config from "constants/config.json";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
+import { getPost } from "./indexContainer";
+import { AlgorithmApi } from "types/types";
 
 const IndexPresenter: React.FC = () => {
+  const data = getPost();
+
   return (
     <main className={s.main}>
       <SideBar />
@@ -24,7 +28,9 @@ const IndexPresenter: React.FC = () => {
           </nav>
         </section>
         <article className={s.algorithms}>
-          <Algorithms />
+          {React.Children.toArray(
+            data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
+          )}
         </article>
       </article>
     </main>
