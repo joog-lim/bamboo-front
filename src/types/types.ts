@@ -1,4 +1,4 @@
-const AlgorithmTypeObject = {
+const AlgorithmStateTypeObject = {
   accept: "accept",
   pending: "pending",
   reject: "reject",
@@ -6,4 +6,14 @@ const AlgorithmTypeObject = {
 } as const;
 
 export type AlgorithmType =
-  typeof AlgorithmTypeObject[keyof typeof AlgorithmTypeObject];
+  typeof AlgorithmStateTypeObject[keyof typeof AlgorithmStateTypeObject];
+
+export interface AlgorithmApi {
+  content: string;
+  createdAt: number;
+  id: string;
+  number: number;
+  status: string;
+  tag: string;
+  title: string;
+}

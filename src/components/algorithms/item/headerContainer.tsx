@@ -1,3 +1,5 @@
 export interface HeaderProps {
-  state: string;
+  status: string;
+  createdAt: number;
+  number: number;
 }
