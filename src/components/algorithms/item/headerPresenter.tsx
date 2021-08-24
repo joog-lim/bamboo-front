@@ -1,6 +1,5 @@
 import style from "./header.module.scss";
 import { HeaderProps } from "./headerContainer";
-import 
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   return (
@@ -11,13 +10,11 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
       </div>
       <div>
         <p>#일상</p>
-        {p.status ? (
+        {p.status && (
           <>
             <button>수락</button>
             <button>거절</button>
           </>
-        ) : (
-          <></>
         )}
       </div>
     </header>
