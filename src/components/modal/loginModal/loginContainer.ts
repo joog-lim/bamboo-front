@@ -4,6 +4,15 @@ import { useRecoilState } from "recoil";
 import { isAdminState } from "recoil/atom";
 import auth from "utils/api/auth";
 
+export const customStyles = {
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "40px 123px",
+  },
+};
+
 const useLogin = () => {
   const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
