@@ -1,3 +1,14 @@
+import { useEffect, useState } from "react";
+import verity from "utils/api/verity";
+
+export const getQuestion = () => {
+  const [question, setQuestion] = useState();
+  useEffect(() => {
+    verity.getQuestion().then((res) => setQuestion(res.data));
+  }, []);
+  return question;
+};
+
 export const onclick = () => {
   alert("태그 누름");
 };
