@@ -13,7 +13,7 @@ export const customStyles = {
   },
 };
 
-const useLogin = () => {
+const useLogin = (closeModal: () => void) => {
   const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
@@ -24,6 +24,7 @@ const useLogin = () => {
       if (isAdmin) {
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
+        closeModal();
       }
     } else {
       alert("비밀번호가 틀렸습니다.");

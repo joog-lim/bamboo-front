@@ -11,10 +11,10 @@ import modalController from "../modal";
 const LoginModal: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
 
-  const [setPassword, tryLogin] = useLogin();
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openModal, closeModal] = modalController(setModalIsOpen);
+
+  const [setPassword, tryLogin] = useLogin(closeModal);
 
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {
