@@ -10,6 +10,7 @@ export const customStyles = {
     flexDirection: "column",
     alignItems: "center",
     padding: "40px 123px",
+    overflow: "hidden",
   },
 };
 
