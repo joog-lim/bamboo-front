@@ -4,16 +4,9 @@ import * as I from "src/assets/svg/index";
 import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
 
-import { isAdminState } from "recoil/atom";
-import { useRecoilState } from "recoil";
+import LoginModal from "../modal/loginModal/loginModaPresenterl";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
-
-  const changePageState = () => {
-    setIsAdmin(!isAdmin);
-  };
-
   return (
     <header className={S.header}>
       <Link href={config.LINK.HOME}>
@@ -48,9 +41,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             }[p.location]
           }
           <li>
-            <button onClick={changePageState}>
-              {isAdmin ? "관리자" : "사용자"}
-            </button>
+            <LoginModal />
           </li>
         </ul>
       </nav>

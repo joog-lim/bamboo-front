@@ -13,6 +13,9 @@ class Auth {
         data: data,
       });
     } catch (e) {
+      if (e.message === "Request failed with status code 400") {
+        return false;
+      }
       throw new Error(e);
     }
   }

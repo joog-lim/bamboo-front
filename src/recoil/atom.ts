@@ -2,11 +2,11 @@ import { atom } from "recoil";
 import { AlgorithmType } from "types/types";
 
 export const isAdminState = atom<boolean>({
-  key: "pageState",
+  key: "isAdminState",
   default: false,
 });
 
-export const algorithmState = atom<AlgorithmType>({
-  key: "algorithmState",
+export const algorithmFilterState = atom<AlgorithmType>({
+  key: "algorithmFilterState",
   default: "accept",
 });
