@@ -3,8 +3,11 @@ import React from "react";
 import s from "./sidebar.module.scss";
 import HeadingPresenter from "components/heading/headingPresenter";
 import { onclick, tags } from "./sidebarContainer";
+import { getQuestion } from "./sidebarContainer";
 
 const SideBar: React.FC = () => {
+  const question = getQuestion();
+
   return (
     <aside>
       <HeadingPresenter
@@ -23,7 +26,8 @@ const SideBar: React.FC = () => {
         </button>
         <input
           className={s.fullInput}
-          placeholder="Q. 학교 와이파이 비밀번호는 무엇일까요?"
+          placeholder={`Q. ${question?.question ?? "질문을 준비 중입니다."}
+            `}
         />
         <div className={s.textareaBox}>
           <textarea
