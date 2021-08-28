@@ -11,25 +11,36 @@ import Post from "utils/api/post";
 
 const IndexPresenter: React.FC = () => {
   const [data, setData] = useState<any>([]);
-  let cursor = "";
-  let hasMore = true;
+  const [cursor, setCursor] = useState("");
+  const [hasNext, setHasNext] = useState(false)
 
-  const useGetPost = () => {
-    useEffect(() => {
-      console.log("asdf");
+  const getPostList = () => {
       let posts;
       Post.getPost(cursor).then((res) => {
         posts = res.data.posts;
         setData([data.concat(posts)][0]);
+        setHasNext(data?.hasNext);
       });
-    }, []);
-    cursor = data[data.length - 1]?.number;
-    hasMore = data?.hasNext;
   };
 
-  useGetPost();
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
 
-  // setTimeout(() => useGetPost(), 2000);
+    if(scrollTop + clientHeight >= scrollHeight) {
+      getPostList();
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+      return () => {window.removeEventListener('scroll', handleScroll)}
+  })
+
+  if (data.length < 15) {
+    getPostList();
+  }
 
   return (
     <main className={s.main}>
@@ -49,18 +60,9 @@ const IndexPresenter: React.FC = () => {
         </section>
         <article className={s.algorithms} id="scrollableDiv">
           {data?.length}
-          <InfiniteScroll
-            dataLength={data?.length}
-            next={useGetPost}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-            scrollableTarget="scrollableDiv"
-            endMessage={<h4>Nothing more to show</h4>}
-          >
             {React.Children.toArray(
               data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
             )}
-          </InfiniteScroll>
         </article>
       </article>
     </main>
