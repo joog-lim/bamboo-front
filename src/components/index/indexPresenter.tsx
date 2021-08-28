@@ -10,17 +10,20 @@ import { AlgorithmApi } from "types/types";
 import Post from "utils/api/post";
 
 const IndexPresenter: React.FC = () => {
-  const [data, setData] = useState<any>([]);
-  const [cursor, setCursor] = useState("");
-  const [hasNext, setHasNext] = useState(false)
+  const [data, setData] = useState([]);
+  const [isHasNext, setIsHasNext] = useState(true);
+  let hasNext = true;
+  let cursor2: string = "";
 
   const getPostList = () => {
-      let posts;
-      Post.getPost(cursor).then((res) => {
-        posts = res.data.posts;
-        setData([data.concat(posts)][0]);
-        setHasNext(data?.hasNext);
-      });
+    let posts;
+    Post.getPost(cursor2).then((res) => {
+      posts = res.data.posts;
+      cursor2 = res.data.cursor;
+      hasNext = res.data.hasNext;
+      setData([data.concat(posts)][0]);
+      setIsHasNext(res.data.hasNext);
+    });
   };
 
   const handleScroll = () => {
@@ -28,19 +31,24 @@ const IndexPresenter: React.FC = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    if(scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight >= scrollHeight && hasNext) {
       getPostList();
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-      return () => {window.removeEventListener('scroll', handleScroll)}
-  })
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   if (data.length < 15) {
     getPostList();
   }
+
+  cursor2 = data[data.length - 1]?.number;
+  hasNext = isHasNext;
 
   return (
     <main className={s.main}>
@@ -59,10 +67,9 @@ const IndexPresenter: React.FC = () => {
           </nav>
         </section>
         <article className={s.algorithms} id="scrollableDiv">
-          {data?.length}
-            {React.Children.toArray(
-              data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
-            )}
+          {React.Children.toArray(
+            data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
+          )}
         </article>
       </article>
     </main>
