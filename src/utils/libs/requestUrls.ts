@@ -1,9 +1,8 @@
 //알고리즘 관리
 export const postController = {
   getPost: (cursor: string, status: string) => {
-    return cursor === ""
-      ? `/post/get-list?count=15&cursor=${cursor}&status=${status}`
-      : `/post/get-list?count=15&status=${status}`;
+    console.log(cursor);
+    return `/post/get-list?count=15&cursor=${cursor}&status=${status}`;
   },
   createPost: () => {
     return `/post/create`;

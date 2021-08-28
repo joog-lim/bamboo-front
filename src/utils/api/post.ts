@@ -2,9 +2,9 @@ import { postController } from "../libs/requestUrls";
 import RequestApi from "../libs/requestApi";
 
 class Post {
-  async getPost(cursor = "", status = "ACCEPTED") {
+  getPost(cursor = "", status = "ACCEPTED") {
     try {
-      return await RequestApi({
+      return RequestApi({
         url: postController.getPost(cursor, status),
       });
     } catch (e) {
