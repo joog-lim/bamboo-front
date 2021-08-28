@@ -8,5 +8,5 @@ export const isAdminState = atom<boolean>({
 
 export const algorithmFilterState = atom<AlgorithmType>({
   key: "algorithmFilterState",
-  default: "accept",
+  default: "ACCEPTED",
 });

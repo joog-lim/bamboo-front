@@ -1,8 +1,8 @@
 const AlgorithmStateTypeObject = {
-  accept: "accept",
-  pending: "pending",
-  reject: "reject",
-  requestDeleted: "requestDeleted",
+  ACCEPTED: "ACCEPTED",
+  PENDING: "PENDING",
+  REJECTED: "REJECTED",
+  DELETED: "DELETED",
 } as const;
 
 export type AlgorithmType =
