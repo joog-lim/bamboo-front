@@ -54,22 +54,13 @@ const IndexPresenter: React.FC = () => {
     <main className={s.main}>
       <SideBar />
       <article>
-        <section>
-          <nav className={s.nav}>
-            <ul>
-              <li>
-                <Link href={config.LINK.RULE}>규칙</Link>
-              </li>
-              <li>
-                <button>신고하기</button>
-              </li>
-            </ul>
-          </nav>
-        </section>
         <article className={s.algorithms} id="scrollableDiv">
           {React.Children.toArray(
             data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
           )}
+          <p>
+            {hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}
+          </p>
         </article>
       </article>
     </main>

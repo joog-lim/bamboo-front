@@ -11,9 +11,9 @@ const Rule: React.FC = () => {
         <title>광대숲 규칙</title>
         <meta name="description" content="광대숲 규칙" />
       </Head>
-      <HeaderPresenter location={config.LINK.ABOUT} />
+      <HeaderPresenter location={config.LINK.RULE} />
       <div className={styles.wrap}>
-        <DescPresenter descType={"rule"}/>
+        <DescPresenter descType={"rule"} />
       </div>
     </>
   );
