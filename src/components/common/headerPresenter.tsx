@@ -26,6 +26,9 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   <li>
                     <Link href={config.LINK.ABOUT}>더보기</Link>
                   </li>
+                  <li>
+                    <Link href={config.LINK.RULE}>규칙</Link>
+                  </li>
                 </>
               ),
               "/about": (
@@ -35,6 +38,22 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   </li>
                   <li className={S.highligth}>
                     <Link href={config.LINK.ABOUT}>더보기</Link>
+                  </li>
+                  <li>
+                    <Link href={config.LINK.RULE}>규칙</Link>
+                  </li>
+                </>
+              ),
+              "/rule": (
+                <>
+                  <li>
+                    <Link href={config.LINK.HOME}>홈</Link>
+                  </li>
+                  <li>
+                    <Link href={config.LINK.ABOUT}>더보기</Link>
+                  </li>
+                  <li className={S.highligth}>
+                    <Link href={config.LINK.RULE}>규칙</Link>
                   </li>
                 </>
               ),
