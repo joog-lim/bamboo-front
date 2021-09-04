@@ -4,22 +4,94 @@ import Modal from "react-modal";
 import s from "./algorithmModal.module.scss";
 import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
+import Post from "src/utils/api/post";
+import { useRecoilValue } from "recoil";
+import { isAdminState } from "src/recoil/atom";
 
 const AlgorithmModal: React.FC<algorithmModalProps> = (
   p: algorithmModalProps
 ) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [reason, setReason] = useState("");
+  const isAdmin = useRecoilValue(isAdminState);
+
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
+  //TODO: 함수 분리 작업
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {
-      p.enterEvent();
+      onClick();
+    }
+  };
+
+  const reportPost = () => {
+    Post.reportPost(p.algorithmId, content).then(
+      (res: { data: { result: string } }) => {
+        const result =
+          res.data.result === "success"
+            ? "성공적으로 신고되었습니다."
+            : `오류가 발생하였습니다 메시지: ${res.data.result}`;
+        alert(result);
+        closeModal();
+      }
+    );
+  };
+
+  const modifyPost = () => {
+    Post.modifyPost(p.algorithmId, title, reason, content).then((res: any) => {
+      res.status == 200
+        ? alert("성공적으로 수정되었습니다.")
+        : alert("실패하였습니다.");
+      closeModal();
+    });
+  };
+
+  const setStatusPost = (status: string) => {
+    Post.setStatusPost(p.algorithmId, status).then((res: any) => {
+      res.status == 200
+        ? alert("성공적으로 상태가 변경되었습니다.")
+        : alert("실패하였습니다.");
+      closeModal();
+    });
+  };
+
+  const deletePost = () => {
+    Post.deletePost(p.algorithmId, content).then((res: any) => {
+      res.status == 200
+        ? alert("성공적으로 삭제되었습니다.")
+        : alert("실패하였습니다.");
+      closeModal();
+    });
+  };
+
+  const onClick = () => {
+    switch (p.children) {
+      case "삭제": {
+        deletePost();
+        break;
+      }
+      case "신고": {
+        reportPost();
+        break;
+      }
+      case "거절": {
+        setStatusPost("REJECTED");
+        break;
+      }
+      case "수정": {
+        modifyPost();
+        break;
+      }
+      default:
+        alert("오류가 발생하였습니다: 적절하지 않은 p.children");
     }
   };
 
   return (
     <>
-      <button onClick={openModal} className={p.isRed ? s.red : s.green}>
+      <button onClick={openModal} className={p.isRed ? s.red : s.h1}>
         {p.children}
       </button>
       <form>
@@ -34,8 +106,8 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
           {p.isHeading ? (
             <input
               className={s.password}
-              value={`알고리즘을 ${p.children}합니다`}
-              onChange={({ target: { value } }) => p.setTitle(value)}
+              defaultValue={`알고리즘을 ${p.children}합니다`}
+              readOnly
             />
           ) : (
             <input
@@ -43,16 +115,26 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
               placeholder="제목을 입력하세요."
               autoFocus={true}
               required
+              onChange={({ target: { value } }) => setTitle(value)}
+            />
+          )}
+          {p.isReason && (
+            <input
+              className={s.password}
+              placeholder="사유를 입력하세요."
+              autoFocus={true}
+              required
+              onChange={({ target: { value } }) => setReason(value)}
             />
           )}
           <textarea
             className={s.textarea}
             required
-            onClick={p.enterEvent}
-            onChange={({ target: { value } }) => p.setContent(value)}
+            onChange={({ target: { value } }) => setContent(value)}
+            placeholder="내용을 입력하세요."
             onKeyDown={checkEnter}
           />
-          <button className={p.isRed ? s.redBtn : s.greenBtn}>
+          <button className={p.isRed ? s.redBtn : s.greenBtn} onClick={onClick}>
             {p.children}
           </button>
         </Modal>

@@ -1,19 +1,33 @@
-import { BASE_URL } from "constants/config.json";
+import { BASE_URL, BASE_URLV2 } from "constants/config.json";
 import axios, { AxiosRequestConfig } from "axios";
-
-export interface hasToken {
-  hasToken?: boolean;
-}
 
 const RequestApi = (p: AxiosRequestConfig) => {
   try {
-    // let header = Object.assign(BASE_HEADER, p.headers);
     const res = axios({
       method: p.method,
-      baseURL: BASE_URL,
+      baseURL: BASE_URLV2,
       url: p.url,
       data: p.data,
-      headers: p.headers,
+      headers: p.headers
+        ? { Authorization: localStorage.getItem("token") }
+        : null,
+    });
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const RequestApiV2 = (p: AxiosRequestConfig) => {
+  try {
+    const res = axios({
+      method: p.method,
+      baseURL: BASE_URLV2,
+      url: p.url,
+      data: p.data,
+      headers: p.headers
+        ? { Authorization: localStorage.getItem("token") }
+        : null,
     });
     return res;
   } catch (error) {

@@ -1,9 +1,9 @@
 @use "styles/module" as c;
 
 @mixin commonTextStyle {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
-  line-height: 16px;
+  line-height: 30px;
 }
 
 @mixin greenText {
@@ -52,6 +52,7 @@
   }
   .bold {
     font-weight: bold;
+    margin: 10px 0;
   }
   p {
     padding: 20px 0;

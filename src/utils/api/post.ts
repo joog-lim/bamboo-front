@@ -1,18 +1,19 @@
 import { postController } from "../libs/requestUrls";
-import RequestApi from "../libs/requestApi";
+import RequestApi, { RequestApiV2 } from "../libs/requestApi";
 
 class Post {
-  getPost(cursor = "", status = "ACCEPTED") {
+  getPost(isAdmin: boolean, cursor = "", status = "ACCEPTED") {
     try {
-      return RequestApi({
+      return RequestApiV2({
         url: postController.getPost(cursor, status),
+        headers: isAdmin,
       });
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  async createPost(
+  createPost(
     title: string,
     content: string,
     tag: string,
@@ -29,7 +30,7 @@ class Post {
           answer: questionAnswer,
         },
       };
-      return await RequestApi({
+      return RequestApi({
         method: "POST",
         url: postController.createPost(),
         data: data,
@@ -39,27 +40,61 @@ class Post {
     }
   }
 
-  async deletePost(id: string) {
+  deletePost(id: string, reason: string) {
+    console.log(id);
     try {
-      return await RequestApi({
+      return RequestApi({
         method: "DELETE",
         url: postController.deletePost(id),
+        data: reason,
+        headers: true,
       });
     } catch (e) {
       throw new Error(e);
     }
   }
 
-  async petchPost(id: string, status: string, reason: string) {
+  reportPost(id: string, reason: string) {
+    try {
+      return RequestApi({
+        method: "PATCH",
+        url: postController.reportPost(id),
+        data: reason,
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  modifyPost(id: string, title: string, content: string, reason: string) {
     try {
       const data = {
         status,
         reason,
+        title,
+        content,
       };
-      return await RequestApi({
+      return RequestApi({
         method: "PATCH",
-        url: postController.patchPost(id),
+        url: postController.modifyPost(id),
         data: data,
+        headers: true,
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
+  setStatusPost(id: string, status = "ACCEPTED") {
+    try {
+      const data = {
+        status,
+      };
+      return RequestApi({
+        method: "POST",
+        url: postController.setStatusPost(id),
+        data: data,
+        headers: true,
       });
     } catch (e) {
       throw new Error(e);

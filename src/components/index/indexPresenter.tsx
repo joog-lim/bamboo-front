@@ -1,15 +1,18 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { useRecoilValue } from "recoil";
 
 import s from "./index.module.scss";
-import config from "constants/config.json";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
+import AlgorithmFilter from "./item/algorithmFilter";
 import { AlgorithmApi } from "types/types";
 import Post from "utils/api/post";
+import { isAdminState, algorithmFilterState } from "src/recoil/atom";
 
 const IndexPresenter: React.FC = () => {
+  const isAdmin = useRecoilValue(isAdminState);
+  const algorithmFilter = useRecoilValue(algorithmFilterState);
+
   const [data, setData] = useState([]);
   const [isHasNext, setIsHasNext] = useState(true);
   let hasNext = true;
@@ -17,7 +20,7 @@ const IndexPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts;
-    Post.getPost(cursor2).then((res) => {
+    Post.getPost(isAdmin, cursor2, algorithmFilter).then((res) => {
       posts = res.data.posts;
       cursor2 = res.data.cursor;
       hasNext = res.data.hasNext;
@@ -33,6 +36,7 @@ const IndexPresenter: React.FC = () => {
 
     if (scrollTop + clientHeight >= scrollHeight && hasNext) {
       getPostList();
+      hasNext = false;
     }
   };
 
@@ -43,9 +47,9 @@ const IndexPresenter: React.FC = () => {
     };
   });
 
-  if (data.length < 15) {
+  useEffect(() => {
     getPostList();
-  }
+  }, []);
 
   cursor2 = data[data.length - 1]?.number;
   hasNext = isHasNext;
@@ -54,7 +58,11 @@ const IndexPresenter: React.FC = () => {
     <main className={s.main}>
       <SideBar />
       <article>
+        {isAdmin && <AlgorithmFilter />}
         <article className={s.algorithms} id="scrollableDiv">
+          {isAdmin && (
+            <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
+          )}
           {React.Children.toArray(
             data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
           )}

@@ -1,0 +1,33 @@
+@use "styles/module" as c;
+
+// TODO: 위치 수정
+
+.algoritmFilterBtn {
+  @include c.black-shadow;
+  @include c.every-btn;
+  text-align: center;
+  margin: 50px 0 0 41%;
+  position: absolute;
+  z-index: 2;
+  color: c.$black-color;
+  background-color: c.$white-color;
+  text-align: center;
+  width: 109px;
+  font-weight: 700;
+  padding: 12px;
+  li {
+    font-weight: 400;
+    display: none;
+    padding: 7px 0;
+    background-color: c.$white-color;
+    color: c.$black-color;
+  }
+  li:nth-child(1) {
+    margin-top: 10px;
+  }
+  &:hover {
+    li {
+      display: block;
+    }
+  }
+}

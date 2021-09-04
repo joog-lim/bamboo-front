@@ -10,8 +10,7 @@ export const customStyles = {
 export interface algorithmModalProps {
   isRed: boolean;
   isHeading: boolean;
+  isReason: boolean;
   children: React.ReactNode;
-  enterEvent: () => {};
-  setTitle: (value: string) => {};
-  setContent: (value: string) => {};
+  algorithmId: string;
 }
