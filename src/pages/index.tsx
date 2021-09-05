@@ -1,2 +1,23 @@
-const Index = () => <h1 className="red">타입스크립트와 함께하는 Next.js</h1>;
+import HeaderPresenter from "src/components/common/headerPresenter";
+import IndexPresenter from "components/index/indexPresenter";
+import styles from "styles/wrap.module.scss";
+
+import config from "constants/config.json";
+
+import Head from "next/head";
+
+const Index: React.FC = () => {
+  return (
+    <>
+      <Head>
+        <title>광대숲</title>
+        <meta name="description" content="광대숲" />
+      </Head>
+      <HeaderPresenter location={config.LINK.HOME} />
+      <div className={styles.wrap}>
+        <IndexPresenter />
+      </div>
+    </>
+  );
+};
 export default Index;

@@ -1,0 +1,30 @@
+@use "styles/module" as c;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: c.$gray-color;
+  width: 100%;
+  h3 {
+    margin-right: 10px;
+    font-size: 18px;
+    color: c.$green-color;
+  }
+  div {
+    display: flex;
+  }
+  div:nth-child(2) {
+    color: c.$green-color;
+    justify-self: flex-end;
+  }
+  button {
+    position: relative;
+    top: -2px;
+    padding: 0 0 0 15px;
+    font-size: 14px;
+  }
+  button:last-child {
+    color: c.$red-color;
+  }
+}

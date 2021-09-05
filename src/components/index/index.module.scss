@@ -1,0 +1,16 @@
+@use "styles/module" as c;
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.algorithms {
+  margin-top: 130px;
+  padding-left: 20px;
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-weight: 700;
+}

@@ -1,0 +1,75 @@
+@use "styles/module" as c;
+
+.inputWrapper {
+  width: 350px;
+}
+
+.title {
+  @include c.every-input;
+  width: 76.5%;
+}
+
+.tagBtn {
+  @include c.green-short-btn;
+  text-align: center;
+  margin-left: 5px;
+  position: absolute;
+  li {
+    display: none;
+    padding: 7px 0;
+    border: 1px solid c.$green-color;
+    background-color: c.$white-color;
+    color: c.$black-color;
+  }
+  li:nth-child(1) {
+    margin-top: 10px;
+  }
+  &:hover {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    width: 57px;
+    li {
+      display: block;
+    }
+  }
+}
+
+.fullInput {
+  @include c.every-input;
+  width: 94.5%;
+  margin: 5px 0;
+}
+
+.textareaBox {
+  @include c.every-box;
+  padding: 0;
+  width: 100%;
+}
+
+.fullTextarea {
+  @include c.every-input;
+  width: 94%;
+  resize: none;
+  box-shadow: none;
+  min-height: 80px;
+}
+
+.submitBtn {
+  @include c.green-short-btn;
+  margin: 0 0 10px 82%;
+}
+
+.admin {
+  @include c.every-box;
+  height: fit-content;
+  width: 330px;
+  h3 {
+    font-weight: 700;
+    font-size: c.$font18px;
+  }
+  p {
+    font-size: c.$font18px;
+    margin: 10px 0 20px;
+  }
+}

@@ -1,0 +1,23 @@
+@use "styles/module" as c;
+
+.header {
+  @include c.green-shadow;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 16vw;
+}
+
+.nav {
+  display: flex;
+  li {
+    margin: 7px 0 7px 3vw;
+  }
+
+  button {
+    color: c.$gray-color;
+  }
+
+  .highligth > a {
+    color: c.$green-color;
+  }
+}

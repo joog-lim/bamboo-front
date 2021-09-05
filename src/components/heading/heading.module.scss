@@ -1,0 +1,21 @@
+@use "styles/module" as c;
+
+.headingBox {
+  margin: 50px 0 27px 0;
+}
+
+.heading-font {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+.heading {
+  @extend .heading-font;
+  color: c.$green-color;
+}
+
+.explanation {
+  @extend .heading-font;
+  color: c.$black-color;
+}

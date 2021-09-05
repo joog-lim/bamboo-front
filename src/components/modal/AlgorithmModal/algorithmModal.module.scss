@@ -1,0 +1,51 @@
+@use "styles/module" as c;
+
+@mixin h1 {
+  font-size: c.$font18px;
+  font-weight: 700;
+  margin-bottom: 1.875em;
+}
+
+.redH1 {
+  @include h1;
+  color: c.$red-color;
+}
+
+.greenH1 {
+  @include h1;
+  color: c.$green-color;
+}
+
+.password {
+  @include c.every-input;
+}
+
+@mixin btn {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.redBtn {
+  @include c.red-long-btn;
+  @include btn;
+}
+
+.greenBtn {
+  @include c.green-long-btn;
+  @include btn;
+}
+
+.red {
+  color: c.$red-color;
+}
+
+.green {
+  color: c.$green-color;
+}
+
+.textarea {
+  @include c.every-input;
+  margin: 10px 0 30px 0;
+  resize: none;
+  height: 236px;
+}

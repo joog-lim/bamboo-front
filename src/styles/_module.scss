@@ -1,0 +1,90 @@
+// set color
+
+$gray-color: #c4c4c4;
+$white-color: #ffffff;
+$black-color: #000000;
+$green-color: #57cc4d;
+$red-color: #e75858;
+$yellow-color: #ecd06b;
+$shadow-color: rgba(0, 0, 0, 0.25);
+$shadow-color-green: rgba(87, 204, 77, 0.25);
+
+// set font size
+
+$font18px: 1.125em;
+$font16px: 1em;
+$font14px: 0.875em;
+
+//...ect
+
+@mixin is-radius {
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+@mixin black-shadow {
+  box-shadow: 0px 1px 4px $shadow-color;
+}
+
+@mixin green-shadow {
+  box-shadow: 1px 0px 10px $shadow-color-green;
+}
+
+// button styles
+@mixin every-btn {
+  @include is-radius;
+  font-size: $font16px;
+  color: white;
+}
+
+@mixin filter-btn {
+  padding: 10px;
+  font-weight: 700;
+}
+
+@mixin log-btn {
+  @include every-btn;
+  padding: 12px 50px;
+  font-weight: 700;
+}
+
+@mixin short-btn {
+  @include every-btn;
+  padding: 10px 15px;
+}
+
+@mixin green-short-btn {
+  @include short-btn;
+  background-color: #57cc4d;
+}
+
+@mixin red-long-btn {
+  @include log-btn;
+  background-color: #e75858;
+}
+
+@mixin green-long-btn {
+  @include log-btn;
+  background-color: #57cc4d;
+}
+
+// box styles
+
+@mixin every-box {
+  @include is-radius;
+  @include black-shadow;
+  padding: 15px;
+}
+
+// input styles
+
+@mixin every-input {
+  @include is-radius;
+  @include black-shadow;
+  padding: 10px;
+  font-size: $font16px;
+  &::placeholder {
+    color: #c4c4c4;
+  }
+}

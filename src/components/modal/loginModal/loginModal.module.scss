@@ -1,0 +1,26 @@
+@use "styles/module" as c;
+
+.h1 {
+  color: c.$gray-color;
+  font-size: c.$font18px;
+  margin: 3em 0;
+  font-weight: 700;
+}
+
+.h2 {
+  color: c.$green-color;
+  font-size: c.$font18px;
+  align-self: flex-start;
+  margin-bottom: 1.3125em;
+}
+
+.password {
+  @include c.every-input;
+  width: 96%;
+}
+
+.loginBtn {
+  @include c.green-long-btn;
+  margin-top: 8.5em;
+  align-self: flex-end;
+}
