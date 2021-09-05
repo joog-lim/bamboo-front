@@ -27,16 +27,14 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const reportPost = () => {
-    Post.reportPost(p.algorithmId, content).then(
-      (res: { data: { result: string } }) => {
-        const result =
-          res.data.result === "success"
-            ? "성공적으로 신고되었습니다."
-            : `오류가 발생하였습니다 메시지: ${res.data.result}`;
-        alert(result);
-        closeModal();
-      }
-    );
+    Post.reportPost(p.algorithmId, content).then((res: { status: number }) => {
+      const result =
+        res.status === 200
+          ? "성공적으로 신고되었습니다."
+          : `오류가 발생하였습니다 메시지: ${res}`;
+      alert(result);
+      closeModal();
+    });
   };
 
   const modifyPost = () => {

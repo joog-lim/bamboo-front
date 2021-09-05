@@ -41,12 +41,14 @@ class Post {
   }
 
   deletePost(id: string, reason: string) {
-    console.log(id);
+    const data = {
+      reason,
+    };
     try {
       return RequestApi({
         method: "DELETE",
         url: postController.deletePost(id),
-        data: reason,
+        data: data,
         headers: true,
       });
     } catch (e) {
@@ -56,10 +58,13 @@ class Post {
 
   reportPost(id: string, reason: string) {
     try {
+      const data = {
+        reason,
+      };
       return RequestApi({
         method: "PATCH",
         url: postController.reportPost(id),
-        data: reason,
+        data: data,
       });
     } catch (e) {
       throw new Error(e);
