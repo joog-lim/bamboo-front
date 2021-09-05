@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import verity from "utils/api/verity";
 import post from "utils/api/post";
+import RequestApi from "utils/libs/requestApi";
 
 export const createPost = (question: { id: any } | undefined) => {
   const [title, setTitle] = useState("");
@@ -39,6 +40,16 @@ export const getQuestion = () => {
     verity.getQuestion().then((res) => setQuestion(res.data));
   }, []);
   return question;
+};
+
+export const getCount = () => {
+  const [count, setCount] = useState();
+  useEffect(() => {
+    RequestApi({
+      url: "https://ket73grkcf.execute-api.ap-northeast-2.amazonaws.com/apiV2/post/count",
+    }).then((res) => setCount(res.data));
+  }, []);
+  return count;
 };
 
 export const onclick = () => {

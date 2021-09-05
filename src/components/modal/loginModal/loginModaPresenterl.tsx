@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import { isAdminState } from "recoil/atom";
 import { Logo } from "src/assets/svg";
@@ -9,7 +9,7 @@ import useLogin, { customStyles } from "./loginContainer";
 import modalController from "../modal";
 
 const LoginModal: React.FC = () => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openModal, closeModal] = modalController(setModalIsOpen);
@@ -22,9 +22,13 @@ const LoginModal: React.FC = () => {
     }
   };
 
+  const onClick = () => {
+    isAdmin ? setIsAdmin(false) : openModal();
+  };
+
   return (
     <>
-      <button onClick={openModal}>{isAdmin ? "사용자" : "관리자"}</button>
+      <button onClick={onClick}>{isAdmin ? "사용자" : "관리자"}</button>
       <Modal
         // appElement={document.getElementById("root")}
         isOpen={modalIsOpen}

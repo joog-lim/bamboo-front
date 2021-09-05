@@ -59,3 +59,17 @@
   @include c.green-short-btn;
   margin: 0 0 10px 82%;
 }
+
+.admin {
+  @include c.every-box;
+  height: fit-content;
+  width: 330px;
+  h3 {
+    font-weight: 700;
+    font-size: c.$font18px;
+  }
+  p {
+    font-size: c.$font18px;
+    margin: 10px 0 20px;
+  }
+}

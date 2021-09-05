@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
+        <html lang="ko" />
         <Head>
           <meta
             name="viewport"

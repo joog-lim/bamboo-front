@@ -1,11 +1,14 @@
 import React from "react";
+import { useRecoilValue } from "recoil";
 
 import s from "./sidebar.module.scss";
 import HeadingPresenter from "components/heading/headingPresenter";
 import { tags } from "./sidebarContainer";
-import { getQuestion, createPost } from "./sidebarContainer";
+import { getQuestion, createPost, getCount } from "./sidebarContainer";
+import { isAdminState } from "src/recoil/atom";
 
 const SideBar: React.FC = () => {
+  const isAdmin = useRecoilValue(isAdminState);
   const question = getQuestion();
   const [
     tryCreatePost,
@@ -18,8 +21,28 @@ const SideBar: React.FC = () => {
     tag,
     questionAnswer,
   ] = createPost(question);
+  const count = getCount();
 
-  return (
+  return isAdmin ? (
+    <aside>
+      <HeadingPresenter
+        heading={"모두에게 하고픈 말,"}
+        explanation={"무엇인가요?"}
+      />
+      <article className={s.admin}>
+        <h3>알고리즘 현황</h3>
+        <br />
+        {React.Children.toArray(
+          count?.map((item: { _id: string; count: number }) => (
+            <>
+              <h3>{item._id}</h3>
+              <p>{item.count}개</p>
+            </>
+          ))
+        )}
+      </article>
+    </aside>
+  ) : (
     <aside>
       <HeadingPresenter
         heading={"모두에게 하고픈 말,"}
