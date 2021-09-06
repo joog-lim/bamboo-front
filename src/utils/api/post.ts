@@ -1,5 +1,5 @@
 import { postController } from "../libs/requestUrls";
-import RequestApi, { RequestApiV2 } from "../libs/requestApi";
+import RequestApiV2 from "../libs/requestApi";
 
 class Post {
   getPost(isAdmin: boolean, cursor = "", status = "ACCEPTED") {
@@ -30,7 +30,7 @@ class Post {
           answer: questionAnswer,
         },
       };
-      return RequestApi({
+      return RequestApiV2({
         method: "POST",
         url: postController.createPost(),
         data: data,
@@ -45,7 +45,7 @@ class Post {
       reason,
     };
     try {
-      return RequestApi({
+      return RequestApiV2({
         method: "DELETE",
         url: postController.deletePost(id),
         data: data,
@@ -61,7 +61,7 @@ class Post {
       const data = {
         reason,
       };
-      return RequestApi({
+      return RequestApiV2({
         method: "PATCH",
         url: postController.reportPost(id),
         data: data,
@@ -79,7 +79,7 @@ class Post {
         title,
         content,
       };
-      return RequestApi({
+      return RequestApiV2({
         method: "PATCH",
         url: postController.modifyPost(id),
         data: data,
@@ -95,7 +95,7 @@ class Post {
       const data = {
         status,
       };
-      return RequestApi({
+      return RequestApiV2({
         method: "POST",
         url: postController.setStatusPost(id),
         data: data,

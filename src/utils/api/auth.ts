@@ -1,5 +1,5 @@
 import { authController } from "../libs/requestUrls";
-import RequestApi from "../libs/requestApi";
+import RequestApiV2 from "../libs/requestApi";
 
 class Auth {
   async login(password: string) {
@@ -7,7 +7,7 @@ class Auth {
       const data = {
         password,
       };
-      return await RequestApi({
+      return await RequestApiV2({
         url: authController.login(),
         method: "POST",
         data: data,

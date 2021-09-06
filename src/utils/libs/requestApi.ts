@@ -1,11 +1,10 @@
-import { BASE_URL, BASE_URLV2 } from "constants/config.json";
 import axios, { AxiosRequestConfig } from "axios";
 
-const RequestApi = (p: AxiosRequestConfig) => {
+const RequestApiV2 = (p: AxiosRequestConfig) => {
   try {
     const res = axios({
       method: p.method,
-      baseURL: BASE_URLV2,
+      baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
       url: p.url,
       data: p.data,
       headers: p.headers
@@ -18,21 +17,4 @@ const RequestApi = (p: AxiosRequestConfig) => {
   }
 };
 
-export const RequestApiV2 = (p: AxiosRequestConfig) => {
-  try {
-    const res = axios({
-      method: p.method,
-      baseURL: BASE_URLV2,
-      url: p.url,
-      data: p.data,
-      headers: p.headers
-        ? { Authorization: localStorage.getItem("token") }
-        : null,
-    });
-    return res;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export default RequestApi;
+export default RequestApiV2;
