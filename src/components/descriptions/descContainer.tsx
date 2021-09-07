@@ -19,22 +19,22 @@ interface descHeadingProps {
  * props : about, rule
  */
 
-const headingObj = {
-  about: "안녕하세요! 이곳은",
-  rule: "규칙",
-};
-
-const explanationObj = {
-  about: "광대숲입니다!",
-  rule: "",
-};
-
 export const descHeading: React.FC<descHeadingProps> = ({ descType }) => {
   return (
     <>
       <HeadingPresenter
-        heading={headingObj[descType]}
-        explanation={explanationObj[descType]}
+        heading={
+          {
+            about: "안녕하세요! 이곳은",
+            rule: "규칙"
+          }[descType]!
+        }
+        explanation={
+          {
+            about: "광대숲입니다!",
+            rule: ""
+          }[descType]!
+        }
       />
       {descType === "about" && (
         <>

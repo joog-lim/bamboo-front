@@ -13,7 +13,7 @@ const IndexPresenter: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [isHasNext, setIsHasNext] = useState(true);
   let hasNext = true;
   let cursor2: string = "";
@@ -51,7 +51,7 @@ const IndexPresenter: React.FC = () => {
     getPostList();
   }, []);
 
-  cursor2 = data[data.length - 1]?.number;
+  cursor2 = data[data.length - 1].number;
   hasNext = isHasNext;
 
   return (

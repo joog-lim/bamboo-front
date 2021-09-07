@@ -33,7 +33,7 @@ const SideBar: React.FC = () => {
         <h3>알고리즘 현황</h3>
         <br />
         {React.Children.toArray(
-          count?.map((item: { _id: string; count: number }) => (
+          count.map((item: { _id: string; count: number }) => (
             <>
               <h3>{item._id}</h3>
               <p>{item.count}개</p>
