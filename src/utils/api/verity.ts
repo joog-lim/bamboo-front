@@ -7,8 +7,7 @@ class Verify {
       return await RequestApiV2({
         url: verifyController.getQuestion(),
       });
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
       throw new Error(e);
     }
   }

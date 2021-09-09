@@ -12,7 +12,7 @@ class Auth {
         method: "POST",
         data: data,
       });
-    } catch (e) {
+    } catch (e: any) {
       if (e.message === "Request failed with status code 400") {
         return false;
       }

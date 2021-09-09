@@ -2,7 +2,6 @@ import type { AppProps } from "next/app";
 import "styles/global.scss";
 import { RecoilRoot } from "recoil";
 import ReactModal from "react-modal";
-import * as React from "react";
 
 ReactModal.defaultStyles = {
   overlay: {

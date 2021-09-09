@@ -8,7 +8,7 @@ class Post {
         url: postController.getPost(cursor, status),
         headers: isAdmin,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -35,7 +35,7 @@ class Post {
         url: postController.createPost(),
         data: data,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -51,7 +51,7 @@ class Post {
         data: data,
         headers: true,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -66,7 +66,7 @@ class Post {
         url: postController.reportPost(id),
         data: data,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -85,7 +85,7 @@ class Post {
         data: data,
         headers: true,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
@@ -101,7 +101,7 @@ class Post {
         data: data,
         headers: true,
       });
-    } catch (e) {
+    } catch (e: any) {
       throw new Error(e);
     }
   }
