@@ -26,6 +26,10 @@ const LoginModal: React.FC = () => {
     isAdmin ? setIsAdmin(false) : openModal();
   };
 
+  const loginClick = () => {
+    tryLogin("");
+  };
+
   return (
     <>
       <button onClick={onClick}>{isAdmin ? "사용자" : "관리자"}</button>
@@ -48,7 +52,7 @@ const LoginModal: React.FC = () => {
           onKeyDown={checkEnter}
           autoFocus={true}
         />
-        <button className={s.loginBtn} onClick={tryLogin}>
+        <button className={s.loginBtn} onClick={loginClick}>
           로그인
         </button>
       </Modal>

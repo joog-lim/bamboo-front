@@ -3,5 +3,5 @@ export interface HeaderProps {
   status: string;
   createdAt: number;
   number: number;
-  tag: string;
+  tag?: string;
 }

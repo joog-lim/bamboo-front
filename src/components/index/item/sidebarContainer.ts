@@ -1,19 +1,20 @@
+import { verify } from "./../../../types/api";
 import { useEffect, useState } from "react";
 import verity from "utils/api/verity";
 import post from "utils/api/post";
 import RequestApi from "utils/libs/requestApi";
 
-export const createPost = (question: { id: any } | undefined) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [tag, setTag] = useState("");
-  const [questionAnswer, setQuestionAnswer] = useState("");
+export const useCreatePost = (question: verify) => {
+  const [title, setTitle] = useState<any>("");
+  const [content, setContent] = useState<string>("");
+  const [tag, setTag] = useState<string>("");
+  const [questionAnswer, setQuestionAnswer] = useState<string>("");
 
   const tryCreatePost = () => {
     if (title === "" || content === "" || tag === "" || questionAnswer === "") {
       console.log("제대로 입력해주세요.");
     } else {
-      post.createPost(title, content, tag, question?.id, questionAnswer);
+      post.createPost(title, content, tag, question.id, questionAnswer);
       setTitle("");
       setContent("");
       setTag("");
@@ -34,16 +35,16 @@ export const createPost = (question: { id: any } | undefined) => {
   ];
 };
 
-export const getQuestion = () => {
-  const [question, setQuestion] = useState();
+export const useGetQuestion = () => {
+  const [question, setQuestion] = useState<verify>();
   useEffect(() => {
     verity.getQuestion().then((res) => setQuestion(res.data));
   }, []);
   return question;
 };
 
-export const getCount = () => {
-  const [count, setCount] = useState();
+export const useGetCount = () => {
+  const [count, setCount] = useState<any>();
   useEffect(() => {
     RequestApi({
       url: "https://ket73grkcf.execute-api.ap-northeast-2.amazonaws.com/apiV2/post/count",

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
+import { Styles } from "react-modal";
 
 import { isAdminState } from "recoil/atom";
 import auth from "utils/api/auth";
 
-export const customStyles = {
+export const customStyles: Styles = {
   content: {
     display: "flex",
     flexDirection: "column",

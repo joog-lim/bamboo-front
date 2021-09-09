@@ -5,7 +5,7 @@ import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
-import { AlgorithmApi } from "types/types";
+import { algorithm } from "types/api";
 import Post from "utils/api/post";
 import { isAdminState, algorithmFilterState } from "src/recoil/atom";
 
@@ -64,7 +64,7 @@ const IndexPresenter: React.FC = () => {
             <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
           )}
           {React.Children.toArray(
-            data?.map((item: AlgorithmApi) => <Algorithms data={item} />)
+            data?.map((item: algorithm) => <Algorithms data={item} />)
           )}
           <p>
             {hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}

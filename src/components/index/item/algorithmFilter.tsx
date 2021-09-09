@@ -8,7 +8,7 @@ import { AlgorithmType } from "src/types/types";
 const AlgorithmFilter: React.FC = () => {
   const tags: string[] = ["대기", "수락", "거절", "삭제"];
 
-  const algorithmsState: {[idx: string]: AlgorithmType} = {
+  const algorithmsState: { [idx: string]: AlgorithmType } = {
     대기: "PENDING",
     수락: "ACCEPTED",
     거절: "REJECTED",
@@ -21,10 +21,6 @@ const AlgorithmFilter: React.FC = () => {
     REJECTED: "거절",
     DELETED: "삭제",
   };
-
-  const filter = (a: any) => {
-    setAlgorithmFilter(algorithmsState[a])
-  }
 
   const [algorithmFilter, setAlgorithmFilter] =
     useRecoilState(algorithmFilterState);

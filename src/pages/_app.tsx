@@ -2,23 +2,30 @@ import type { AppProps } from "next/app";
 import "styles/global.scss";
 import { RecoilRoot } from "recoil";
 import ReactModal from "react-modal";
+import * as React from "react";
 
-ReactModal.defaultStyles.overlay.backgroundColor = "#00000033";
-ReactModal.defaultStyles.content.top = "50%";
-ReactModal.defaultStyles.content.left = "50%";
-ReactModal.defaultStyles.content.right = "auto";
-ReactModal.defaultStyles.content.bottom = "auto";
-ReactModal.defaultStyles.content.marginRight = "-50%";
-ReactModal.defaultStyles.content.transform = "translate(-50%, -50%)";
-ReactModal.defaultStyles.content.maxWidth = "50vw";
-ReactModal.defaultStyles.content.maxHeight = "50vh";
-ReactModal.defaultStyles.content.width = "50vw";
-ReactModal.defaultStyles.content.height = "50vh";
-ReactModal.defaultStyles.content.background = "#FFFFFF";
-ReactModal.defaultStyles.content.borderRadius = "5px";
-ReactModal.defaultStyles.content.border = "none";
-ReactModal.defaultStyles.content.padding = "40px";
-ReactModal.defaultStyles.content.boxSizing = "border-box";
+ReactModal.defaultStyles = {
+  overlay: {
+    backgroundColor: "#00000033",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    maxWidth: "50vw",
+    maxHeight: "50vh",
+    width: "50vw",
+    height: "50vh",
+    background: "#FFFFFF",
+    borderRadius: "5px",
+    border: "none",
+    padding: "40px",
+    boxSizing: "border-box",
+  },
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

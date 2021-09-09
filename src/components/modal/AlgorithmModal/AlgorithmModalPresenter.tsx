@@ -5,8 +5,6 @@ import s from "./algorithmModal.module.scss";
 import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
 import Post from "src/utils/api/post";
-import { useRecoilValue } from "recoil";
-import { isAdminState } from "src/recoil/atom";
 
 const AlgorithmModal: React.FC<algorithmModalProps> = (
   p: algorithmModalProps
@@ -15,7 +13,6 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [reason, setReason] = useState("");
-  const isAdmin = useRecoilValue(isAdminState);
 
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
@@ -39,7 +36,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const modifyPost = () => {
     Post.modifyPost(p.algorithmId, title, reason, content).then((res: any) => {
-      res.status == 200
+      res.status === 200
         ? alert("성공적으로 수정되었습니다.")
         : alert("실패하였습니다.");
       closeModal();
@@ -48,7 +45,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const setStatusPost = (status: string) => {
     Post.setStatusPost(p.algorithmId, status).then((res: any) => {
-      res.status == 200
+      res.status === 200
         ? alert("성공적으로 상태가 변경되었습니다.")
         : alert("실패하였습니다.");
       closeModal();
@@ -57,7 +54,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const deletePost = () => {
     Post.deletePost(p.algorithmId, content).then((res: any) => {
-      res.status == 200
+      res.status === 200
         ? alert("성공적으로 삭제되었습니다.")
         : alert("실패하였습니다.");
       closeModal();

@@ -1,4 +1,6 @@
-export const customStyles = {
+import { Styles } from "react-modal";
+
+export const customStyles: Styles = {
   content: {
     display: "flex",
     flexDirection: "column",
