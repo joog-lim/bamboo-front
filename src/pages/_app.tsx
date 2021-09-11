@@ -3,23 +3,30 @@ import "styles/global.scss";
 import { RecoilRoot } from "recoil";
 import ReactModal from "react-modal";
 
+ReactModal.setAppElement("#__next");
+
 ReactModal.defaultStyles = {
   overlay: {
+    zIndex: 3,
+    position: "fixed",
+    inset: "0px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#00000033",
   },
   content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    zIndex: 3,
+    inset: "40px",
+    overflow: "hidden",
+    borderRadius: "5px",
+    outline: "none",
+    flexDirection: "column",
     maxWidth: "50vw",
     maxHeight: "50vh",
     width: "50vw",
     height: "50vh",
     background: "#FFFFFF",
-    borderRadius: "5px",
     border: "none",
     padding: "40px",
     boxSizing: "border-box",
