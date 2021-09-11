@@ -26,13 +26,13 @@ export const descHeading: React.FC<descHeadingProps> = ({ descType }) => {
         heading={
           {
             about: "안녕하세요! 이곳은",
-            rule: "규칙"
+            rule: "규칙",
           }[descType]!
         }
         explanation={
           {
             about: "광대숲입니다!",
-            rule: ""
+            rule: "",
           }[descType]!
         }
       />

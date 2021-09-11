@@ -12,10 +12,10 @@ export interface defaultAlgorithm {
 }
 
 export interface algorithm extends defaultAlgorithm {
-  createdAt?: number;
-  id?: string;
-  number?: number;
-  status?: string;
+  createdAt: number;
+  id: string;
+  number: number;
+  status: string;
 }
 
 // create algorithm
