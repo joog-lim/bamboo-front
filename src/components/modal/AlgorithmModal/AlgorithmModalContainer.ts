@@ -6,6 +6,7 @@ export const customStyles: Styles = {
     flexDirection: "column",
     padding: "40px",
     overflow: "hidden",
+    zIndex: 10,
   },
 };
 
