@@ -1,6 +1,6 @@
 //알고리즘 관리
 export const postController = {
-  getPost: (cursor: string, status: string) => {
+  getPost: (cursor: number | string, status: string) => {
     return `/post/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
   },
   createPost: () => {

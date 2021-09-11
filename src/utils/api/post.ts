@@ -2,7 +2,7 @@ import { postController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
 
 class Post {
-  getPost(isAdmin: boolean, cursor = "", status = "ACCEPTED") {
+  getPost(isAdmin: boolean, cursor: number | string = "", status = "ACCEPTED") {
     try {
       return RequestApiV2({
         url: postController.getPost(cursor, status),

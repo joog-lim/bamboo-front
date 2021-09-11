@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               }[p.status]
             : " 알고리즘"}
         </h3>
-        <p>2022년 5월 30일 새벽</p>
+        <p>{p.createdAt}</p>
       </div>
       <div>
         <p>#{p.tag}</p>
