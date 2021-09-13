@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 
 import s from "./header.module.scss";
-import { HeaderProps } from "./headerContainer";
+import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
 import { isAdminState } from "recoil/atom";
 import Post from "utils/api/post";
@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               }[p.status]
             : " 알고리즘"}
         </h3>
-        <p>{p.createdAt}</p>
+        <p>{getDate(p.createdAt)}</p>
       </div>
       <div>
         <p>#{p.tag}</p>
