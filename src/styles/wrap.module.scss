@@ -1,3 +1,8 @@
+@use "styles/module" as c;
+
 .wrap {
   margin: 0 16vw;
+  @media (max-width: c.$laptop) {
+    margin: 0 20px;
+  }
 }
