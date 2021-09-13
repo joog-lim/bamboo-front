@@ -5,6 +5,13 @@
   display: flex;
   justify-content: space-between;
   padding: 15px 16vw;
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 999;
+  @media (max-width: c.$laptop) {
+    padding: 15px 20px;
+  }
 }
 
 .nav {
