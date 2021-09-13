@@ -15,7 +15,7 @@
     width: 0px;
   }
   to {
-    width: 320px;
+    width: 60vw;
   }
 }
 
@@ -27,7 +27,7 @@
 .greenLine {
   margin: 40px 0;
   border: 0;
-  width: 320px;
+  width: 60vw;
   height: 1px;
   background-color: c.$green-color;
   animation: widthAnimation 2s ease;
@@ -36,6 +36,10 @@
 .descAboutWrapper {
   * {
     @include commonTextStyle;
+  }
+  a {
+    text-decoration: underline solid c.$green-color 1px;
+    color: c.$green-color;
   }
   .title {
     font-weight: bold;
