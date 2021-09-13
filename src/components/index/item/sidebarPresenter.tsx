@@ -29,7 +29,7 @@ const SideBar: React.FC = () => {
   const count = useGetCount();
 
   return isAdmin ? (
-    <aside>
+    <section>
       <HeadingPresenter
         heading={"모두에게 하고픈 말,"}
         explanation={"무엇인가요?"}
@@ -46,9 +46,9 @@ const SideBar: React.FC = () => {
           ))
         )}
       </article>
-    </aside>
+    </section>
   ) : (
-    <aside>
+    <section>
       <HeadingPresenter
         heading={"모두에게 하고픈 말,"}
         explanation={"무엇인가요?"}
@@ -100,7 +100,7 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-    </aside>
+    </section>
   );
 };
 

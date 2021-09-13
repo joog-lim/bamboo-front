@@ -23,7 +23,6 @@ const IndexPresenter: React.FC = () => {
   const getPostList = () => {
     let posts: algorithm[];
     Post.getPost(isAdmin, cursor2, algorithmFilter).then((res) => {
-      console.log(res);
       posts = res.data.posts;
       cursor2 = res.data.cursor;
       hasNext = res.data.hasNext;
@@ -60,19 +59,15 @@ const IndexPresenter: React.FC = () => {
   return (
     <main className={s.main}>
       <SideBar />
-      <article>
+      <article className={s.algorithms}>
         {isAdmin && <AlgorithmFilter />}
-        <article className={s.algorithms} id="scrollableDiv">
-          {isAdmin && (
-            <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
-          )}
-          {React.Children.toArray(
-            data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
-          )}
-          <p>
-            {hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}
-          </p>
-        </article>
+        {isAdmin && (
+          <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
+        )}
+        {React.Children.toArray(
+          data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
+        )}
+        <p>{hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}</p>
       </article>
     </main>
   );

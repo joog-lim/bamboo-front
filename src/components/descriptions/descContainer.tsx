@@ -77,14 +77,24 @@ export const descAbout = () => {
       <p>
         A. 광대숲은 모든 글이 관리자의 허가를 맡아서 올라가기에 올라갈 때 시간이
         걸릴 수 있습니다. 또한 부적절한 내용으로 검토 및 삭제가 되었을 수
-        있습니다. 자세한 사항은{" "}
+        있습니다. 자세한 사항은
         <Link href={"/rule"}>
           <span className={s.href}>규칙</span>
         </Link>
         을 참고해주세요.
       </p>
       <h1 className={s.title}>문의</h1>
-      <p>github : url email : email discord : 이선우#7777</p>
+      <p>
+        <span>
+          github : <a href="https://github.com/joog-lim">바로가기</a>
+        </span>
+        <br />
+        <span>
+          discord : <a href="https://discord.gg/x4Qq9Xr8F2">바로가기</a>
+        </span>
+        <br />
+        <span>email : 아직 없음</span>
+      </p>
     </article>
   );
 };
