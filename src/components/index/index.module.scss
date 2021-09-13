@@ -3,11 +3,20 @@
 .main {
   display: flex;
   justify-content: space-between;
+  @media (max-width: c.$laptop) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .algorithms {
   margin-top: 130px;
   padding-left: 20px;
+  margin-bottom: 100px;
+  @media (max-width: c.$laptop) {
+    padding: 0;
+    margin-top: 20px;
+  }
 }
 
 .heading {

@@ -10,6 +10,9 @@
     font-weight: 700;
     margin: 10px 0;
   }
+  @media (max-width: c.$laptop) {
+    width: calc(100vw - 40px);
+  }
 }
 
 .algorithmsBoxAdmin {
