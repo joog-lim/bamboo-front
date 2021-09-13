@@ -93,7 +93,7 @@ export const descAbout = () => {
           discord : <a href="https://discord.gg/x4Qq9Xr8F2">바로가기</a>
         </span>
         <br />
-        <span>email : 아직 없음</span>
+        <span>email : jooglim.org@gmail.com</span>
       </p>
     </article>
   );
