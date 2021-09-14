@@ -3,6 +3,8 @@ export interface HeaderProps {
   status: string;
   createdAt: number;
   number: number | string;
+  title?: string;
+  content?: string;
   tag?: string;
 }
 
