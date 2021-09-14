@@ -86,11 +86,15 @@ export const descAbout = () => {
       <h1 className={s.title}>문의</h1>
       <p>
         <span>
-          github : <a href="https://github.com/joog-lim">바로가기</a>
+          Github :
+          <a href="https://github.com/joog-lim">https://github.com/joog-lim</a>
         </span>
         <br />
         <span>
-          discord : <a href="https://discord.gg/x4Qq9Xr8F2">바로가기</a>
+          Discord :
+          <a href="https://discord.gg/x4Qq9Xr8F2">
+            https://discord.gg/x4Qq9Xr8F2
+          </a>
         </span>
         <br />
         <span>email : jooglim.org@gmail.com</span>
