@@ -11,8 +11,12 @@ export const useCreatePost = (question: verify) => {
   const [questionAnswer, setQuestionAnswer] = useState<string>("");
 
   const tryCreatePost = () => {
-    if (title === "" || content === "" || tag === "" || questionAnswer === "") {
-      console.log("제대로 입력해주세요.");
+    if (title === "" || content === "" || questionAnswer === "") {
+      alert("빈칸을 채워주세요.");
+    } else if (tag === "") {
+      alert("태그를 선택해주세요.");
+    } else if (questionAnswer !== "#softmeister01") {
+      alert("와이파이 비밀번호가 틀렸습니다.");
     } else {
       post.createPost(title, content, tag, question.id, questionAnswer);
       setTitle("");
@@ -48,7 +52,7 @@ export const useGetCount = () => {
   useEffect(() => {
     RequestApi({
       url: "https://ket73grkcf.execute-api.ap-northeast-2.amazonaws.com/apiV2/post/count",
-    }).then((res) => setCount(res.data));
+    }).then((res: any) => setCount(res.data));
   }, []);
   return count;
 };
@@ -66,3 +70,10 @@ export const tags: string[] = [
   "관계",
   "기타",
 ];
+
+export const transfer: { [idx: string]: any } = {
+  PENDING: "대기중인",
+  ACCEPTED: "수락된",
+  REJECTED: "거절된",
+  DELETED: "삭제 요청된",
+};
