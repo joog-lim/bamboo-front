@@ -66,3 +66,10 @@ export const tags: string[] = [
   "관계",
   "기타",
 ];
+
+export const transfer: { [idx: string]: any } = {
+  PENDING: "대기중인",
+  ACCEPTED: "수락된",
+  REJECTED: "거절된",
+  DELETED: "삭제 요청된",
+};

@@ -4,7 +4,12 @@ import { useRecoilValue } from "recoil";
 import s from "./sidebar.module.scss";
 import HeadingPresenter from "components/heading/headingPresenter";
 import { tags } from "./sidebarContainer";
-import { useGetQuestion, useCreatePost, useGetCount } from "./sidebarContainer";
+import {
+  useGetQuestion,
+  useCreatePost,
+  useGetCount,
+  transfer,
+} from "./sidebarContainer";
 import { isAdminState } from "src/recoil/atom";
 
 const SideBar: React.FC = () => {
@@ -40,7 +45,7 @@ const SideBar: React.FC = () => {
         {React.Children.toArray(
           count?.map((item: { _id: string; count: number }) => (
             <>
-              <h3>{item._id}</h3>
+              <h3>{transfer[item._id]} 알고리즘</h3>
               <p>{item.count}개</p>
             </>
           ))
