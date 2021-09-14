@@ -84,6 +84,9 @@
   @include c.every-box;
   height: fit-content;
   width: 330px;
+  @media (max-width: c.$laptop) {
+    width: calc(100vw - 40px);
+  }
   h3 {
     font-weight: 700;
     font-size: c.$font18px;
