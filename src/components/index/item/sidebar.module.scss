@@ -52,7 +52,7 @@
 
 .textareaBox {
   @include c.every-box;
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   width: calc(100% - 20px);
   @media (max-width: c.$laptop) {
     width: 100%;
@@ -74,10 +74,7 @@
 
 .submitBtn {
   @include c.green-short-btn;
-  margin: 0 0 0 calc(100% - 60px);
-  @media (max-width: c.$laptop) {
-    margin: 0 0 0 92.7%;
-  }
+  margin: 0 0 0 calc(100% - 68px);
 }
 
 .admin {

@@ -11,6 +11,8 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
         createdAt={p.data.createdAt}
         number={p.data.number}
         tag={p.data.tag}
+        content={p.data.content}
+        title={p.data.title}
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>
