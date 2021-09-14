@@ -6,8 +6,13 @@
   @include c.black-shadow;
   @include c.every-btn;
   text-align: center;
-  margin: 50px 0 0 41%;
+  margin-left: 39.5%;
   position: absolute;
+  top: 150px;
+  @media (max-width: c.$laptop) {
+    top: 335px;
+    right: 5px;
+  }
   z-index: 1;
   color: c.$black-color;
   background-color: c.$white-color;
