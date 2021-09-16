@@ -74,6 +74,34 @@ $font14px: 0.875em;
   background-color: #57cc4d;
 }
 
+@mixin drop-down-btn {
+  @include is-radius;
+  font-size: $font16px;
+  padding: 10px 15px;
+  text-align: center;
+  position: absolute;
+  li {
+    display: none;
+    padding: 7px 0;
+    background-color: $white-color;
+    color: $black-color;
+  }
+  li:nth-child(1) {
+    margin-top: 10px;
+  }
+  &:hover {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    li {
+      display: block;
+    }
+  }
+  li:active {
+    filter: brightness(90%);
+  }
+}
+
 // box styles
 
 @mixin every-box {
