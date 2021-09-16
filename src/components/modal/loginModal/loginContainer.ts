@@ -23,7 +23,7 @@ const useLogin = (closeModal: () => void) => {
     const res = await auth.login(password);
     if (res) {
       setIsAdmin(res.data.success);
-      if (isAdmin) {
+      if (res.data.success) {
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
         closeModal();

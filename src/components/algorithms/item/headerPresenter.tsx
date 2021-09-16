@@ -11,7 +11,6 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
 
   const setStatusPost = () => {
     Post.setStatusPost(p.id).then((res: { status: number }) => {
-      console.log(res);
       res.status === 200
         ? alert("성공적으로 수정되었습니다.")
         : alert("실패하였습니다.");
@@ -82,14 +81,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                 >
                   삭제
                 </AlgorithmModal>
-                <AlgorithmModal
-                  isRed
-                  isHeading
-                  isReason={false}
-                  algorithmId={p.id}
-                >
-                  거절
-                </AlgorithmModal>
+                <button onClick={setStatusPost}>기각</button>
               </>
             ),
           }[p.status]}

@@ -16,28 +16,15 @@
 }
 
 .tagBtn {
-  @include c.green-short-btn;
-  text-align: center;
+  @include c.drop-down-btn;
+  color: white;
+  background-color: c.$green-color;
   margin-left: 5px;
-  position: absolute;
   li {
-    display: none;
-    padding: 7px 0;
     border: 1px solid c.$green-color;
-    background-color: c.$white-color;
-    color: c.$black-color;
-  }
-  li:nth-child(1) {
-    margin-top: 10px;
   }
   &:hover {
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 0;
     width: 57px;
-    li {
-      display: block;
-    }
   }
 }
 
