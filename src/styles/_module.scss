@@ -38,6 +38,9 @@ $font14px: 0.875em;
   @include is-radius;
   font-size: $font16px;
   color: white;
+  &:active {
+    filter: brightness(90%);
+  }
 }
 
 @mixin filter-btn {

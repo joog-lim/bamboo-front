@@ -16,7 +16,11 @@
 }
 
 .tagBtn {
-  @include c.green-short-btn;
+  @include c.is-radius;
+  color: white;
+  font-size: c.$font16px;
+  background-color: c.$green-color;
+  padding: 10px 15px;
   text-align: center;
   margin-left: 5px;
   position: absolute;
@@ -38,6 +42,9 @@
     li {
       display: block;
     }
+  }
+  li:active {
+    filter: brightness(90%);
   }
 }
 

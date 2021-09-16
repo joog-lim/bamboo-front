@@ -34,5 +34,8 @@
     li {
       display: block;
     }
+    li:active {
+      filter: brightness(90%);
+    }
   }
 }
