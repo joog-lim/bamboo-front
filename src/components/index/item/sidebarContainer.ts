@@ -19,6 +19,9 @@ export const useCreatePost = (question: verify) => {
       alert("와이파이 비밀번호가 틀렸습니다.");
     } else {
       post.createPost(title, content, tag, question.id, questionAnswer);
+      alert(
+        "성공적으로 알고리즘이 대기 상태에 들어갔습니다!\n곧 수락 상태로 보실 수 있을 거에요!"
+      );
       setTitle("");
       setContent("");
       setTag("");
