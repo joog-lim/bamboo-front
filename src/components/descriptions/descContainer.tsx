@@ -97,7 +97,7 @@ export const descAbout = () => {
           </a>
         </span>
         <br />
-        <span>email : jooglim.org@gmail.com</span>
+        <span>mail : jooglim.org@gmail.com</span>
       </p>
     </article>
   );
@@ -176,11 +176,11 @@ export const descRule = () => {
         </h3>
         <p className={s.answer}>
           <h4 className={s.bold}>
-            1. 홍보를 목적으로 하는 게시글일 경우, 디스코드 프로모션 서버를 통해
+            1. 홍보를 목적으로 하는 게시글일 경우, 디스코드 대나무 숲 서버를 통해
             관리자에게 문의를 통해 사전 허가를 받아야 한다.
           </h4>
           <h4 className={s.bold}>
-            2. 설문조사를 목적으로 하는 게시글일 경우, 디스코드 프로모션 서버를
+            2. 설문조사를 목적으로 하는 게시글일 경우, 디스코드 대나무 숲 서버를
             통해 관리자에게 문의를 통해 사전 허가를 받아야 한다.
           </h4>
         </p>
