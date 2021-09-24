@@ -16,6 +16,7 @@ export interface algorithm extends defaultAlgorithm {
   id: string;
   number: number;
   status: string;
+  reason?: string;
 }
 
 // create algorithm
