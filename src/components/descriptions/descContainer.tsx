@@ -149,7 +149,7 @@ export const descRule = () => {
             12. 관리자의 판단 아래, 반절 이상의 관리자들이 문제가 있다고 판단한
             경우
           </h4>
-          <h4 className={s.bold}>12. 도배성 게시글일 경우</h4>
+          <h4 className={s.bold}>13. 도배성 게시글일 경우</h4>
         </article>
         <h3 className={s.title}>
           제 2항: 제 2조 1항 2호에 해당하는 게시글이 공익을 목적으로 하는 고발성
