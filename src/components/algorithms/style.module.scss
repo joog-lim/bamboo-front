@@ -10,6 +10,11 @@
     font-weight: 700;
     margin: 10px 0;
   }
+  p {
+    line-height: 25px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
   @media (max-width: c.$laptop) {
     width: calc(100vw - 40px);
   }

@@ -90,10 +90,11 @@ class Post {
     }
   }
 
-  setStatusPost(id: string, status = "ACCEPTED") {
+  setStatusPost(id: string, status = "ACCEPTED", reason: string) {
     try {
       const data = {
         status,
+        reason,
       };
       return RequestApiV2({
         method: "POST",

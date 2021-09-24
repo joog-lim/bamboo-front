@@ -54,7 +54,7 @@ export const useGetCount = () => {
   const [count, setCount] = useState<any>();
   useEffect(() => {
     RequestApi({
-      url: "https://ket73grkcf.execute-api.ap-northeast-2.amazonaws.com/apiV2/post/count",
+      url: process.env.NEXT_PUBLIC_APP_BASE_URLV2 + "/post/count",
     }).then((res: any) => setCount(res.data));
   }, []);
   return count;

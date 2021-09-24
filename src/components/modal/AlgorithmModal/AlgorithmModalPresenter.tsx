@@ -44,7 +44,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const setStatusPost = (status: string) => {
-    Post.setStatusPost(p.algorithmId, status).then((res: any) => {
+    Post.setStatusPost(p.algorithmId, status, content).then((res: any) => {
       res.status === 200
         ? alert("성공적으로 상태가 변경되었습니다.")
         : alert("실패하였습니다.");
