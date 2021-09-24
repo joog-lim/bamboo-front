@@ -112,7 +112,7 @@ export const descRule = () => {
         및 익명성 보장을 목적으로 한다.
         <h2 className={s.title}>제 2조 게시글</h2>
         <h3 className={s.title}>게시에 관한 규칙 제 1항:</h3>
-        <p className={s.answer}>
+        <article className={s.answer}>
           <span>
             다음과 같은 게시물의 경우 반려 처리가 되거나, 삭제가 될 수 있다.
           </span>
@@ -150,7 +150,7 @@ export const descRule = () => {
             경우
           </h4>
           <h4 className={s.bold}>12. 도배성 게시글일 경우</h4>
-        </p>
+        </article>
         <h3 className={s.title}>
           제 2항: 제 2조 1항 2호에 해당하는 게시글이 공익을 목적으로 하는 고발성
           제보일 경우,
@@ -158,7 +158,7 @@ export const descRule = () => {
           <br />
           관리자들의 회의 아래 게시될 수 있다. 단 다음 기준들이 엄격히 적용된다.
         </h3>
-        <p className={s.answer}>
+        <article className={s.answer}>
           <h4 className={s.bold}>
             1. 실명 거론의 경우 초성처리나 블라인드 처리로 수정된다.
           </h4>
@@ -168,14 +168,14 @@ export const descRule = () => {
           <h4 className={s.bold}>3. 추측성 내용이 포함되어있으면 안된다.</h4>
           <h4 className={s.bold}>4. 사실만 포함되어 있어야 한다.</h4>
           <h4 className={s.bold}>5. 비약적인 논리 전개가 있으면 안된다.</h4>
-        </p>
+        </article>
         <h3 className={s.title}>
           제 3항: 이 외에 제 2조 1항의 기준에 해당되는 제보더라도,
           <br />
           <br />
           관리자의 재량으로 게시글이 게시될 수 있다. 단, 다음 기준들이 적용된다.
         </h3>
-        <p className={s.answer}>
+        <article className={s.answer}>
           <h4 className={s.bold}>
             1. 홍보를 목적으로 하는 게시글일 경우, 디스코드 대나무 숲 서버를
             통해 관리자에게 문의를 통해 사전 허가를 받아야 한다.
@@ -184,7 +184,7 @@ export const descRule = () => {
             2. 설문조사를 목적으로 하는 게시글일 경우, 디스코드 대나무 숲 서버를
             통해 관리자에게 문의를 통해 사전 허가를 받아야 한다.
           </h4>
-        </p>
+        </article>
         <h3 className={s.title}>
           제 3조 특정 이슈로 인한 과열에 관한 규칙 제 1항:
         </h3>
