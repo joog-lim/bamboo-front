@@ -90,7 +90,7 @@ class Post {
     }
   }
 
-  setStatusPost(id: string, status = "ACCEPTED", reason: string) {
+  setStatusPost(id: string, status = "ACCEPTED", reason?: string) {
     try {
       const data = {
         status,
