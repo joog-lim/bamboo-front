@@ -11,7 +11,10 @@ const Index: React.FC = () => {
     <>
       <Head>
         <title>광대숲</title>
-        <meta name="description" content="광대숲" />
+        <meta
+          name="description"
+          content="광주소프트웨어마이스터고등학교 대나무숲, 하고 싶던 말을 전해보세요."
+        />
       </Head>
       <HeaderPresenter location={config.LINK.HOME} />
       <div className={styles.wrap}>
