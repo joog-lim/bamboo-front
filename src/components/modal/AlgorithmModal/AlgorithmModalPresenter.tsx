@@ -16,13 +16,6 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
-  //TODO: 함수 분리 작업
-  const checkEnter = (e: { key: string }) => {
-    if (e.key === "Enter") {
-      onClick();
-    }
-  };
-
   const reportPost = () => {
     Post.reportPost(p.algorithmId, content).then((res: { status: number }) => {
       const result =
@@ -127,7 +120,6 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
             required
             onChange={({ target: { value } }) => setContent(value)}
             placeholder="내용을 입력하세요."
-            onKeyDown={checkEnter}
           />
           <button className={p.isRed ? s.redBtn : s.greenBtn} onClick={onClick}>
             {p.children}
