@@ -1,9 +1,12 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
 import { AlgorithmsProps } from "./algorithmsContainer";
+import { isAdminState } from "src/recoil/atom";
+import { useRecoilValue } from "recoil";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
-  console.log(p.data.reason);
+  const isAdmin = useRecoilValue(isAdminState);
+
   return (
     <article className={style.algorithmsBox}>
       <Header
@@ -17,7 +20,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>
-      {
+      {isAdmin &&
         {
           REJECTED: (
             <>
@@ -29,8 +32,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
               <h4>신고 사유</h4> <p>{p.data.reason}</p>
             </>
           ),
-        }[p.data.status]
-      }
+        }[p.data.status]}
     </article>
   );
 };
