@@ -9,7 +9,10 @@ const Rule: React.FC = () => {
     <>
       <Head>
         <title>광대숲 규칙</title>
-        <meta name="description" content="광대숲 규칙" />
+        <meta
+          name="description"
+          content="광주소프트웨어마이스터고등학교 대나무숲 규칙"
+        />
       </Head>
       <HeaderPresenter location={config.LINK.RULE} />
       <div className={styles.wrap}>

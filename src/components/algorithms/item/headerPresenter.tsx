@@ -41,6 +41,14 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               <>
                 <button onClick={setStatusPost}>수락</button>
                 <AlgorithmModal
+                  isRed={false}
+                  isHeading={false}
+                  isReason
+                  algorithmId={p.id}
+                >
+                  수정
+                </AlgorithmModal>
+                <AlgorithmModal
                   isRed
                   isHeading
                   isReason={false}

@@ -71,7 +71,7 @@ class Post {
     }
   }
 
-  modifyPost(id: string, title: string, content: string, reason: string) {
+  modifyPost(id: string, title: string, reason: string, content: string) {
     try {
       const data = {
         status,
