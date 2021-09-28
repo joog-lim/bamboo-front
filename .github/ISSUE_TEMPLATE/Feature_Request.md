@@ -1,6 +1,16 @@
 문제가 이미 보고되었을 수 있습니다!
 생성하기 전에 [이슈 트래커](../)에서 검색하십시오.
 
+---
+
+name: "\U0001F680 Feature Request"
+about: "Joog-lim에 이런 기능이 있었으면 좋겠어요! \U0001F642!"
+title: '기능 요청'
+labels: 'i: enhancement'
+assignees: 'iseolin76, sunwoo0706'
+
+---
+
 <!-- - 위의 제목에 문제에 대한 일반적인 요약 제공 -->
 
 ## 예상되는 동작
