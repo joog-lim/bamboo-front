@@ -41,7 +41,6 @@ const LoginModal: React.FC = () => {
         ariaHideApp={false}
         contentLabel="Login Modal"
       >
-        <Logo />
         <h1 className={s.h1}>로그인하기</h1>
         <h2 className={s.h2}>관리자님 환영합니다!</h2>
         <input
