@@ -100,11 +100,6 @@ $font14px: 0.875em;
   li:active {
     filter: brightness(90%);
   }
-  &:active {
-    li {
-      display: none;
-    }
-  }
 }
 
 // box styles

@@ -32,6 +32,7 @@ const SideBar: React.FC = () => {
     }
   );
   const count = useGetCount();
+  const [tagClicked, setTagClicked] = useState<boolean>(false);
 
   return isAdmin ? (
     <section>
@@ -70,11 +71,14 @@ const SideBar: React.FC = () => {
         />
         <button className={s.tagBtn}>
           {tag === "" ? "태그" : tag}
-          <ul>
+          <ul
+            className={tagClicked && s.tagClose}
+          >
             {React.Children.map(tags, (child) => (
               <li
                 onClick={() => {
                   setTag(child);
+                  setTagClicked(true);
                 }}
               >
                 #{child}
