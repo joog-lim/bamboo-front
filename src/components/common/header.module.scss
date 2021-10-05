@@ -4,11 +4,17 @@
   @include c.green-shadow;
   display: flex;
   justify-content: space-between;
-  padding: 15px 16vw;
+  padding: 0 16vw;
   position: sticky;
   top: 0px;
   background-color: white;
   z-index: 2;
+  nav {
+    padding: 15px 0;
+  }
+  h1 {
+    align-self: center;
+  }
   @media (max-width: c.$laptop) {
     padding: 15px 20px;
   }
