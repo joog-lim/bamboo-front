@@ -32,7 +32,7 @@ const SideBar: React.FC = () => {
     }
   );
   const count = useGetCount();
-  const [tagClicked, setTagClicked] = useState<boolean>(false);
+  const [tagClicked, setTagClicked] = useState<any>(false);
 
   return isAdmin ? (
     <section>
@@ -109,7 +109,7 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
