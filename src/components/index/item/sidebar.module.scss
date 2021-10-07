@@ -28,6 +28,14 @@
   }
 }
 
+.tagClose {
+  display: none;
+}
+
+.tagOpen {
+  display: block;
+}
+
 .fullInput {
   @include c.every-input;
   width: 94.5%;

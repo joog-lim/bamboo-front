@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 
 import s from "./sidebar.module.scss";
@@ -32,6 +32,10 @@ const SideBar: React.FC = () => {
     }
   );
   const count = useGetCount();
+  const [tagClicked, setTagClicked] = useState<boolean>(false); // tagClicked의 값을 setTimeout을 사용하여 몇 초 뒤 false값을 줌
+  let ChangeTagValues = setTimeout(function () {
+    setTagClicked(false);
+  }, 500);
 
   return isAdmin ? (
     <section>
@@ -70,11 +74,14 @@ const SideBar: React.FC = () => {
         />
         <button className={s.tagBtn}>
           {tag === "" ? "태그" : tag}
-          <ul>
+          <ul
+            className={tagClicked ? s.tagClose : s.tagOpen} // 삼항연산자로 오류 해결 해보기
+          >
             {React.Children.map(tags, (child) => (
               <li
                 onClick={() => {
                   setTag(child);
+                  setTagClicked(true);
                 }}
               >
                 #{child}
@@ -105,7 +112,7 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
