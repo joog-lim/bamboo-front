@@ -32,7 +32,7 @@ const SideBar: React.FC = () => {
     }
   );
   const count = useGetCount();
-  const [tagClicked, setTagClicked] = useState<any>(false);
+  const [tagClicked, setTagClicked] = useState<boolean>(false); // tagClicked의 값을 setTimeout을 사용하여 몇 초 뒤 false값을 줌
 
   return isAdmin ? (
     <section>
@@ -72,7 +72,7 @@ const SideBar: React.FC = () => {
         <button className={s.tagBtn}>
           {tag === "" ? "태그" : tag}
           <ul
-            className={tagClicked && s.tagClose}
+            className={tagClicked ? s.tagClose : s.tagOpen} // 삼항연산자로 오류 해결 해보기
           >
             {React.Children.map(tags, (child) => (
               <li
