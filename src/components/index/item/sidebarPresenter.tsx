@@ -33,6 +33,9 @@ const SideBar: React.FC = () => {
   );
   const count = useGetCount();
   const [tagClicked, setTagClicked] = useState<boolean>(false); // tagClicked의 값을 setTimeout을 사용하여 몇 초 뒤 false값을 줌
+  let ChangeTagValues = setTimeout(function () {
+    setTagClicked(false);
+  }, 500);
 
   return isAdmin ? (
     <section>
