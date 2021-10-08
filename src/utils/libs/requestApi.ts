@@ -5,7 +5,7 @@ const RequestApiV2 = (p: AxiosRequestConfig) => {
     console.log(process.env.NEXT_PUBLIC_APP_BASE_URLV2)
     const res = axios({
       method: p.method,
-      baseURL: "https://server.joog-lim.info/test",
+      baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
       url: p.url,
       data: p.data,
       headers: p.headers
