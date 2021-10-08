@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 const RequestApiV2 = (p: AxiosRequestConfig) => {
   try {
+    console.log(process.env.NEXT_PUBLIC_APP_BASE_URLV2)
     const res = axios({
       method: p.method,
       baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
