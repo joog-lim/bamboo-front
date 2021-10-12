@@ -10,6 +10,8 @@
 
 .background_spinner {
   @extend .spinner;
-  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
   background-color: c.$shadow-color;
 }
