@@ -45,6 +45,8 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isHeading={false}
                   isReason
                   algorithmId={p.id}
+                  title={p.title}
+                  content={p.content}
                 >
                   수정
                 </AlgorithmModal>
@@ -65,6 +67,8 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isHeading={false}
                   isReason
                   algorithmId={p.id}
+                  title={p.title}
+                  content={p.content}
                 >
                   수정
                 </AlgorithmModal>
