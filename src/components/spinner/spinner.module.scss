@@ -1,0 +1,17 @@
+@use "styles/module" as c;
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background_spinner {
+  @extend .spinner;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: c.$shadow-color;
+}
