@@ -16,3 +16,8 @@ export const algorithmState = atom<algorithm[]>({
   key: "algorithmState",
   default: [{ number: 0, createdAt: 0, id: "", status: "" }],
 });
+
+export const loadingState = atom<boolean>({
+  key: "loadingState",
+  default: false,
+});

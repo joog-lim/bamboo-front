@@ -12,6 +12,7 @@ import {
   algorithmFilterState,
   algorithmState,
 } from "recoil/atom";
+import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const IndexPresenter: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
@@ -69,7 +70,13 @@ const IndexPresenter: React.FC = () => {
         {React.Children.toArray(
           data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
         )}
-        <p>{hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}</p>
+        <p>
+          {hasNext ? (
+            <SpinnerBar background={false} />
+          ) : (
+            "더 이상 알고리즘이 존재하지 않아요!"
+          )}
+        </p>
       </article>
     </main>
   );
