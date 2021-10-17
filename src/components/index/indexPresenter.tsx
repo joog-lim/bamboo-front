@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
@@ -7,15 +7,17 @@ import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm } from "types/api";
 import Post from "utils/api/post";
-import { isAdminState, algorithmFilterState } from "src/recoil/atom";
+import {
+  isAdminState,
+  algorithmFilterState,
+  algorithmState,
+} from "recoil/atom";
 
 const IndexPresenter: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
 
-  const [data, setData] = useState<algorithm[]>([
-    { number: 0, createdAt: 0, id: "", status: "" },
-  ]);
+  const [data, setData] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
   let hasNext = true;
   let cursor2: number | undefined;
