@@ -21,3 +21,8 @@ export const loadingState = atom<boolean>({
   key: "loadingState",
   default: false,
 });
+
+export const reLoadingState = atom<boolean>({
+  key: "reLoadingState",
+  default: false,
+});
