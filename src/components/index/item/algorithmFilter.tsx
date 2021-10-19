@@ -2,7 +2,11 @@ import React from "react";
 import { useRecoilState } from "recoil";
 
 import s from "./algorithmFilter.module.scss";
-import { algorithmFilterState } from "src/recoil/atom";
+import {
+  algorithmFilterState,
+  algorithmState,
+  reLoadingState,
+} from "recoil/atom";
 import { AlgorithmType } from "src/types/types";
 
 const AlgorithmFilter: React.FC = () => {
@@ -22,8 +26,12 @@ const AlgorithmFilter: React.FC = () => {
     DELETED: "삭제",
   };
 
-  const [algorithmFilter, setAlgorithmFilter] =
-    useRecoilState(algorithmFilterState);
+  const [algorithmFilter, setAlgorithmFilter] = useRecoilState(
+    algorithmFilterState
+  );
+
+  const [data, setData] = useRecoilState(algorithmState);
+  const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
   return (
     <button className={s.algoritmFilterBtn}>
@@ -32,7 +40,9 @@ const AlgorithmFilter: React.FC = () => {
         {React.Children.map(tags, (child: string) => (
           <li
             onClick={() => {
+              setData([{ number: 0, createdAt: 0, id: "", status: "" }]);
               setAlgorithmFilter(algorithmsState[child]);
+              setReLoading(true);
             }}
           >
             {child}

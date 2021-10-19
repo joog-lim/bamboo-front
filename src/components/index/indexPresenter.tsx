@@ -11,12 +11,14 @@ import {
   isAdminState,
   algorithmFilterState,
   algorithmState,
+  reLoadingState,
 } from "recoil/atom";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const IndexPresenter: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
+  const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
   const [data, setData] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
@@ -55,6 +57,11 @@ const IndexPresenter: React.FC = () => {
   useEffect(() => {
     getPostList();
   }, []);
+
+  useEffect(() => {
+    getPostList();
+    setReLoading(false);
+  }, [isReLoading]);
 
   cursor2 = data.length - 1 === 0 ? undefined : data[data.length - 1].number;
   hasNext = isHasNext;
