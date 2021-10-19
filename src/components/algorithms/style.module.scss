@@ -2,7 +2,7 @@
 
 .algorithmsBox {
   @include c.every-box;
-  width: 45vw;
+  width: calc(100vw - 32vw - 350px);
   padding: 15px;
   margin-bottom: 20px;
   h4 {
