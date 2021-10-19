@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { SetterOrUpdater, useRecoilState } from "recoil";
 import { Styles } from "react-modal";
 
 import { isAdminState } from "recoil/atom";
@@ -15,22 +15,26 @@ export const customStyles: Styles = {
   },
 };
 
-const useLogin = (closeModal: () => void) => {
+const useLogin = (
+  closeModal: () => void,
+  setIsLoading: SetterOrUpdater<boolean>
+) => {
   const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
 
   const tryLogin = async () => {
     const res = await auth.login(password);
+    setIsLoading(false);
     if (res) {
       setIsAdmin(res.data.success);
       if (res.data.success) {
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
-        closeModal();
       }
     } else {
       alert("비밀번호가 틀렸습니다.");
     }
+    closeModal();
   };
 
   return [setPassword, tryLogin];

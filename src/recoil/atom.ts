@@ -10,3 +10,8 @@ export const algorithmFilterState = atom<AlgorithmType>({
   key: "algorithmFilterState",
   default: "ACCEPTED",
 });
+
+export const loadingState = atom<boolean>({
+  key: "loadingState",
+  default: false,
+});
