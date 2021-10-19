@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 
 import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
@@ -7,15 +7,20 @@ import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm } from "types/api";
 import Post from "utils/api/post";
-import { isAdminState, algorithmFilterState } from "src/recoil/atom";
+import {
+  isAdminState,
+  algorithmFilterState,
+  algorithmState,
+  reLoadingState,
+} from "recoil/atom";
+import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const IndexPresenter: React.FC = () => {
   const isAdmin = useRecoilValue(isAdminState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
+  const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
-  const [data, setData] = useState<algorithm[]>([
-    { number: 0, createdAt: 0, id: "", status: "" },
-  ]);
+  const [data, setData] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
   let hasNext = true;
   let cursor2: number | undefined;
@@ -53,6 +58,11 @@ const IndexPresenter: React.FC = () => {
     getPostList();
   }, []);
 
+  useEffect(() => {
+    getPostList();
+    setReLoading(false);
+  }, [isReLoading]);
+
   cursor2 = data.length - 1 === 0 ? undefined : data[data.length - 1].number;
   hasNext = isHasNext;
 
@@ -67,7 +77,13 @@ const IndexPresenter: React.FC = () => {
         {React.Children.toArray(
           data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
         )}
-        <p>{hasNext ? "로딩 중..." : "더 이상 알고리즘이 존재하지 않아요!"}</p>
+        <p>
+          {hasNext ? (
+            <SpinnerBar background={false} />
+          ) : (
+            "더 이상 알고리즘이 존재하지 않아요!"
+          )}
+        </p>
       </article>
     </main>
   );

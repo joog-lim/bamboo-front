@@ -5,8 +5,9 @@
 .algoritmFilterBtn {
   @include c.drop-down-btn;
   @include c.black-shadow;
-  top: 150px;
-  right: 16vw;
+  position: absolute;
+  top: -20px;
+  right: 0;
   z-index: 1;
   color: c.$black-color;
   background-color: c.$white-color;
@@ -18,7 +19,6 @@
     font-weight: 400;
   }
   @media (max-width: c.$laptop) {
-    top: 335px;
-    right: 5px;
+    top: 0;
   }
 }

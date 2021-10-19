@@ -5,19 +5,28 @@ import s from "./algorithmModal.module.scss";
 import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
 import Post from "src/utils/api/post";
+import SpinnerBar from "components/spinner/spinnerPresenter";
+import { loadingState } from "recoil/atom";
+import { useRecoilState } from "recoil";
 
 const AlgorithmModal: React.FC<algorithmModalProps> = (
   p: algorithmModalProps
 ) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
+
+  //여기 초기값은 의미없는 값입니다.
+  //input에서 입력을 하였는 지 판별하기 위해 넣었습니다.
+  //좋은 방법이 있다면 알려주세요.
+  const [content, setContent] = useState("default32rewfdas");
+  const [title, setTitle] = useState("default32rewfdas");
   const [reason, setReason] = useState("");
+  const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
   const reportPost = () => {
     Post.reportPost(p.algorithmId, content).then((res: { status: number }) => {
+      setIsLoading(false);
       const result =
         res.status === 200
           ? "성공적으로 신고되었습니다."
@@ -29,6 +38,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const modifyPost = () => {
     Post.modifyPost(p.algorithmId, title, reason, content).then((res: any) => {
+      setIsLoading(false);
       res.status === 200
         ? alert("성공적으로 수정되었습니다.")
         : alert("실패하였습니다.");
@@ -38,6 +48,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const setStatusPost = (status: string) => {
     Post.setStatusPost(p.algorithmId, status, content).then((res: any) => {
+      setIsLoading(false);
       res.status === 200
         ? alert("성공적으로 상태가 변경되었습니다.")
         : alert("실패하였습니다.");
@@ -47,6 +58,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
 
   const deletePost = () => {
     Post.deletePost(p.algorithmId, content).then((res: any) => {
+      setIsLoading(false);
       res.status === 200
         ? alert("성공적으로 삭제되었습니다.")
         : alert("실패하였습니다.");
@@ -55,6 +67,10 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const onClick = () => {
+    if (content === "default32rewfdas") {
+      alert("내용을 입력하여주세요.");
+    }
+    setIsLoading(true);
     switch (p.children) {
       case "삭제": {
         deletePost();
@@ -90,27 +106,31 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
           ariaHideApp={false}
           contentLabel="Algorithm Modal"
         >
+          {isLoading && <SpinnerBar background={true} />}
           <h1 className={p.isRed ? s.redH1 : s.greenH1}>{p.children}하기</h1>
           {p.isHeading ? (
             <input
+              type="text"
               className={s.password}
               defaultValue={`알고리즘을 ${p.children}합니다`}
               readOnly
             />
           ) : (
             <input
+              type="text"
               className={s.password}
               placeholder="제목을 입력하세요."
               autoFocus={true}
               required
+              value={title === "default32rewfdas" ? p.title : title}
               onChange={({ target: { value } }) => setTitle(value)}
             />
           )}
           {p.isReason && (
             <input
+              type="text"
               className={s.password}
               placeholder="사유를 입력하세요."
-              autoFocus={true}
               required
               onChange={({ target: { value } }) => setReason(value)}
             />
@@ -120,6 +140,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
             required
             onChange={({ target: { value } }) => setContent(value)}
             placeholder="내용을 입력하세요."
+            value={content === "default32rewfdas" ? p.content : content}
           />
           <button className={p.isRed ? s.redBtn : s.greenBtn} onClick={onClick}>
             {p.children}

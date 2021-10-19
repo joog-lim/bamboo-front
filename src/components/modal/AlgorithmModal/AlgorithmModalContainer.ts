@@ -16,4 +16,6 @@ export interface algorithmModalProps {
   isReason: boolean;
   children: React.ReactNode;
   algorithmId: string;
+  title?: string;
+  content?: string;
 }
