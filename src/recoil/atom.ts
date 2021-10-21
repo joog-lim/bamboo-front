@@ -1,10 +1,13 @@
 import { atom } from "recoil";
 import { algorithm } from "types/api";
-import { AlgorithmType } from "types/types";
+import { AlgorithmType, isLogin } from "types/types";
 
-export const isAdminState = atom<boolean>({
-  key: "isAdminState",
-  default: false,
+export const isLoginState = atom<isLogin>({
+  key: "isLoginState",
+  default: {
+    isLogin: false,
+    isAdmin: false,
+  },
 });
 
 export const algorithmFilterState = atom<AlgorithmType>({
