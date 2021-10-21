@@ -5,7 +5,12 @@ import { GoogleLogin } from "react-google-login";
 
 import { isAdminState } from "recoil/atom";
 import s from "./loginModal.module.scss";
-import useLogin, { customStyles, adminText, userText } from "./loginContainer";
+import useLogin, {
+  customStyles,
+  adminText,
+  userText,
+  googleLogin,
+} from "./loginContainer";
 import modalController from "../modal";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
@@ -20,6 +25,7 @@ const LoginModal: React.FC = () => {
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [setPassword, tryLogin] = useLogin(closeModal, setIsLoading);
+  const tryGoogleLogin = googleLogin(closeModal);
 
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {
@@ -36,8 +42,12 @@ const LoginModal: React.FC = () => {
     tryLogin("");
   };
 
-  const responseGoogle = (response: any) => {
-    console.log(response);
+  const onSuccessGoogle = (response: any) => {
+    tryGoogleLogin(response.accessToken);
+  };
+
+  const onFailureGoogle = (response: any) => {
+    alert("구글 로그인에 실패하였습니다." + response);
   };
 
   const onChangeState = () => {
@@ -80,8 +90,8 @@ const LoginModal: React.FC = () => {
             <GoogleLogin
               clientId="957329737930-eb08rfsefqr3es8q8kd9j5ncg9s3r9vh.apps.googleusercontent.com"
               buttonText="SIGN IN WITH GOOGLE"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
+              onSuccess={onSuccessGoogle}
+              onFailure={onFailureGoogle}
               cookiePolicy={"single_host_origin"}
               className={s.googleLoginBtn}
             />

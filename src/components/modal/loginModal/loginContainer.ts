@@ -43,4 +43,18 @@ const useLogin = (
   return [setPassword, tryLogin];
 };
 
+export const googleLogin = (closeModal: () => void) => {
+  return async (token: string) => {
+    window.localStorage.setItem("token", token);
+    try {
+      const res = await auth.GoogleLogin();
+      console.log(res);
+      alert("로그인 토큰 넘김");
+      closeModal();
+    } catch {
+      alert("실패");
+    }
+  };
+};
+
 export default useLogin;
