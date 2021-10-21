@@ -45,7 +45,7 @@ const LoginModal: React.FC = () => {
   };
 
   const onSuccessGoogle = (response: any) => {
-    tryGoogleLogin(response.accessToken);
+    tryGoogleLogin(response.tokenId);
   };
 
   const onFailureGoogle = (response: any) => {
