@@ -92,7 +92,7 @@ const LoginModal: React.FC = () => {
         ) : (
           <>
             <GoogleLogin
-              clientId="957329737930-eb08rfsefqr3es8q8kd9j5ncg9s3r9vh.apps.googleusercontent.com"
+              clientId={process.env.NEXT_PUBLIC_APP_CLIENT_ID ?? ""}
               buttonText="SIGN IN WITH GOOGLE"
               onSuccess={onSuccessGoogle}
               onFailure={onFailureGoogle}
