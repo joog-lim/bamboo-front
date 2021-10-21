@@ -15,6 +15,9 @@ export const customStyles: Styles = {
   },
 };
 
+export const adminText: string = "관리자님 환영합니다!";
+export const userText: string = "학교 계정으로 로그인해주세요!";
+
 const useLogin = (
   closeModal: () => void,
   setIsLoading: SetterOrUpdater<boolean>
