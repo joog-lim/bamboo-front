@@ -20,10 +20,13 @@ export const postController = {
   },
 };
 
-//관리자
+//계정
 export const authController = {
   login: () => {
     return `/auth/`;
+  },
+  googleLogin: () => {
+    return `accountTest/login`;
   },
 };
 
