@@ -26,7 +26,7 @@ export const authController = {
     return `/auth/`;
   },
   googleLogin: () => {
-    return `accountTest/login`;
+    return `/account/account/login`;
   },
 };
 
