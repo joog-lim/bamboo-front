@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useRecoilState } from "recoil";
 import { GoogleLogin } from "react-google-login";
 
-import { isAdminState } from "recoil/atom";
+import { isLoginState } from "recoil/atom";
 import s from "./loginModal.module.scss";
 import useLogin, {
   customStyles,
@@ -17,7 +17,7 @@ import { loadingState } from "recoil/atom";
 
 const LoginModal: React.FC = () => {
   const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false);
-  const [isAdmin, setIsAdmin] = useRecoilState(isAdminState);
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openModal, closeModal] = modalController(setModalIsOpen);
@@ -34,7 +34,9 @@ const LoginModal: React.FC = () => {
   };
 
   const onClick = () => {
-    isAdmin ? setIsAdmin(false) : openModal();
+    isLogin.isLogin
+      ? setIsLogin({ isAdmin: false, isLogin: false })
+      : openModal();
   };
 
   const loginClick = () => {
@@ -56,7 +58,9 @@ const LoginModal: React.FC = () => {
 
   return (
     <>
-      <button onClick={onClick}>{isAdmin ? "로그아웃" : "로그인"}</button>
+      <button onClick={onClick}>
+        {isLogin.isLogin ? "로그아웃" : "로그인"}
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

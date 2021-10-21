@@ -8,7 +8,7 @@ import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm } from "types/api";
 import Post from "utils/api/post";
 import {
-  isAdminState,
+  isLoginState,
   algorithmFilterState,
   algorithmState,
   reLoadingState,
@@ -16,7 +16,7 @@ import {
 import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const IndexPresenter: React.FC = () => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const isLogin = useRecoilValue(isLoginState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
@@ -27,7 +27,7 @@ const IndexPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts: algorithm[];
-    Post.getPost(isAdmin, cursor2, algorithmFilter).then((res) => {
+    Post.getPost(isLogin.isAdmin, cursor2, algorithmFilter).then((res) => {
       posts = res.data.posts;
       cursor2 = res.data.cursor;
       hasNext = res.data.hasNext;
@@ -70,8 +70,8 @@ const IndexPresenter: React.FC = () => {
     <main className={s.main}>
       <SideBar />
       <article className={s.algorithms}>
-        {isAdmin && <AlgorithmFilter />}
-        {isAdmin && (
+        {isLogin.isAdmin && <AlgorithmFilter />}
+        {isLogin.isAdmin && (
           <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
         )}
         {React.Children.toArray(

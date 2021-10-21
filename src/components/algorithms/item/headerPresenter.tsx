@@ -3,11 +3,11 @@ import { useRecoilValue } from "recoil";
 import s from "./header.module.scss";
 import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
-import { isAdminState } from "recoil/atom";
+import { isLoginState } from "recoil/atom";
 import Post from "utils/api/post";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const isLogin = useRecoilValue(isLoginState);
 
   const setStatusPost = () => {
     Post.setStatusPost(p.id).then((res: { status: number }) => {
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
       <div>
         <h3>
           {p.status === "PENDING" ? <>{p.id}</> : <>#{p.number}번째</>}
-          {isAdmin
+          {isLogin.isAdmin
             ? {
                 PENDING: " 대기 중",
                 ACCEPTED: " 알고리즘",
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
       </div>
       <div>
         <p>#{p.tag}</p>
-        {isAdmin &&
+        {isLogin.isAdmin &&
           {
             PENDING: (
               <>
@@ -97,7 +97,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               </>
             ),
           }[p.status]}
-        {!isAdmin && (
+        {!isLogin.isAdmin && (
           <AlgorithmModal isRed isHeading isReason={false} algorithmId={p.id}>
             신고
           </AlgorithmModal>

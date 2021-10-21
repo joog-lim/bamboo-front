@@ -1,11 +1,11 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
 import { AlgorithmsProps } from "./algorithmsContainer";
-import { isAdminState } from "src/recoil/atom";
+import { isLoginState } from "src/recoil/atom";
 import { useRecoilValue } from "recoil";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const isLogin = useRecoilValue(isLoginState);
 
   return (
     <article className={style.algorithmsBox}>
@@ -20,7 +20,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>
-      {isAdmin &&
+      {isLogin.isAdmin &&
         {
           REJECTED: (
             <>

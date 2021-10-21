@@ -10,10 +10,10 @@ import {
   useGetCount,
   transfer,
 } from "./sidebarContainer";
-import { isAdminState } from "src/recoil/atom";
+import { isLoginState } from "recoil/atom";
 
 const SideBar: React.FC = () => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const isLogin = useRecoilValue(isLoginState);
   const question = useGetQuestion();
   const [
     tryCreatePost,
@@ -37,7 +37,7 @@ const SideBar: React.FC = () => {
     setTagClicked(false);
   }, 500);
 
-  return isAdmin ? (
+  return isLogin.isAdmin ? (
     <section>
       <HeadingPresenter
         heading={"모두에게 하고픈 말,"}
@@ -112,7 +112,7 @@ const SideBar: React.FC = () => {
           </button>
         </div>
       </div>
-    </section >
+    </section>
   );
 };
 
