@@ -7,7 +7,7 @@ import { isLoginState } from "recoil/atom";
 import Post from "utils/api/post";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const isLogin = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(isLoginState);
 
   const setStatusPost = () => {
     Post.setStatusPost(p.id).then((res: { status: number }) => {
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
       <div>
         <h3>
           {p.status === "PENDING" ? <>{p.id}</> : <>#{p.number}번째</>}
-          {isLogin.isAdmin
+          {isAdmin
             ? {
                 PENDING: " 대기 중",
                 ACCEPTED: " 알고리즘",
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
       </div>
       <div>
         <p>#{p.tag}</p>
-        {isLogin.isAdmin &&
+        {isAdmin &&
           {
             PENDING: (
               <>
@@ -97,7 +97,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               </>
             ),
           }[p.status]}
-        {!isLogin.isAdmin && (
+        {!isAdmin && (
           <AlgorithmModal isRed isHeading isReason={false} algorithmId={p.id}>
             신고
           </AlgorithmModal>

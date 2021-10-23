@@ -5,7 +5,7 @@ import { isLoginState } from "src/recoil/atom";
 import { useRecoilValue } from "recoil";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
-  const isLogin = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(isLoginState);
 
   return (
     <article className={style.algorithmsBox}>
@@ -20,7 +20,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>
-      {isLogin.isAdmin &&
+      {isAdmin &&
         {
           REJECTED: (
             <>

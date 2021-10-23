@@ -13,7 +13,7 @@ import {
 import { isLoginState } from "recoil/atom";
 
 const SideBar: React.FC = () => {
-  const isLogin = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(isLoginState);
   const question = useGetQuestion();
   const [
     tryCreatePost,
@@ -37,7 +37,7 @@ const SideBar: React.FC = () => {
     setTagClicked(false);
   }, 500);
 
-  return isLogin.isAdmin ? (
+  return isAdmin ? (
     <section>
       <HeadingPresenter
         heading={"모두에게 하고픈 말,"}
