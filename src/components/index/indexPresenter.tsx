@@ -8,7 +8,7 @@ import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm } from "types/api";
 import Post from "utils/api/post";
 import {
-  isLoginState,
+  hasTokenState,
   algorithmFilterState,
   algorithmState,
   reLoadingState,
@@ -16,7 +16,7 @@ import {
 import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const IndexPresenter: React.FC = () => {
-  const { isAdmin } = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(hasTokenState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 

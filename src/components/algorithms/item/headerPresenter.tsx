@@ -3,11 +3,11 @@ import { useRecoilValue } from "recoil";
 import s from "./header.module.scss";
 import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
-import { isLoginState } from "recoil/atom";
+import { hasTokenState } from "recoil/atom";
 import Post from "utils/api/post";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const { isAdmin } = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(hasTokenState);
 
   const setStatusPost = () => {
     Post.setStatusPost(p.id).then((res: { status: number }) => {

@@ -10,10 +10,10 @@ import {
   useGetCount,
   transfer,
 } from "./sidebarContainer";
-import { isLoginState } from "recoil/atom";
+import { hasTokenState } from "recoil/atom";
 
 const SideBar: React.FC = () => {
-  const { isAdmin } = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(hasTokenState);
   const question = useGetQuestion();
   const [
     tryCreatePost,
