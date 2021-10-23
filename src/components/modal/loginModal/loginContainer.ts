@@ -43,7 +43,10 @@ const useLogin = (
   return [setPassword, tryLogin];
 };
 
-export const googleLogin = (closeModal: () => void) => {
+export const googleLogin = (
+  closeModal: () => void,
+  setIsLoading: SetterOrUpdater<boolean>
+) => {
   const [_, setIsLogin] = useRecoilState(hasTokenState);
 
   return async (token: string) => {
@@ -52,6 +55,7 @@ export const googleLogin = (closeModal: () => void) => {
       const res = await auth.GoogleLogin();
       window.localStorage.setItem("token", res.data.token);
       setIsLogin({ isAdmin: false, isLogin: true });
+      setIsLoading(false);
       alert("로그인에 성공하였습니다.");
       closeModal();
     } catch {

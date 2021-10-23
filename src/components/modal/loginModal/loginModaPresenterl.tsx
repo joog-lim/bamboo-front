@@ -25,7 +25,7 @@ const LoginModal: React.FC = () => {
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [setPassword, tryLogin] = useLogin(closeModal, setIsLoading);
-  const tryGoogleLogin = googleLogin(closeModal);
+  const tryGoogleLogin = googleLogin(closeModal, setIsLoading);
 
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {
@@ -45,6 +45,7 @@ const LoginModal: React.FC = () => {
   };
 
   const onSuccessGoogle = (response: any) => {
+    setIsLoading(true);
     tryGoogleLogin(response.tokenId);
   };
 
