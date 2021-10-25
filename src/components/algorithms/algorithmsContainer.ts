@@ -1,4 +1,4 @@
-import { algorithm } from "src/types/api";
+import { algorithm } from "types/api";
 
 export interface AlgorithmsProps {
   data: algorithm;
