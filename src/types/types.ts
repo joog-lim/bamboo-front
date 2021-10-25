@@ -11,3 +11,10 @@ export interface isLogin {
   isLogin: boolean;
   isAdmin: boolean;
 }
+
+const EmojiTypeObject = {
+  THUMBSUP: "thumbsup",
+  THUMBSDOWN: "thumbsdown",
+} as const;
+
+export type EmojiType = typeof EmojiTypeObject[keyof typeof EmojiTypeObject];
