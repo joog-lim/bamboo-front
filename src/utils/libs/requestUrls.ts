@@ -1,3 +1,5 @@
+import { EmojiType } from "types/types";
+
 //알고리즘 관리
 export const postController = {
   getPost: (cursor: number | string, status: string) => {
@@ -27,6 +29,16 @@ export const authController = {
   },
   googleLogin: () => {
     return `/account/account/login`;
+  },
+};
+
+//이모지
+export const emojiController = {
+  getEmogi: (emoji: number) => {
+    return `/account/emoji?num=${emoji}`;
+  },
+  updateEmogi: (emoji: EmojiType) => {
+    return `/account/emoji/${emoji}`;
   },
 };
 
