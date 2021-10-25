@@ -3,9 +3,48 @@ import Header from "./item/headerPresenter";
 import { AlgorithmsProps } from "./algorithmsContainer";
 import { isLoginState } from "src/recoil/atom";
 import { useRecoilValue } from "recoil";
+import { ThumbsUp, ThumbsDown } from "assets/svg";
+import { useState } from "react";
+import { emoji, getEmojiRes } from "types/api";
+import { EmojiType } from "types/types";
+import emojiController from "utils/api/emoji";
+import { useEffect } from "react";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
   const isLogin = useRecoilValue(isLoginState);
+  const [emojiCnt, setEmojiCnt] = useState<getEmojiRes>({
+    thumbsDown: 0,
+    thumbsUp: 0,
+  });
+  const [isEmojiClick, setEmojiClick] = useState<emoji>({
+    thumbsDown: false,
+    thumbsUp: false,
+  });
+
+  const getEmoji = (algorithmNumber: number) => {
+    emojiController.getEmoji(algorithmNumber).then((res) => {
+      setEmojiCnt({
+        thumbsDown: res.data.thumbsdown ?? 0,
+        thumbsUp: res.data.thumbsup ?? 0,
+      });
+    });
+  };
+
+  const addEmoji = (emoji: EmojiType) => {
+    emojiController.addEmoji(emoji, p.data.number).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const deleteEmoji = (emoji: EmojiType) => {
+    emojiController.deleteEmoji(emoji, p.data.number).then((res) => {
+      console.log(res);
+    });
+  };
+
+  useEffect(() => {
+    getEmoji(p.data.number);
+  }, []);
 
   return (
     <article className={style.algorithmsBox}>
@@ -33,6 +72,54 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
             </>
           ),
         }[p.data.status]}
+      <div>
+        <button
+          className={style.emojiBtn}
+          onClick={() => {
+            isEmojiClick.thumbsUp
+              ? (setEmojiCnt({
+                  thumbsDown: emojiCnt?.thumbsDown,
+                  thumbsUp: emojiCnt?.thumbsUp - 1,
+                }),
+                deleteEmoji("thumbsup"))
+              : (setEmojiCnt({
+                  thumbsDown: emojiCnt?.thumbsDown,
+                  thumbsUp: emojiCnt?.thumbsUp + 1,
+                }),
+                addEmoji("thumbsup"));
+            setEmojiClick({
+              thumbsDown: isEmojiClick.thumbsDown,
+              thumbsUp: !isEmojiClick.thumbsUp,
+            });
+          }}
+        >
+          <ThumbsUp isClick={isEmojiClick.thumbsUp} />
+          <span>{emojiCnt?.thumbsUp ?? 0}</span>
+        </button>
+        <button
+          className={style.emojiBtn}
+          onClick={() => {
+            isEmojiClick.thumbsDown
+              ? (setEmojiCnt({
+                  thumbsDown: emojiCnt?.thumbsDown - 1,
+                  thumbsUp: emojiCnt?.thumbsUp,
+                }),
+                deleteEmoji("thumbsdown"))
+              : (setEmojiCnt({
+                  thumbsDown: emojiCnt?.thumbsDown + 1,
+                  thumbsUp: emojiCnt?.thumbsUp,
+                }),
+                addEmoji("thumbsdown"));
+            setEmojiClick({
+              thumbsDown: !isEmojiClick.thumbsDown,
+              thumbsUp: isEmojiClick.thumbsUp,
+            });
+          }}
+        >
+          <ThumbsDown isClick={isEmojiClick.thumbsDown} />
+          <span>{emojiCnt?.thumbsDown ?? 0}</span>
+        </button>
+      </div>
     </article>
   );
 };
