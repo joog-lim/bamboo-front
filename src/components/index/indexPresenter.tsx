@@ -27,7 +27,7 @@ const IndexPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts: algorithm[];
-    Post.getPost(isLogin.isAdmin, cursor2, algorithmFilter).then((res) => {
+    Post.getPost(isLogin.isAdmin, cursor2, algorithmFilter).then((res: any) => {
       posts = res.data.posts;
       cursor2 = res.data.cursor;
       hasNext = res.data.hasNext;

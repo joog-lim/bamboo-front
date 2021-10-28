@@ -34,8 +34,6 @@ const useLogin = (
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
       }
-    } else {
-      alert("비밀번호가 틀렸습니다.");
     }
     closeModal();
   };
@@ -50,7 +48,7 @@ export const useGoogleLogin = (closeModal: () => void) => {
     window.localStorage.setItem("token", token);
     try {
       const res = await auth.GoogleLogin();
-      window.localStorage.setItem("token", res.data.token);
+      window.localStorage.setItem("token", res?.data.token);
       setIsLogin({ isAdmin: false, isLogin: true });
       alert("로그인에 성공하였습니다.");
       closeModal();
