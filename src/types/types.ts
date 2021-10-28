@@ -13,8 +13,7 @@ export interface isLogin {
 }
 
 const EmojiTypeObject = {
-  THUMBSUP: "thumbsup",
-  THUMBSDOWN: "thumbsdown",
+  LEAF: "leaf",
 } as const;
 
 export type EmojiType = typeof EmojiTypeObject[keyof typeof EmojiTypeObject];

@@ -133,16 +133,6 @@ export interface emojiReq {
   num: number;
 }
 
-export interface getEmojiRes {
-  thumbsUp: number;
-  thumbsDown: number;
-}
-
 export interface emojiRes {
   message: string;
-}
-
-export interface emoji {
-  thumbsUp: boolean;
-  thumbsDown: boolean;
 }
