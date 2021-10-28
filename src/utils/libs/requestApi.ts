@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import errHandler from "./error";
 
 export interface requestApiV2DTO extends AxiosRequestConfig {
   canHeader?: boolean;
@@ -11,6 +12,8 @@ const RequestApiV2 = (p: requestApiV2DTO) => {
       url: p.url,
       data: p.data,
       headers: { Authorization: localStorage.getItem("token") ?? "" } ?? {},
+    }).catch((err) => {
+      errHandler(err);
     });
     return res;
   } catch (err: any) {
