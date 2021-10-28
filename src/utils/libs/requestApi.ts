@@ -11,7 +11,9 @@ const RequestApiV2 = (p: requestApiV2DTO) => {
       baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
       url: p.url,
       data: p.data,
-      headers: { Authorization: localStorage.getItem("token") ?? "" } ?? {},
+      headers: p.canHeader
+        ? { Authorization: localStorage.getItem("token") ?? "" } ?? {}
+        : {},
     }).catch((err) => {
       errHandler(err);
     });
