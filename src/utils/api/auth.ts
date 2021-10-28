@@ -19,6 +19,18 @@ class Auth {
       throw new Error(e);
     }
   }
+
+  async GoogleLogin() {
+    try {
+      return await RequestApiV2({
+        url: authController.googleLogin(),
+        method: "POST",
+        headers: true,
+      });
+    } catch (e: any) {
+      throw new Error(e);
+    }
+  }
 }
 
 export default new Auth();

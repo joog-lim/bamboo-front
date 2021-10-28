@@ -16,11 +16,24 @@
 
 .password {
   @include c.every-input;
-  width: 96%;
+  width: 100%;
 }
 
 .loginBtn {
   @include c.green-long-btn;
-  margin-top: 8.5em;
-  align-self: flex-end;
+  width: 100%;
+  margin-top: 8em;
+}
+
+.changeText {
+  color: c.$gray-color;
+  justify-self: flex-end;
+}
+
+.googleLoginBtn {
+  width: 100%;
+  margin: 0em 0 11.7em;
+  span {
+    margin: 0 auto;
+  }
 }
