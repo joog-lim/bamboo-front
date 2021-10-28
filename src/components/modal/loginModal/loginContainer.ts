@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { Styles } from "react-modal";
 
-import { isLoginState } from "recoil/atom";
+import { hasTokenState } from "recoil/atom";
 import auth from "utils/api/auth";
 
 export const customStyles: Styles = {
@@ -23,7 +23,7 @@ const useLogin = (
   setIsLoading: SetterOrUpdater<boolean>
 ) => {
   const [password, setPassword] = useState("");
-  const [_, setIsLogin] = useRecoilState(isLoginState);
+  const [_, setIsLogin] = useRecoilState(hasTokenState);
 
   const tryLogin = async () => {
     const res = await auth.login(password);
@@ -41,8 +41,11 @@ const useLogin = (
   return [setPassword, tryLogin];
 };
 
-export const useGoogleLogin = (closeModal: () => void) => {
-  const [_, setIsLogin] = useRecoilState(isLoginState);
+export const useGoogleLogin = (
+  closeModal: () => void,
+  setIsLoading: SetterOrUpdater<boolean>
+) => {
+  const [_, setIsLogin] = useRecoilState(hasTokenState);
 
   return async (token: string) => {
     window.localStorage.setItem("token", token);
@@ -50,6 +53,7 @@ export const useGoogleLogin = (closeModal: () => void) => {
       const res = await auth.GoogleLogin();
       window.localStorage.setItem("token", res?.data.token);
       setIsLogin({ isAdmin: false, isLogin: true });
+      setIsLoading(false);
       alert("로그인에 성공하였습니다.");
       closeModal();
     } catch {

@@ -7,7 +7,7 @@ const AlgorithmStateTypeObject = {
 
 export type AlgorithmType = typeof AlgorithmStateTypeObject[keyof typeof AlgorithmStateTypeObject];
 
-export interface isLogin {
+export interface hasToken {
   isLogin: boolean;
   isAdmin: boolean;
 }

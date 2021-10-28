@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useRecoilState } from "recoil";
 import { GoogleLogin } from "react-google-login";
 
-import { isLoginState } from "recoil/atom";
+import { hasTokenState } from "recoil/atom";
 import s from "./loginModal.module.scss";
 import useLogin, {
   customStyles,
@@ -17,7 +17,7 @@ import { loadingState } from "recoil/atom";
 
 const LoginModal: React.FC = () => {
   const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [isLogin, setIsLogin] = useRecoilState(hasTokenState);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openModal, closeModal] = modalController(setModalIsOpen);
@@ -25,7 +25,7 @@ const LoginModal: React.FC = () => {
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [setPassword, tryLogin] = useLogin(closeModal, setIsLoading);
-  const tryGoogleLogin = useGoogleLogin(closeModal);
+  const tryGoogleLogin = useGoogleLogin(closeModal, setIsLoading);
 
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {
@@ -45,6 +45,7 @@ const LoginModal: React.FC = () => {
   };
 
   const onSuccessGoogle = (response: any) => {
+    setIsLoading(true);
     tryGoogleLogin(response.tokenId);
   };
 

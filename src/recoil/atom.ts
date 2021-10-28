@@ -1,9 +1,9 @@
 import { atom } from "recoil";
 import { algorithm } from "types/api";
-import { AlgorithmType, isLogin } from "types/types";
+import { AlgorithmType, hasToken } from "types/types";
 
-export const isLoginState = atom<isLogin>({
-  key: "isLoginState",
+export const hasTokenState = atom<hasToken>({
+  key: "hasTokenState",
   default: {
     isLogin: false,
     isAdmin: false,

@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
 import { AlgorithmsProps } from "./algorithmsContainer";
-import { isLoginState } from "src/recoil/atom";
+import { hasTokenState } from "src/recoil/atom";
 import { useRecoilValue } from "recoil";
 import { Leaf } from "assets/svg";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import emojiController from "utils/api/emoji";
 import { useEffect } from "react";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
-  const isLogin = useRecoilValue(isLoginState);
+  const { isAdmin } = useRecoilValue(hasTokenState);
   const [emojiCnt, setEmojiCnt] = useState(0);
   const [isEmojiClick, setEmojiClick] = useState(false);
 
@@ -51,7 +51,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>
-      {isLogin.isAdmin &&
+      {isAdmin &&
         {
           REJECTED: (
             <>
