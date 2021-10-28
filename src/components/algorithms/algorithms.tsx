@@ -15,20 +15,22 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
   const [isEmojiClick, setEmojiClick] = useState(false);
 
   const getEmoji = (algorithmNumber: number) => {
-    emojiController.getEmoji(algorithmNumber).then((res) => {
+    emojiController.getEmoji(algorithmNumber).then((res: any) => {
       setEmojiCnt(res.data.leaf ?? 0);
+      window.localStorage.getItem(String(algorithmNumber)) === "true" &&
+        setEmojiClick(true);
     });
   };
 
   const addEmoji = (emoji: EmojiType) => {
-    emojiController.addEmoji(emoji, p.data.number).then((res) => {
-      console.log(res);
+    emojiController.addEmoji(emoji, p.data.number).then((res: any) => {
+      window.localStorage.setItem(String(p.data.number), "true");
     });
   };
 
   const deleteEmoji = (emoji: EmojiType) => {
-    emojiController.deleteEmoji(emoji, p.data.number).then((res) => {
-      console.log(res);
+    emojiController.deleteEmoji(emoji, p.data.number).then((res: any) => {
+      window.localStorage.setItem(String(p.data.number), "false");
     });
   };
 
