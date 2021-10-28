@@ -25,7 +25,7 @@ class Auth {
       return await RequestApiV2({
         url: authController.googleLogin(),
         method: "POST",
-        headers: true,
+        canHeader: true,
       });
     } catch (e: any) {
       throw new Error(e);

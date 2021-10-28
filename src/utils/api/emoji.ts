@@ -22,7 +22,7 @@ class Emoji {
       return RequestApiV2({
         url: emojiController.updateEmogi(emoji),
         method: "POST",
-        headers: true,
+        canHeader: true,
         data: data,
       });
     } catch (e: any) {
@@ -38,7 +38,7 @@ class Emoji {
       return RequestApiV2({
         url: emojiController.updateEmogi(emoji),
         method: "DELETE",
-        headers: true,
+        canHeader: true,
         data: data,
       });
     } catch (e: any) {

@@ -6,7 +6,7 @@ class Post {
     try {
       return RequestApiV2({
         url: postController.getPost(cursor, status),
-        headers: isAdmin,
+        canHeader: isAdmin,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -49,7 +49,7 @@ class Post {
         method: "DELETE",
         url: postController.deletePost(id),
         data: data,
-        headers: true,
+        canHeader: true,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -83,7 +83,7 @@ class Post {
         method: "PATCH",
         url: postController.modifyPost(id),
         data: data,
-        headers: true,
+        canHeader: true,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -100,7 +100,7 @@ class Post {
         method: "POST",
         url: postController.setStatusPost(id),
         data: data,
-        headers: true,
+        canHeader: true,
       });
     } catch (e: any) {
       throw new Error(e);

@@ -1,19 +1,20 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-const RequestApiV2 = (p: AxiosRequestConfig) => {
+export interface requestApiV2DTO extends AxiosRequestConfig {
+  canHeader?: boolean;
+}
+const RequestApiV2 = (p: requestApiV2DTO) => {
   try {
     const res = axios({
       method: p.method,
       baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
       url: p.url,
       data: p.data,
-      headers: p.headers
-        ? { Authorization: localStorage.getItem("token") }
-        : null,
+      headers: { Authorization: localStorage.getItem("token") ?? "" } ?? {},
     });
     return res;
-  } catch (error) {
-    throw error;
+  } catch (err: any) {
+    throw err;
   }
 };
 
