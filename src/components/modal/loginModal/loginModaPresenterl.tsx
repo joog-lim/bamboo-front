@@ -9,7 +9,7 @@ import useLogin, {
   customStyles,
   adminText,
   userText,
-  googleLogin,
+  useGoogleLogin,
 } from "./loginContainer";
 import modalController from "../modal";
 import SpinnerBar from "components/spinner/spinnerPresenter";
@@ -25,7 +25,7 @@ const LoginModal: React.FC = () => {
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [setPassword, tryLogin] = useLogin(closeModal, setIsLoading);
-  const tryGoogleLogin = googleLogin(closeModal);
+  const tryGoogleLogin = useGoogleLogin(closeModal);
 
   const checkEnter = (e: { key: string }) => {
     if (e.key === "Enter") {

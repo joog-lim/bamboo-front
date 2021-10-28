@@ -43,7 +43,7 @@ const useLogin = (
   return [setPassword, tryLogin];
 };
 
-export const googleLogin = (closeModal: () => void) => {
+export const useGoogleLogin = (closeModal: () => void) => {
   const [_, setIsLogin] = useRecoilState(isLoginState);
 
   return async (token: string) => {
