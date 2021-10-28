@@ -10,7 +10,7 @@ import emojiController from "utils/api/emoji";
 import { useEffect } from "react";
 
 const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
-  const { isAdmin } = useRecoilValue(hasTokenState);
+  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const [emojiCnt, setEmojiCnt] = useState(0);
   const [isEmojiClick, setEmojiClick] = useState(false);
 
@@ -23,15 +23,17 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
   };
 
   const addEmoji = (emoji: EmojiType) => {
-    emojiController.addEmoji(emoji, p.data.number).then((res: any) => {
+    emojiController.addEmoji(isLogin, emoji, p.data.number).then((res: any) => {
       window.localStorage.setItem(String(p.data.number), "true");
     });
   };
 
   const deleteEmoji = (emoji: EmojiType) => {
-    emojiController.deleteEmoji(emoji, p.data.number).then((res: any) => {
-      window.localStorage.setItem(String(p.data.number), "false");
-    });
+    emojiController
+      .deleteEmoji(isLogin, emoji, p.data.number)
+      .then((res: any) => {
+        window.localStorage.setItem(String(p.data.number), "false");
+      });
   };
 
   useEffect(() => {

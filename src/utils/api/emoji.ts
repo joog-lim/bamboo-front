@@ -14,7 +14,7 @@ class Emoji {
     }
   }
 
-  addEmoji(emoji: EmojiType, number: number) {
+  addEmoji(isLogin: boolean, emoji: EmojiType, number: number) {
     const data = {
       num: number,
     };
@@ -22,7 +22,7 @@ class Emoji {
       return RequestApiV2({
         url: emojiController.updateEmogi(emoji),
         method: "POST",
-        canHeader: true,
+        canHeader: isLogin,
         data: data,
       });
     } catch (e: any) {
@@ -30,7 +30,7 @@ class Emoji {
     }
   }
 
-  deleteEmoji(emoji: EmojiType, number: number) {
+  deleteEmoji(isLogin: boolean, emoji: EmojiType, number: number) {
     const data = {
       num: number,
     };
@@ -38,7 +38,7 @@ class Emoji {
       return RequestApiV2({
         url: emojiController.updateEmogi(emoji),
         method: "DELETE",
-        canHeader: true,
+        canHeader: isLogin,
         data: data,
       });
     } catch (e: any) {
