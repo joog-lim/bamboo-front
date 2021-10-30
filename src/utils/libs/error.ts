@@ -9,7 +9,7 @@ const errHandler = (err: Error) => {
       alert("비밀번호가 잘못되었습니다.");
       break;
     case "Request failed with status code 418":
-      alert("이모지 중복 오류\n개발자에게 문의해주세요.");
+      alert("이모지 중복 오류\n양심에 손을 얹고 무언가를\n건드리지않았는지 생각해봅시다.");
       break;
     default:
       alert("알 수 없는 에러가 발생하였습니다." + err.message);
