@@ -1,25 +1,29 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
-import { AlgorithmsProps } from "./algorithmsContainer";
-import { hasTokenState } from "src/recoil/atom";
+import { algorithmsProps } from "./algorithmsContainer";
+import { hasTokenState } from "recoil/atom";
 import { useRecoilValue } from "recoil";
 import { Leaf } from "assets/svg";
 import { useState } from "react";
 import { EmojiType } from "types/types";
 import emojiController from "utils/api/emoji";
 import { useEffect } from "react";
+import { AxiosResponse } from "axios";
+import { emojiRes } from "types/api";
 
-const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
+const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const [emojiCnt, setEmojiCnt] = useState(0);
   const [isEmojiClick, setEmojiClick] = useState(false);
 
   const getEmoji = (algorithmNumber: number) => {
-    emojiController.getEmoji(algorithmNumber).then((res: any) => {
-      setEmojiCnt(res.data.leaf ?? 0);
-      window.localStorage.getItem(String(algorithmNumber)) === "true" &&
-        setEmojiClick(true);
-    });
+    emojiController
+      .getEmoji(algorithmNumber)
+      .then((res: AxiosResponse<emojiRes> | void) => {
+        setEmojiCnt(res?.data?.leaf ?? 0);
+        window.localStorage.getItem(String(algorithmNumber)) === "true" &&
+          setEmojiClick(true);
+      });
   };
 
   const addEmoji = (emoji: EmojiType) => {
@@ -31,9 +35,20 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
   const deleteEmoji = (emoji: EmojiType) => {
     emojiController
       .deleteEmoji(isLogin, emoji, p.data.number)
-      .then((res: any) => {
+      .then((_: AxiosResponse<emojiRes> | void) => {
         window.localStorage.setItem(String(p.data.number), "false");
       });
+  };
+
+  const onEmojiClick = () => {
+    if (isEmojiClick) {
+      setEmojiCnt(emojiCnt - 1);
+      deleteEmoji("leaf");
+    } else {
+      setEmojiCnt(emojiCnt + 1);
+      addEmoji("leaf");
+    }
+    setEmojiClick(!isEmojiClick);
   };
 
   useEffect(() => {
@@ -67,15 +82,7 @@ const Algorithms: React.FC<AlgorithmsProps> = (p: AlgorithmsProps) => {
           ),
         }[p.data.status]}
       <div>
-        <button
-          className={style.emojiBtn}
-          onClick={() => {
-            isEmojiClick
-              ? (setEmojiCnt(emojiCnt - 1), deleteEmoji("leaf"))
-              : (setEmojiCnt(emojiCnt + 1), addEmoji("leaf"));
-            setEmojiClick(!isEmojiClick);
-          }}
-        >
+        <button className={style.emojiBtn} onClick={onEmojiClick}>
           <Leaf isClick={isEmojiClick} />
           <span>{emojiCnt ?? 0}</span>
         </button>

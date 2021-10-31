@@ -19,6 +19,12 @@ export interface algorithm extends defaultAlgorithm {
   reason?: string;
 }
 
+export interface getPostRes {
+  posts: algorithm[];
+  cursor: number;
+  hasNext: boolean;
+}
+
 // create algorithm
 
 export interface createAlgorithmReq extends defaultAlgorithm {
@@ -50,10 +56,10 @@ export interface deleteReq extends defaultAlgorithm {
 // status algorithm
 
 export interface setStatusReq {
-  status: string;
+  status: number;
 }
 
-export interface setStatusRes extends errRes, defaultAlgorithm {
+export interface setStatusRes extends errRes, defaultAlgorithm, setStatusReq {
   beforeStatus?: string;
   afterStatus?: string;
 }
@@ -134,5 +140,6 @@ export interface emojiReq {
 }
 
 export interface emojiRes {
+  leaf: number;
   message: string;
 }

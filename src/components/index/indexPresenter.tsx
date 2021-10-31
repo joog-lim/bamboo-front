@@ -5,7 +5,7 @@ import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
-import { algorithm } from "types/api";
+import { algorithm, getPostRes } from "types/api";
 import Post from "utils/api/post";
 import {
   hasTokenState,
@@ -14,6 +14,7 @@ import {
   reLoadingState,
 } from "recoil/atom";
 import SpinnerBar from "components/spinner/spinnerPresenter";
+import { AxiosResponse } from "axios";
 
 const IndexPresenter: React.FC = () => {
   const { isAdmin } = useRecoilValue(hasTokenState);
@@ -22,18 +23,26 @@ const IndexPresenter: React.FC = () => {
 
   const [data, setData] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
-  let hasNext = true;
+  let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
 
   const getPostList = () => {
-    let posts: algorithm[];
-    Post.getPost(isAdmin, cursor2, algorithmFilter).then((res: any) => {
-      posts = res.data.posts;
-      cursor2 = res.data.cursor;
-      hasNext = res.data.hasNext;
-      setData([data.concat(posts)][0]);
-      setIsHasNext(res.data.hasNext);
-    });
+    let posts: algorithm[] | undefined;
+    Post.getPost(isAdmin, cursor2, algorithmFilter).then(
+      (res: AxiosResponse<getPostRes> | void) => {
+        posts = res?.data?.posts;
+        cursor2 = res?.data.cursor;
+        hasNext = res?.data.hasNext;
+        setData(
+          [
+            data.concat(
+              posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
+            ),
+          ][0]
+        );
+        setIsHasNext(res?.data.hasNext || true);
+      }
+    );
   };
 
   const handleScroll = () => {

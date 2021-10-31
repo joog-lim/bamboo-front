@@ -1,9 +1,11 @@
 import { emojiController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
-import { EmojiType } from "src/types/types";
+import { EmojiType } from "types/types";
+import { AxiosResponse } from "axios";
+import { emojiRes } from "types/api";
 
 class Emoji {
-  getEmoji(emoji: number) {
+  getEmoji(emoji: number): Promise<void | AxiosResponse<emojiRes>> {
     try {
       return RequestApiV2({
         url: emojiController.getEmogi(emoji),
@@ -14,7 +16,11 @@ class Emoji {
     }
   }
 
-  addEmoji(isLogin: boolean, emoji: EmojiType, number: number) {
+  addEmoji(
+    isLogin: boolean,
+    emoji: EmojiType,
+    number: number
+  ): Promise<void | AxiosResponse<emojiRes>> {
     const data = {
       num: number,
     };
@@ -30,7 +36,11 @@ class Emoji {
     }
   }
 
-  deleteEmoji(isLogin: boolean, emoji: EmojiType, number: number) {
+  deleteEmoji(
+    isLogin: boolean,
+    emoji: EmojiType,
+    number: number
+  ): Promise<void | AxiosResponse<emojiRes>> {
     const data = {
       num: number,
     };

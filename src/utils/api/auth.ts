@@ -1,8 +1,10 @@
 import { authController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
+import { AxiosResponse } from "axios";
+import { authRes } from "types/api";
 
 class Auth {
-  async login(password: string) {
+  async login(password: string): Promise<void | AxiosResponse<authRes>> {
     try {
       const data = {
         password,
@@ -17,7 +19,7 @@ class Auth {
     }
   }
 
-  async GoogleLogin() {
+  async GoogleLogin(): Promise<void | AxiosResponse<authRes>> {
     try {
       return await RequestApiV2({
         url: authController.googleLogin(),

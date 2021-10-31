@@ -45,7 +45,7 @@ export const useCreatePost = (question: verify) => {
 export const useGetQuestion = () => {
   const [question, setQuestion] = useState<verify>();
   useEffect(() => {
-    verity.getQuestion().then((res) => setQuestion(res.data));
+    verity.getQuestion().then((res) => setQuestion(res?.data));
   }, []);
   return question;
 };

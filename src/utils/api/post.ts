@@ -1,8 +1,22 @@
 import { postController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
+import {
+  createAlgorithmRes,
+  deleteReq,
+  deleteRes,
+  getPostRes,
+  modifyRes,
+  reportRes,
+  setStatusRes,
+} from "types/api";
+import { AxiosResponse } from "axios";
 
 class Post {
-  getPost(isAdmin: boolean, cursor: number | string = "", status = "ACCEPTED") {
+  getPost(
+    isAdmin: boolean,
+    cursor: number | string = "",
+    status = "ACCEPTED"
+  ): Promise<void | AxiosResponse<getPostRes>> {
     try {
       return RequestApiV2({
         url: postController.getPost(cursor, status),
@@ -19,7 +33,7 @@ class Post {
     tag: string,
     questionId: string,
     questionAnswer: string
-  ) {
+  ): Promise<void | AxiosResponse<createAlgorithmRes>> {
     try {
       const data = {
         title,
@@ -40,7 +54,10 @@ class Post {
     }
   }
 
-  deletePost(id: string, reason: string) {
+  deletePost(
+    id: string,
+    reason: string
+  ): Promise<void | AxiosResponse<deleteRes>> {
     const data = {
       reason,
     };
@@ -56,7 +73,10 @@ class Post {
     }
   }
 
-  reportPost(id: string, reason: string) {
+  reportPost(
+    id: string,
+    reason: string
+  ): Promise<void | AxiosResponse<reportRes>> {
     try {
       const data = {
         reason,
@@ -71,7 +91,12 @@ class Post {
     }
   }
 
-  modifyPost(id: string, title: string, reason: string, content: string) {
+  modifyPost(
+    id: string,
+    title: string,
+    reason: string,
+    content: string
+  ): Promise<void | AxiosResponse<modifyRes>> {
     try {
       const data = {
         status,
@@ -90,7 +115,11 @@ class Post {
     }
   }
 
-  setStatusPost(id: string, status = "ACCEPTED", reason?: string) {
+  setStatusPost(
+    id: string,
+    status = "ACCEPTED",
+    reason?: string
+  ): Promise<void | AxiosResponse<setStatusRes>> {
     try {
       const data = {
         status,
