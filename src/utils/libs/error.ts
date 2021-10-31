@@ -8,6 +8,7 @@ const errMessageObject: errMessageObjectType = {
   "Request failed with status code 400": "비밀번호가 잘못되었습니다.",
   "Request failed with status code 418":
     "이모지 중복 오류\n개발자에게 문의해주세요.",
+  "Request failed with status code 502": "서버 오류\n개발자에게 문의해주세요.",
 };
 
 const errHandler: Function = (err: Error) => {
