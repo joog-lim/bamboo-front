@@ -26,7 +26,7 @@ const useLogin = (
   const [_, setIsLogin] = useRecoilState(hasTokenState);
 
   const tryLogin = async () => {
-    const res = await auth.login(password);
+    const res = await auth.loginByPassword(password);
     setIsLoading(false);
     if (res) {
       setIsLogin({ isAdmin: res.data.success, isLogin: res.data.success });
@@ -34,8 +34,6 @@ const useLogin = (
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
       }
-    } else {
-      alert("비밀번호가 틀렸습니다.");
     }
     closeModal();
   };
@@ -43,7 +41,7 @@ const useLogin = (
   return [setPassword, tryLogin];
 };
 
-export const googleLogin = (
+export const useGoogleLogin = (
   closeModal: () => void,
   setIsLoading: SetterOrUpdater<boolean>
 ) => {
@@ -53,7 +51,7 @@ export const googleLogin = (
     window.localStorage.setItem("token", token);
     try {
       const res = await auth.GoogleLogin();
-      window.localStorage.setItem("token", res.data.token);
+      window.localStorage.setItem("token", res?.data.token || "");
       setIsLogin({ isAdmin: false, isLogin: true });
       setIsLoading(false);
       alert("로그인에 성공하였습니다.");

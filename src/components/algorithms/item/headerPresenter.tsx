@@ -5,13 +5,15 @@ import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
 import { hasTokenState } from "recoil/atom";
 import Post from "utils/api/post";
+import { AxiosResponse } from "axios";
+import { setStatusRes } from "types/api";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(hasTokenState);
 
   const setStatusPost = () => {
-    Post.setStatusPost(p.id).then((res: { status: number }) => {
-      res.status === 200
+    Post.setStatusPost(p.id).then((res: AxiosResponse<setStatusRes> | void) => {
+      res?.status === 200
         ? alert("성공적으로 수정되었습니다.")
         : alert("실패하였습니다.");
     });
