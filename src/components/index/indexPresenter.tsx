@@ -23,6 +23,7 @@ const IndexPresenter: React.FC = () => {
 
   const [algorithm, setAlgorithm] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
+  const [cursor, setCursor] = useState<number>(0);
   let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
 
@@ -42,6 +43,7 @@ const IndexPresenter: React.FC = () => {
             ][0]
           );
           setIsHasNext(res.data.hasNext || false);
+          setCursor(res.data.cursor);
         }
       }
     );
@@ -74,10 +76,7 @@ const IndexPresenter: React.FC = () => {
     setReLoading(false);
   }, [isReLoading]);
 
-  cursor2 =
-    algorithm.length - 1 === 0
-      ? undefined
-      : algorithm[algorithm.length - 1].number;
+  cursor2 = cursor;
   hasNext = isHasNext;
 
   return (
