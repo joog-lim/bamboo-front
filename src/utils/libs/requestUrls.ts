@@ -34,10 +34,10 @@ export const authController = {
 
 //이모지
 export const emojiController = {
-  getEmogi: (emoji: number) => {
+  getEmoji: (emoji: number) => {
     return `/account/emoji?num=${emoji}`;
   },
-  updateEmogi: (emoji: EmojiType) => {
+  updateEmoji: (emoji: EmojiType) => {
     return `/account/emoji/${emoji}`;
   },
 };
