@@ -8,7 +8,7 @@ class Emoji {
   getEmoji(emoji: number): Promise<void | AxiosResponse<emojiRes>> {
     try {
       return RequestApiV2({
-        url: emojiController.getEmoji(emoji),
+        url: emojiController.getEmogi(emoji),
         method: "GET",
       });
     } catch (e: any) {
@@ -26,7 +26,7 @@ class Emoji {
     };
     try {
       return RequestApiV2({
-        url: emojiController.updateEmoji(emoji),
+        url: emojiController.updateEmogi(emoji),
         method: "POST",
         canHeader: isLogin,
         data: data,
@@ -46,7 +46,7 @@ class Emoji {
     };
     try {
       return RequestApiV2({
-        url: emojiController.updateEmoji(emoji),
+        url: emojiController.updateEmogi(emoji),
         method: "DELETE",
         canHeader: isLogin,
         data: data,
