@@ -4,12 +4,12 @@ import { AxiosResponse } from "axios";
 import { authRes } from "types/api";
 
 class Auth {
-  async login(password: string): Promise<void | AxiosResponse<authRes>> {
+  loginByPassword(password: string): Promise<void | AxiosResponse<authRes>> {
     try {
       const data = {
         password,
       };
-      return await RequestApiV2({
+      return RequestApiV2({
         url: authController.login(),
         method: "POST",
         data: data,
@@ -19,9 +19,9 @@ class Auth {
     }
   }
 
-  async GoogleLogin(): Promise<void | AxiosResponse<authRes>> {
+  GoogleLogin(): Promise<void | AxiosResponse<authRes>> {
     try {
-      return await RequestApiV2({
+      return RequestApiV2({
         url: authController.googleLogin(),
         method: "POST",
         canHeader: true,

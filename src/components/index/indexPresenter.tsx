@@ -21,7 +21,7 @@ const IndexPresenter: React.FC = () => {
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
-  const [data, setData] = useRecoilState(algorithmState);
+  const [algorithm, setAlgorithm] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
   let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
@@ -30,17 +30,19 @@ const IndexPresenter: React.FC = () => {
     let posts: algorithm[] | undefined;
     Post.getPost(isAdmin, cursor2, algorithmFilter).then(
       (res: AxiosResponse<getPostRes> | void) => {
-        posts = res?.data?.posts;
-        cursor2 = res?.data.cursor;
-        hasNext = res?.data.hasNext;
-        setData(
-          [
-            data.concat(
-              posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
-            ),
-          ][0]
-        );
-        setIsHasNext(res?.data.hasNext || true);
+        if (res?.data) {
+          posts = res.data.posts;
+          cursor2 = res.data.cursor;
+          hasNext = res.data.hasNext;
+          setAlgorithm(
+            [
+              algorithm.concat(
+                posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
+              ),
+            ][0]
+          );
+          setIsHasNext(res.data.hasNext || false);
+        }
       }
     );
   };
@@ -72,7 +74,10 @@ const IndexPresenter: React.FC = () => {
     setReLoading(false);
   }, [isReLoading]);
 
-  cursor2 = data.length - 1 === 0 ? undefined : data[data.length - 1].number;
+  cursor2 =
+    algorithm.length - 1 === 0
+      ? undefined
+      : algorithm[algorithm.length - 1].number;
   hasNext = isHasNext;
 
   return (
@@ -84,7 +89,9 @@ const IndexPresenter: React.FC = () => {
           <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
         )}
         {React.Children.toArray(
-          data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
+          algorithm
+            .slice(1)
+            ?.map((item: algorithm) => <Algorithms data={item} />)
         )}
         <p>
           {hasNext ? (

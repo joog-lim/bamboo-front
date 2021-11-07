@@ -26,7 +26,7 @@ const useLogin = (
   const [_, setIsLogin] = useRecoilState(hasTokenState);
 
   const tryLogin = async () => {
-    const res = await auth.login(password);
+    const res = await auth.loginByPassword(password);
     setIsLoading(false);
     if (res) {
       setIsLogin({ isAdmin: res.data.success, isLogin: res.data.success });

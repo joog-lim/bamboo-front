@@ -13,8 +13,9 @@ import { emojiRes } from "types/api";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
-  const [emojiCnt, setEmojiCnt] = useState(0);
-  const [isEmojiClick, setEmojiClick] = useState(false);
+  const [emojiCnt, setEmojiCnt] = useState<number>(0);
+  const [isEmojiClick, setEmojiClick] = useState<boolean>(false);
+  const number = p.data.number;
 
   const getEmoji = (algorithmNumber: number) => {
     emojiController
@@ -27,16 +28,28 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   };
 
   const addEmoji = (emoji: EmojiType) => {
-    emojiController.addEmoji(isLogin, emoji, p.data.number).then((res: any) => {
-      window.localStorage.setItem(String(p.data.number), "true");
-    });
+    emojiController
+      .addEmoji(isLogin, emoji, number)
+      .then((res: AxiosResponse<emojiRes> | void) => {
+        if (res?.status === 200) {
+          window.localStorage.setItem(String(number), "true");
+        } else {
+          setEmojiClick(false);
+          setEmojiCnt(emojiCnt);
+        }
+      });
   };
 
   const deleteEmoji = (emoji: EmojiType) => {
     emojiController
-      .deleteEmoji(isLogin, emoji, p.data.number)
-      .then((_: AxiosResponse<emojiRes> | void) => {
-        window.localStorage.setItem(String(p.data.number), "false");
+      .deleteEmoji(isLogin, emoji, number)
+      .then((res: AxiosResponse<emojiRes> | void) => {
+        if (res?.status === 200) {
+          window.localStorage.setItem(String(number), "false");
+        } else {
+          setEmojiClick(true);
+          setEmojiCnt(emojiCnt);
+        }
       });
   };
 
@@ -52,7 +65,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   };
 
   useEffect(() => {
-    getEmoji(p.data.number);
+    getEmoji(number);
   }, []);
 
   return (
@@ -61,7 +74,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
         id={p.data.id}
         status={p.data.status}
         createdAt={p.data.createdAt}
-        number={p.data.number}
+        number={number}
         tag={p.data.tag}
         content={p.data.content}
         title={p.data.title}
@@ -84,7 +97,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
       <div>
         <button className={style.emojiBtn} onClick={onEmojiClick}>
           <Leaf isClick={isEmojiClick} />
-          <span>{emojiCnt ?? 0}</span>
+          <span>{emojiCnt}</span>
         </button>
       </div>
     </article>

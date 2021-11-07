@@ -1,5 +1,5 @@
 interface errMessageObjectType {
-  [key: string]: string;
+  readonly [key: string]: string;
 }
 
 const errMessageObject: errMessageObjectType = {
