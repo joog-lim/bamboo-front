@@ -1,10 +1,12 @@
 import { verifyController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
+import { AxiosResponse } from "axios";
+import { verify } from "types/api";
 
 class Verify {
-  async getQuestion() {
+  getQuestion(): Promise<void | AxiosResponse<verify>> {
     try {
-      return await RequestApiV2({
+      return RequestApiV2({
         url: verifyController.getQuestion(),
       });
     } catch (e: any) {

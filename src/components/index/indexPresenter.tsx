@@ -5,35 +5,46 @@ import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
-import { algorithm } from "types/api";
+import { algorithm, getPostRes } from "types/api";
 import Post from "utils/api/post";
 import {
-  isAdminState,
+  hasTokenState,
   algorithmFilterState,
   algorithmState,
   reLoadingState,
 } from "recoil/atom";
 import SpinnerBar from "components/spinner/spinnerPresenter";
+import { AxiosResponse } from "axios";
 
 const IndexPresenter: React.FC = () => {
-  const isAdmin = useRecoilValue(isAdminState);
+  const { isAdmin } = useRecoilValue(hasTokenState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
-  const [data, setData] = useRecoilState(algorithmState);
+  const [algorithm, setAlgorithm] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
-  let hasNext = true;
+  let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
 
   const getPostList = () => {
-    let posts: algorithm[];
-    Post.getPost(isAdmin, cursor2, algorithmFilter).then((res) => {
-      posts = res.data.posts;
-      cursor2 = res.data.cursor;
-      hasNext = res.data.hasNext;
-      setData([data.concat(posts)][0]);
-      setIsHasNext(res.data.hasNext);
-    });
+    let posts: algorithm[] | undefined;
+    Post.getPost(isAdmin, cursor2, algorithmFilter).then(
+      (res: AxiosResponse<getPostRes> | void) => {
+        if (res?.data) {
+          posts = res.data.posts;
+          cursor2 = res.data.cursor;
+          hasNext = res.data.hasNext;
+          setAlgorithm(
+            [
+              algorithm.concat(
+                posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
+              ),
+            ][0]
+          );
+          setIsHasNext(res.data.hasNext || false);
+        }
+      }
+    );
   };
 
   const handleScroll = () => {
@@ -63,7 +74,10 @@ const IndexPresenter: React.FC = () => {
     setReLoading(false);
   }, [isReLoading]);
 
-  cursor2 = data.length - 1 === 0 ? undefined : data[data.length - 1].number;
+  cursor2 =
+    algorithm.length - 1 === 0
+      ? undefined
+      : algorithm[algorithm.length - 1].number;
   hasNext = isHasNext;
 
   return (
@@ -75,7 +89,9 @@ const IndexPresenter: React.FC = () => {
           <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>
         )}
         {React.Children.toArray(
-          data.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
+          algorithm
+            .slice(1)
+            ?.map((item: algorithm) => <Algorithms data={item} />)
         )}
         <p>
           {hasNext ? (
