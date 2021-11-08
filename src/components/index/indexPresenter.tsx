@@ -23,7 +23,7 @@ const IndexPresenter: React.FC = () => {
 
   const [algorithm, setAlgorithm] = useRecoilState(algorithmState);
   const [isHasNext, setIsHasNext] = useState(true);
-  const [cursor, setCursor] = useState<number>(0);
+  const [cursor, setCursor] = useState<number>();
   let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
 
