@@ -46,7 +46,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
         setIsLoading(false);
         res?.status === 200
           ? alert("성공적으로 수정되었습니다.")
-          : alert("실패하였습니다.");
+          : alert("수정에 실패하였습니다.");
         closeModal();
       }
     );
@@ -58,7 +58,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
         setIsLoading(false);
         res?.status === 200
           ? alert("성공적으로 상태가 변경되었습니다.")
-          : alert("실패하였습니다.");
+          : alert("상태 변경에 실패하였습니다.");
         closeModal();
       }
     );
@@ -70,7 +70,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
         setIsLoading(false);
         res?.status === 200
           ? alert("성공적으로 삭제되었습니다.")
-          : alert("실패하였습니다.");
+          : alert("삭제에 실패하였습니다.");
         closeModal();
       }
     );
