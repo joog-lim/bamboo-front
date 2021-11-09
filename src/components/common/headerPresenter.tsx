@@ -3,10 +3,22 @@ import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
 import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
+import { useRecoilState } from "recoil";
+import { hasTokenState } from "recoil/atom";
 
 import LoginModal from "../modal/loginModal/loginModaPresenterl";
+import { useEffect } from "react";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
+  const [_, setHasToken] = useRecoilState(hasTokenState);
+  useEffect(() => {
+    localStorage.getItem("token") &&
+      setHasToken({
+        isLogin: true,
+        isAdmin: localStorage.getItem("isAdmin") === "true",
+      });
+  }, []);
+
   return (
     <header className={S.header}>
       <Link href={config.LINK.HOME}>

@@ -30,6 +30,7 @@ const useLogin = (
     setIsLoading(false);
     if (res) {
       setIsLogin({ isAdmin: res.data.success, isLogin: res.data.success });
+      localStorage.setItem("isAdmin", "true");
       if (res.data.success) {
         window.localStorage.setItem("token", res.data.token);
         alert("성공적으로 로그인되었습니다.");
