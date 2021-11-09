@@ -1,6 +1,9 @@
 @use "styles/module" as c;
 
 .h1 {
+  @media (max-width: 1080px) {
+    font-size: c.$font16px;
+  }
   color: c.$gray-color;
   font-size: c.$font18px;
   margin: 3em 0;
@@ -8,6 +11,11 @@
 }
 
 .h2 {
+  @media (max-width: 1080px) {
+    font-size: c.$font16px;
+    margin-left: 3vh;
+  }
+
   color: c.$green-color;
   font-size: c.$font18px;
   align-self: flex-start;
@@ -31,6 +39,9 @@
 }
 
 .googleLoginBtn {
+  @media (max-width: 1080px) {
+    width: 80%;
+  }
   width: 100%;
   margin: 0em 0 11.7em;
   span {
