@@ -33,7 +33,6 @@ const useLogin = (
       localStorage.setItem("isAdmin", "true");
       if (res.data.success) {
         window.localStorage.setItem("token", res.data.token);
-        alert("성공적으로 로그인되었습니다.");
       }
     }
     closeModal();
@@ -55,7 +54,6 @@ export const useGoogleLogin = (
       window.localStorage.setItem("token", res?.data.token || "");
       setIsLogin({ isAdmin: false, isLogin: true });
       setIsLoading(false);
-      alert("로그인에 성공하였습니다.");
       closeModal();
     } catch {
       alert("로그인에 실패하였습니다\n학교 계정인 지 확인하여주세요.");
