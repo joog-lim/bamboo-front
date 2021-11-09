@@ -30,6 +30,9 @@ export const authController = {
   googleLogin: () => {
     return `/account/account/login`;
   },
+  logout: () => {
+    return `/account/account/logout`;
+  },
 };
 
 //이모지

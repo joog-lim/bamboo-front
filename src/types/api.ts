@@ -126,6 +126,10 @@ export interface authRes {
   token: string;
 }
 
+export interface logoutRes {
+  message?: string;
+}
+
 // verity
 
 export interface verify {

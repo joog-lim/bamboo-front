@@ -14,6 +14,7 @@ import useLogin, {
 import modalController from "../modal";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
+import auth from "utils/api/auth";
 
 const LoginModal: React.FC = () => {
   const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false);
@@ -38,6 +39,7 @@ const LoginModal: React.FC = () => {
       setHasToken({ isAdmin: false, isLogin: false });
       localStorage.setItem("isAdmin", "false");
       localStorage.removeItem("token");
+      auth.logout();
     } else {
       openModal();
     }
