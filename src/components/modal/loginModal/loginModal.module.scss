@@ -13,7 +13,7 @@
 .h2 {
   @media (max-width: 1080px) {
     font-size: c.$font16px;
-    margin-left: 3vh;
+    margin-left: -2.8vh;
   }
 
   color: c.$green-color;
@@ -40,7 +40,7 @@
 
 .googleLoginBtn {
   @media (max-width: 1080px) {
-    width: 80%;
+    width: 120%;
   }
   width: 100%;
   margin: 0em 0 11.7em;
