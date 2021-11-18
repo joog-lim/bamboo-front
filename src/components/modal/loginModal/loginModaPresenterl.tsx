@@ -14,10 +14,11 @@ import useLogin, {
 import modalController from "../modal";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
+import auth from "utils/api/auth";
 
 const LoginModal: React.FC = () => {
   const [isAdminLogin, setIsAdminLogin] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useRecoilState(hasTokenState);
+  const [{ isLogin }, setHasToken] = useRecoilState(hasTokenState);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [openModal, closeModal] = modalController(setModalIsOpen);
@@ -34,9 +35,14 @@ const LoginModal: React.FC = () => {
   };
 
   const onClick = () => {
-    isLogin.isLogin
-      ? setIsLogin({ isAdmin: false, isLogin: false })
-      : openModal();
+    if (isLogin) {
+      setHasToken({ isAdmin: false, isLogin: false });
+      localStorage.setItem("isAdmin", "false");
+      localStorage.removeItem("token");
+      auth.logout();
+    } else {
+      openModal();
+    }
   };
 
   const loginClick = () => {
@@ -59,9 +65,7 @@ const LoginModal: React.FC = () => {
 
   return (
     <>
-      <button onClick={onClick}>
-        {isLogin.isLogin ? "로그아웃" : "로그인"}
-      </button>
+      <button onClick={onClick}>{isLogin ? "로그아웃" : "로그인"}</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
