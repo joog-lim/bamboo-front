@@ -4,10 +4,6 @@
   @media (max-width: 1080px) {
     font-size: c.$font16px;
   }
-
-  @media (max-width: 840px) {
-
-  }
   color: c.$gray-color;
   font-size: c.$font18px;
   margin: 3em 0;
@@ -18,6 +14,14 @@
   @media (max-width: 1080px) {
     font-size: c.$font16px;
     margin-left: -4rem;
+  }
+
+  @media (max-width: 840px) {
+    margin-left: -4vh;
+  }
+
+  @media (max-width: 826px) {
+    font-size: c.$font14px;
   }
 
   color: c.$green-color;
@@ -34,24 +38,27 @@
 .loginBtn {
   @include c.green-long-btn;
   width: 100%;
-  margin-top: 8em;
+  margin-top: 6em;
 }
 
 .changeText {
   color: c.$gray-color;
   justify-self: flex-end;
+  margin-top: -0.5rem;
+  @media (max-width: 1080px) {
+    margin-top: -0.8rem;
+  }
+  @media (max-width: 826px) {
+    margin-top: -1.8rem;
+  }
 }
 
 .googleLoginBtn {
   @media (max-width: 1080px) {
     width: 150%;
     margin-right: -0.1rem;
-
   }
 
-  @media (max-width: 840px) {
-
-  }
   width: 100%;
   margin: 0em 0 11.7em;
   span {
