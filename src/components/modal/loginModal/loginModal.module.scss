@@ -19,11 +19,6 @@
   @media (max-width: 840px) {
     margin-left: -4vh;
   }
-
-  @media (max-width: 826px) {
-    font-size: c.$font14px;
-  }
-
   color: c.$green-color;
   font-size: c.$font18px;
   align-self: flex-start;
@@ -33,6 +28,10 @@
 .password {
   @include c.every-input;
   width: 100%;
+
+  @media (max-width: 840px) {
+    width: 150%;
+  }
 }
 
 .loginBtn {
@@ -48,9 +47,6 @@
   @media (max-width: 1080px) {
     margin-bottom: -1rem;
   }
-  @media (max-width: 826px) {
-    margin-top: -1.8rem;
-  }
 }
 
 .googleLoginBtn {
@@ -59,6 +55,9 @@
     margin-right: -0.1rem;
   }
 
+  @media (max-width: 840px) {
+    width: 150%;
+  }
   width: 100%;
   margin: 0em 0 11.7em;
   span {
