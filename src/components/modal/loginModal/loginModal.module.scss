@@ -13,7 +13,7 @@
 .h2 {
   @media (max-width: 1080px) {
     font-size: c.$font16px;
-    margin-left: -4rem;
+    margin-right: -1rem;
   }
 
   @media (max-width: 840px) {
@@ -46,7 +46,7 @@
   justify-self: flex-end;
   margin-top: -0.5rem;
   @media (max-width: 1080px) {
-    margin-top: -0.8rem;
+    margin-bottom: -1rem;
   }
   @media (max-width: 826px) {
     margin-top: -1.8rem;
@@ -55,7 +55,7 @@
 
 .googleLoginBtn {
   @media (max-width: 1080px) {
-    width: 150%;
+    width: 105%;
     margin-right: -0.1rem;
   }
 
