@@ -22,9 +22,16 @@
   margin-left: 5px;
   li {
     border: 1px solid c.$green-color;
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    & + li {
+      border-top: none;
+    }
   }
   &:hover {
-    width: 57px;
+    width: 58px;
   }
 }
 
