@@ -73,11 +73,11 @@ const SideBar: React.FC = () => {
           value={title}
         />
         <button className={s.tagBtn}>
-          {tag === "" ? "태그" : tag}
+          {!tag ? "태그" : tag}
           <ul
             className={tagClicked ? s.tagClose : s.tagOpen} // 삼항연산자로 오류 해결 해보기
           >
-            {React.Children.map(tags, (child) => (
+            {React.Children.map(tags, child => (
               <li
                 onClick={() => {
                   setTag(child);
