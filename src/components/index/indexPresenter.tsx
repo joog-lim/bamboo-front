@@ -3,7 +3,7 @@ import { useRecoilValue, useRecoilState } from "recoil";
 
 import s from "./index.module.scss";
 import Algorithms from "components/algorithms/algorithms";
-import SideBar from "./item/sidebarPresenter";
+import SideBar from "components/Sidebar/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm, getPostRes } from "types/api";
 import Post from "utils/api/post";
