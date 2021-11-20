@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/components/Sidebar/sidebarContainer.ts
 import { verify } from "types/api";
-=======
-import { verify } from "../../../types/api";
->>>>>>> feeture/renameIndex:src/components/main/item/sidebarContainer.ts
 import { useEffect, useState } from "react";
 import verity from "utils/api/verity";
 import post from "utils/api/post";
