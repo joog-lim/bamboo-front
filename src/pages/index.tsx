@@ -1,12 +1,12 @@
 import HeaderPresenter from "src/components/common/headerPresenter";
-import IndexPresenter from "components/index/indexPresenter";
+import MainPresenter from "src/components/main/mainPresenter";
 import styles from "styles/wrap.module.scss";
 
 import config from "constants/config.json";
 
 import Head from "next/head";
 
-const Index: React.FC = () => {
+const Main: React.FC = () => {
   return (
     <>
       <Head>
@@ -18,9 +18,9 @@ const Index: React.FC = () => {
       </Head>
       <HeaderPresenter location={config.LINK.HOME} />
       <div className={styles.wrap}>
-        <IndexPresenter />
+        <MainPresenter />
       </div>
     </>
   );
 };
-export default Index;
+export default Main;

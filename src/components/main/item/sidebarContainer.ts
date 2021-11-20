@@ -1,4 +1,4 @@
-import { verify } from "./../../../types/api";
+import { verify } from "../../../types/api";
 import { useEffect, useState } from "react";
 import verity from "utils/api/verity";
 import post from "utils/api/post";
@@ -44,7 +44,9 @@ export const useCreatePost = (question: verify) => {
 export const useGetQuestion = () => {
   const [question, setQuestion] = useState<verify>();
   useEffect(() => {
-    verity.getQuestion().then((res: AxiosResponse<verify> | void) => setQuestion(res?.data));
+    verity
+      .getQuestion()
+      .then((res: AxiosResponse<verify> | void) => setQuestion(res?.data));
   }, []);
   return question;
 };

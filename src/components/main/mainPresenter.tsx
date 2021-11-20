@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 
-import s from "./index.module.scss";
+import s from "./main.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "./item/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
@@ -16,7 +16,7 @@ import {
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { AxiosResponse } from "axios";
 
-const IndexPresenter: React.FC = () => {
+const MainPresenter: React.FC = () => {
   const { isAdmin } = useRecoilValue(hasTokenState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
@@ -104,4 +104,4 @@ const IndexPresenter: React.FC = () => {
   );
 };
 
-export default IndexPresenter;
+export default MainPresenter;
