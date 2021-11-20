@@ -1,6 +1,9 @@
 @use "styles/module" as c;
 
 .h1 {
+  @media (max-width: 1080px) {
+    font-size: c.$font16px;
+  }
   color: c.$gray-color;
   font-size: c.$font18px;
   margin: 3em 0;
@@ -8,6 +11,14 @@
 }
 
 .h2 {
+  @media (max-width: 1080px) {
+    font-size: c.$font16px;
+    margin-right: -1rem;
+  }
+
+  @media (max-width: 840px) {
+    margin-left: -4vh;
+  }
   color: c.$green-color;
   font-size: c.$font18px;
   align-self: flex-start;
@@ -17,20 +28,36 @@
 .password {
   @include c.every-input;
   width: 100%;
+
+  @media (max-width: 840px) {
+    width: 150%;
+  }
 }
 
 .loginBtn {
   @include c.green-long-btn;
   width: 100%;
-  margin-top: 8em;
+  margin-top: 6em;
 }
 
 .changeText {
   color: c.$gray-color;
   justify-self: flex-end;
+  margin-top: -0.5rem;
+  @media (max-width: 1080px) {
+    margin-bottom: -1rem;
+  }
 }
 
 .googleLoginBtn {
+  @media (max-width: 1080px) {
+    width: 105%;
+    margin-right: -0.1rem;
+  }
+
+  @media (max-width: 840px) {
+    width: 150%;
+  }
   width: 100%;
   margin: 0em 0 11.7em;
   span {
