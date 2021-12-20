@@ -8,6 +8,8 @@ import Post from "src/utils/api/post";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
 import { useRecoilState } from "recoil";
+import { AxiosResponse } from "axios";
+import { deleteRes, modifyRes, reportRes, setStatusRes } from "types/api";
 
 const AlgorithmModal: React.FC<algorithmModalProps> = (
   p: algorithmModalProps
@@ -25,45 +27,53 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
   const reportPost = () => {
-    Post.reportPost(p.algorithmId, content).then((res: { status: number }) => {
-      setIsLoading(false);
-      const result =
-        res.status === 200
-          ? "성공적으로 신고되었습니다."
-          : `오류가 발생하였습니다 메시지: ${res}`;
-      alert(result);
-      closeModal();
-    });
+    Post.reportPost(p.algorithmId, content).then(
+      (res: AxiosResponse<reportRes> | void) => {
+        setIsLoading(false);
+        const result =
+          res?.status === 200
+            ? "성공적으로 신고되었습니다."
+            : `오류가 발생하였습니다 메시지: ${res}`;
+        alert(result);
+        closeModal();
+      }
+    );
   };
 
   const modifyPost = () => {
-    Post.modifyPost(p.algorithmId, title, reason, content).then((res: any) => {
-      setIsLoading(false);
-      res.status === 200
-        ? alert("성공적으로 수정되었습니다.")
-        : alert("실패하였습니다.");
-      closeModal();
-    });
+    Post.modifyPost(p.algorithmId, title, reason, content).then(
+      (res: AxiosResponse<modifyRes> | void) => {
+        setIsLoading(false);
+        res?.status === 200
+          ? alert("성공적으로 수정되었습니다.")
+          : alert("수정에 실패하였습니다.");
+        closeModal();
+      }
+    );
   };
 
   const setStatusPost = (status: string) => {
-    Post.setStatusPost(p.algorithmId, status, content).then((res: any) => {
-      setIsLoading(false);
-      res.status === 200
-        ? alert("성공적으로 상태가 변경되었습니다.")
-        : alert("실패하였습니다.");
-      closeModal();
-    });
+    Post.setStatusPost(p.algorithmId, status, content).then(
+      (res: AxiosResponse<setStatusRes> | void) => {
+        setIsLoading(false);
+        res?.status === 200
+          ? alert("성공적으로 상태가 변경되었습니다.")
+          : alert("상태 변경에 실패하였습니다.");
+        closeModal();
+      }
+    );
   };
 
   const deletePost = () => {
-    Post.deletePost(p.algorithmId, content).then((res: any) => {
-      setIsLoading(false);
-      res.status === 200
-        ? alert("성공적으로 삭제되었습니다.")
-        : alert("실패하였습니다.");
-      closeModal();
-    });
+    Post.deletePost(p.algorithmId, content).then(
+      (res: AxiosResponse<deleteRes> | void) => {
+        setIsLoading(false);
+        res?.status === 200
+          ? alert("성공적으로 삭제되었습니다.")
+          : alert("삭제에 실패하였습니다.");
+        closeModal();
+      }
+    );
   };
 
   const onClick = () => {

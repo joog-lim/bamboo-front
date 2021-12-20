@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import verity from "utils/api/verity";
 import post from "utils/api/post";
 import RequestApi from "utils/libs/requestApi";
+import { AxiosResponse } from "axios";
 
 export const useCreatePost = (question: verify) => {
   const [title, setTitle] = useState<any>("");
@@ -15,8 +16,6 @@ export const useCreatePost = (question: verify) => {
       alert("빈칸을 채워주세요.");
     } else if (tag === "") {
       alert("태그를 선택해주세요.");
-    } else if (questionAnswer !== "#softmeister01") {
-      alert("와이파이 비밀번호가 틀렸습니다.");
     } else {
       post.createPost(title, content, tag, question.id, questionAnswer);
       alert(
@@ -45,7 +44,7 @@ export const useCreatePost = (question: verify) => {
 export const useGetQuestion = () => {
   const [question, setQuestion] = useState<verify>();
   useEffect(() => {
-    verity.getQuestion().then((res) => setQuestion(res.data));
+    verity.getQuestion().then((res: AxiosResponse<verify> | void) => setQuestion(res?.data));
   }, []);
   return question;
 };
