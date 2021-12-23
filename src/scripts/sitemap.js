@@ -3,7 +3,7 @@ const globby = require("globby");
 const prettier = require("prettier");
 
 const getDate = new Date().toISOString();
-const CODEIT_DOMAIN = "https://joog-lim.info";
+const DOMAIN = "https://joog-lim.info";
 
 const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
 
@@ -17,7 +17,7 @@ async () => {
         const path = page.replace("../../public/", "");
         return `
           <sitemap>
-            <loc>${`${CODEIT_DOMAIN}/${path}`}</loc>
+            <loc>${`${DOMAIN}/${path}`}</loc>
             <lastmod>${getDate}</lastmod>
           </sitemap>`;
       })
