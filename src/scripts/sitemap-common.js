@@ -7,7 +7,7 @@ const prettier = require("prettier");
 
 // 오늘 날짜 가져오기 & 도메인 설정
 const getDate = new Date().toISOString();
-const CODEIT_DOMAIN = "https://joog-lim.info";
+const DOMAIN = "https://joog-lim.info";
 
 //
 const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
@@ -23,8 +23,6 @@ const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
   ]);
 
   // 파일 경로를 도메인 형태로 변경
-  // ../pages/category/index.tsx -> https://wwww.codeit.kr/category
-  // ../pages/community/threads -> https://wwww.codeit.kr/community/threads
   const pagesSitemap = `
     ${pages
       .map((page) => {
@@ -35,7 +33,7 @@ const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
         const routePath = path === "index" ? "" : path;
         return `
           <url>
-            <loc>${CODEIT_DOMAIN}/${routePath}</loc>
+            <loc>${DOMAIN}/${routePath}</loc>
             <lastmod>${getDate}</lastmod>
           </url>
         `;
