@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "sh src/scripts/generate-sitemap.sh && next build",
     "start": "next start",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
