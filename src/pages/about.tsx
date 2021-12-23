@@ -8,7 +8,7 @@ const About: React.FC = () => {
   return (
     <>
       <Head>
-        <title>광주소프트웨어마이스터고등학교 더보기</title>
+        <title>광주소프트웨어마이스터고등학교 대나무숲 더보기</title>
         <meta
           name="description"
           content="광주소프트웨어마이스터고등학교 대나무숲의 더보기 페이지입니다."
