@@ -25,13 +25,10 @@ export const postController = {
 //계정
 export const authController = {
   login: () => {
-    return `/auth/`;
+    return `/login`;
   },
-  googleLogin: () => {
-    return `/account/account/login`;
-  },
-  logout: () => {
-    return `/account/account/logout`;
+  token: () => {
+    return `/token`;
   },
 };
 

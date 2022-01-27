@@ -3,6 +3,13 @@ export interface errRes {
   message?: string;
 }
 
+export interface defaultResponese<T> {
+  success: boolean;
+  code: string;
+  message: string;
+  data: T;
+}
+
 // algorithm
 
 export interface defaultAlgorithm {
@@ -118,16 +125,12 @@ export interface getCount {
 // auth
 
 export interface authReq {
-  password: string;
+  googleToken: string;
 }
 
 export interface authRes {
-  success: boolean;
-  token: string;
-}
-
-export interface logoutRes {
-  message?: string;
+  accessToken: string;
+  refreshToken: string;
 }
 
 // verity
