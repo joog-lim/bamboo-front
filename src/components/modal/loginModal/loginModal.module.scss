@@ -6,7 +6,7 @@
   }
   color: c.$gray-color;
   font-size: c.$font18px;
-  margin: 3em 0;
+  margin: 3rem 0 5rem 0;
   font-weight: 700;
 }
 
@@ -23,30 +23,6 @@
   font-size: c.$font18px;
   align-self: flex-start;
   margin-bottom: 1.3125em;
-}
-
-.password {
-  @include c.every-input;
-  width: 100%;
-
-  @media (max-width: 840px) {
-    width: 150%;
-  }
-}
-
-.loginBtn {
-  @include c.green-long-btn;
-  width: 100%;
-  margin-top: 6em;
-}
-
-.changeText {
-  color: c.$gray-color;
-  justify-self: flex-end;
-  margin-top: -0.5rem;
-  @media (max-width: 1080px) {
-    margin-bottom: -1rem;
-  }
 }
 
 .googleLoginBtn {

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { Styles } from "react-modal";
 
@@ -15,33 +14,7 @@ export const customStyles: Styles = {
   },
 };
 
-export const adminText: string = "관리자님 환영합니다!";
-export const userText: string = "학교 계정으로 로그인해주세요!";
-
 const useLogin = (
-  closeModal: () => void,
-  setIsLoading: SetterOrUpdater<boolean>
-) => {
-  const [password, setPassword] = useState("");
-  const [_, setIsLogin] = useRecoilState(hasTokenState);
-
-  const tryLogin = async () => {
-    const res = await auth.loginByPassword(password);
-    setIsLoading(false);
-    if (res) {
-      setIsLogin({ isAdmin: res.data.success, isLogin: res.data.success });
-      localStorage.setItem("isAdmin", "true");
-      if (res.data.success) {
-        window.localStorage.setItem("token", res.data.token);
-      }
-    }
-    closeModal();
-  };
-
-  return [setPassword, tryLogin];
-};
-
-export const useGoogleLogin = (
   closeModal: () => void,
   setIsLoading: SetterOrUpdater<boolean>
 ) => {
@@ -50,9 +23,13 @@ export const useGoogleLogin = (
   return async (token: string) => {
     window.localStorage.setItem("token", token);
     try {
-      const res = await auth.GoogleLogin();
-      window.localStorage.setItem("token", res?.data.token || "");
-      setIsLogin({ isAdmin: false, isLogin: true });
+      const res = await auth.login();
+      window.localStorage.setItem("token", res?.data.data.accessToken || "");
+      window.localStorage.setItem(
+        "refreshToken",
+        res?.data.data.refreshToken || ""
+      );
+      setIsLogin({ isAdmin: res?.data.data.isAdmin, isLogin: true });
       setIsLoading(false);
       closeModal();
     } catch {
