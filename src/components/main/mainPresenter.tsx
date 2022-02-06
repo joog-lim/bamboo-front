@@ -29,7 +29,7 @@ const MainPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts: algorithm[] | undefined;
-    Post.getPost(isAdmin, cursor2, algorithmFilter).then(
+    Post.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
       (res: AxiosResponse<getPostRes> | void) => {
         if (res?.data) {
           posts = res.data.posts;

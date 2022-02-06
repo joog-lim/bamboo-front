@@ -11,12 +11,14 @@ import { setStatusRes } from "types/api";
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(hasTokenState);
 
-  const setStatusPost = () => {
-    Post.setStatusPost(p.id).then((res: AxiosResponse<setStatusRes> | void) => {
-      res?.status === 200
-        ? alert("성공적으로 수정되었습니다.")
-        : alert("실패하였습니다.");
-    });
+  const setStatusAlgorithm = () => {
+    Post.setStatusAlgorithm(p.id).then(
+      (res: AxiosResponse<setStatusRes> | void) => {
+        res?.status === 200
+          ? alert("성공적으로 수정되었습니다.")
+          : alert("실패하였습니다.");
+      }
+    );
   };
 
   return (
@@ -41,7 +43,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
           {
             PENDING: (
               <>
-                <button onClick={setStatusPost}>수락</button>
+                <button onClick={setStatusAlgorithm}>수락</button>
                 <AlgorithmModal
                   isRed={false}
                   isHeading={false}
@@ -84,7 +86,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                 </AlgorithmModal>
               </>
             ),
-            REJECTED: <button onClick={setStatusPost}>거절취소</button>,
+            REJECTED: <button onClick={setStatusAlgorithm}>거절취소</button>,
             DELETED: (
               <>
                 <AlgorithmModal
@@ -95,7 +97,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                 >
                   삭제
                 </AlgorithmModal>
-                <button onClick={setStatusPost}>기각</button>
+                <button onClick={setStatusAlgorithm}>기각</button>
               </>
             ),
           }[p.status]}

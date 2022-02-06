@@ -17,7 +17,7 @@ export const useCreatePost = (question: verify) => {
     } else if (tag === "") {
       alert("태그를 선택해주세요.");
     } else {
-      post.createPost(title, content, tag, question.id, questionAnswer);
+      post.createAlgorithm(title, content, tag, question.id, questionAnswer);
       alert(
         "성공적으로 알고리즘이 대기 상태에 들어갔습니다!\n곧 수락 상태로 보실 수 있을 거에요!"
       );

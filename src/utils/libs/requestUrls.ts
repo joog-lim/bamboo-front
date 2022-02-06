@@ -1,24 +1,24 @@
 import { EmojiType } from "types/types";
 
 //알고리즘 관리
-export const postController = {
-  getPost: (cursor: number | string, status: string) => {
-    return `/post/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
+export const algorithmController = {
+  getAlgorithm: (cursor: number | string, status: string) => {
+    return `/Algorithm/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
   },
-  createPost: () => {
-    return `/post/create`;
+  createAlgorithm: () => {
+    return `/Algorithm/create`;
   },
-  deletePost: (id: string) => {
-    return `/post/${id}/delete`;
+  deleteAlgorithm: (id: string) => {
+    return `/Algorithm/${id}/delete`;
   },
-  modifyPost: (id: string) => {
-    return `/post/${id}/modify`;
+  modifyAlgorithm: (id: string) => {
+    return `/Algorithm/${id}/modify`;
   },
-  reportPost: (id: string) => {
-    return `/post/${id}/report`;
+  reportAlgorithm: (id: string) => {
+    return `/Algorithm/${id}/report`;
   },
-  setStatusPost: (id: string) => {
-    return `/post/${id}/setStatus`;
+  setStatusAlgorithm: (id: string) => {
+    return `/Algorithm/${id}/setStatus`;
   },
 };
 
