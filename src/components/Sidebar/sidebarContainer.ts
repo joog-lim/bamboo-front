@@ -1,6 +1,6 @@
 import { verify } from "types/api";
 import { useEffect, useState } from "react";
-import verity from "utils/api/verity";
+import verify from "utils/api/verify";
 import post from "utils/api/post";
 import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
@@ -44,7 +44,7 @@ export const useCreatePost = (question: verify) => {
 export const useGetQuestion = () => {
   const [question, setQuestion] = useState<verify>();
   useEffect(() => {
-    verity
+    verify
       .getQuestion()
       .then((res: AxiosResponse<verify> | void) => setQuestion(res?.data));
   }, []);

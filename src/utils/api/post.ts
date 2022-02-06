@@ -39,7 +39,7 @@ class Post {
         title,
         content,
         tag,
-        verifier: {
+        verify: {
           id: questionId,
           answer: questionAnswer,
         },

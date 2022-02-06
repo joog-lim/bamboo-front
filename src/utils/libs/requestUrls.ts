@@ -2,11 +2,11 @@ import { EmojiType } from "types/types";
 
 //알고리즘 관리
 export const algorithmController = {
+  createAlgorithm: () => {
+    return `/Algorithm/`;
+  },
   getAlgorithm: (cursor: number | string, status: string) => {
     return `/Algorithm/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
-  },
-  createAlgorithm: () => {
-    return `/Algorithm/create`;
   },
   deleteAlgorithm: (id: string) => {
     return `/Algorithm/${id}/delete`;

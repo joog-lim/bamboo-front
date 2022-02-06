@@ -133,7 +133,7 @@ export interface authRes {
   refreshToken: string;
 }
 
-// verity
+// verify
 
 export interface verify {
   id: string;
