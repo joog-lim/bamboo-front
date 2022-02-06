@@ -45,6 +45,12 @@ export const emojiController = {
 //확인
 export const verifyController = {
   getQuestion: () => {
-    return `/verify/`;
+    return `/verify`;
   },
+};
+
+export const ruleController = {
+  getRule: () => {
+    return `/rule/web`
+  }
 };
