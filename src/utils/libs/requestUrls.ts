@@ -6,19 +6,19 @@ export const algorithmController = {
     return `/Algorithm/`;
   },
   getAlgorithm: (cursor: number | string, status: string) => {
-    return `/Algorithm/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
+    return `/Algorithm/list?count=15&cursor=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (id: string) => {
-    return `/Algorithm/${id}/delete`;
+    return `/Algorithm/${id}`;
   },
   modifyAlgorithm: (id: string) => {
-    return `/Algorithm/${id}/modify`;
+    return `/Algorithm/${id}`;
   },
   reportAlgorithm: (id: string) => {
     return `/Algorithm/${id}/report`;
   },
   setStatusAlgorithm: (id: string) => {
-    return `/Algorithm/${id}/setStatus`;
+    return `/Algorithm/${id}/status`;
   },
 };
 

@@ -94,13 +94,10 @@ class Post {
   modifyAlgorithm(
     id: string,
     title: string,
-    reason: string,
     content: string
   ): Promise<void | AxiosResponse<modifyRes>> {
     try {
       const data = {
-        status,
-        reason,
         title,
         content,
       };

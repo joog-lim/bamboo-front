@@ -41,7 +41,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const modifyAlgorithm = () => {
-    Post.modifyAlgorithm(p.algorithmId, title, reason, content).then(
+    Post.modifyAlgorithm(p.algorithmId, title, content).then(
       (res: AxiosResponse<modifyRes> | void) => {
         setIsLoading(false);
         res?.status === 200
