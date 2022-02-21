@@ -6,7 +6,7 @@ export const algorithmController = {
     return `/Algorithm/`;
   },
   getAlgorithm: (cursor: number | string, status: string) => {
-    return `/Algorithm/list?count=15&cursor=${cursor}&status=${status}`;
+    return `/Algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (id: string) => {
     return `/Algorithm/${id}`;
@@ -50,7 +50,7 @@ export const verifyController = {
 };
 
 export const ruleController = {
-  getRule: () => {
+  getRuleUrl: () => {
     return `/rule/web`
   }
 };
