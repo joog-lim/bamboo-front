@@ -1,11 +1,11 @@
-import { verify } from "types/api";
+import { verify as verifyType } from "types/api";
 import { useEffect, useState } from "react";
-import verify from "utils/api/verify";
+import verify from "utils/api/verity";
 import post from "utils/api/post";
 import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
 
-export const useCreatePost = (question: verify) => {
+export const useCreatePost = (question: verifyType) => {
   const [title, setTitle] = useState<any>("");
   const [content, setContent] = useState<string>("");
   const [tag, setTag] = useState<string>("");
@@ -42,11 +42,11 @@ export const useCreatePost = (question: verify) => {
 };
 
 export const useGetQuestion = () => {
-  const [question, setQuestion] = useState<verify>();
+  const [question, setQuestion] = useState<verifyType>();
   useEffect(() => {
     verify
       .getQuestion()
-      .then((res: AxiosResponse<verify> | void) => setQuestion(res?.data));
+      .then((res: AxiosResponse<verifyType> | void) => setQuestion(res?.data));
   }, []);
   return question;
 };
