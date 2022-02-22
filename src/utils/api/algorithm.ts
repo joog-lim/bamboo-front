@@ -11,7 +11,7 @@ import {
 } from "types/api";
 import { AxiosResponse } from "axios";
 
-class Post {
+class Algorithm {
   getAlgorithm(
     isAdmin: boolean,
     cursor: number | string = "",
@@ -134,4 +134,4 @@ class Post {
   }
 }
 
-export default new Post();
+export default new Algorithm();

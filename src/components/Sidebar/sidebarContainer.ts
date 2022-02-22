@@ -1,7 +1,7 @@
 import { verify as verifyType } from "types/api";
 import { useEffect, useState } from "react";
 import verify from "utils/api/verity";
-import post from "utils/api/post";
+import Algorithm from "src/utils/api/algorithm";
 import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
 
@@ -17,7 +17,7 @@ export const useCreatePost = (question: verifyType) => {
     } else if (tag === "") {
       alert("태그를 선택해주세요.");
     } else {
-      post.createAlgorithm(title, content, tag, question.id, questionAnswer);
+      Algorithm.createAlgorithm(title, content, tag, question.id, questionAnswer);
       alert(
         "성공적으로 알고리즘이 대기 상태에 들어갔습니다!\n곧 수락 상태로 보실 수 있을 거에요!"
       );
@@ -55,7 +55,7 @@ export const useGetCount = () => {
   const [count, setCount] = useState<any>();
   useEffect(() => {
     RequestApi({
-      url: process.env.NEXT_PUBLIC_APP_BASE_URLV2 + "/post/count",
+      url: process.env.NEXT_PUBLIC_APP_BASE_URLV2 + "/Algorithm/count",
     }).then((res: any) => setCount(res.data));
   }, []);
   return count;

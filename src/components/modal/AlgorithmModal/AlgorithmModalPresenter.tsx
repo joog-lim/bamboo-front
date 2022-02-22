@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import s from "./algorithmModal.module.scss";
 import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
-import Post from "src/utils/api/post";
+import Algorithm from "src/utils/api/algorithm";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
 import { useRecoilState } from "recoil";
@@ -27,7 +27,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
   const reportAlgorithm = () => {
-    Post.reportAlgorithm(p.algorithmId, content).then(
+    Algorithm.reportAlgorithm(p.algorithmId, content).then(
       (res: AxiosResponse<reportRes> | void) => {
         setIsLoading(false);
         const result =
@@ -41,7 +41,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const modifyAlgorithm = () => {
-    Post.modifyAlgorithm(p.algorithmId, title, content).then(
+    Algorithm.modifyAlgorithm(p.algorithmId, title, content).then(
       (res: AxiosResponse<modifyRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -53,7 +53,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const setStatusAlgorithm = (status: string) => {
-    Post.setStatusAlgorithm(p.algorithmId, status, content).then(
+    Algorithm.setStatusAlgorithm(p.algorithmId, status, content).then(
       (res: AxiosResponse<setStatusRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -65,7 +65,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const deleteAlgorithm = () => {
-    Post.deleteAlgorithm(p.algorithmId, content).then(
+    Algorithm.deleteAlgorithm(p.algorithmId, content).then(
       (res: AxiosResponse<deleteRes> | void) => {
         setIsLoading(false);
         res?.status === 200
