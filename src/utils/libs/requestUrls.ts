@@ -3,22 +3,22 @@ import { EmojiType } from "types/types";
 //알고리즘 관리
 export const algorithmController = {
   createAlgorithm: () => {
-    return `/Algorithm/`;
+    return `/algorithm/`;
   },
   getAlgorithm: (cursor: number | string, status: string) => {
-    return `/Algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
+    return `/algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (id: string) => {
-    return `/Algorithm/${id}`;
+    return `/algorithm/${id}`;
   },
   modifyAlgorithm: (id: string) => {
-    return `/Algorithm/${id}`;
+    return `/algorithm/${id}`;
   },
   reportAlgorithm: (id: string) => {
-    return `/Algorithm/${id}/report`;
+    return `/algorithm/${id}/report`;
   },
   setStatusAlgorithm: (id: string) => {
-    return `/Algorithm/${id}/status`;
+    return `/algorithm/${id}/status`;
   },
 };
 
