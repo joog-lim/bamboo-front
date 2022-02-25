@@ -6,7 +6,7 @@ import Algorithms from "components/algorithms/algorithms";
 import SideBar from "components/Sidebar/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm, getPostRes } from "types/api";
-import Post from "utils/api/post";
+import Algorithm from "utils/api/post";
 import {
   hasTokenState,
   algorithmFilterState,
@@ -29,7 +29,7 @@ const MainPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts: algorithm[] | undefined;
-    Post.getPost(isAdmin, cursor2, algorithmFilter).then(
+    Algorithm.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
       (res: AxiosResponse<getPostRes> | void) => {
         if (res?.data) {
           posts = res.data.posts;

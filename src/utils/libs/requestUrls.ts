@@ -1,24 +1,24 @@
 import { EmojiType } from "types/types";
 
 //알고리즘 관리
-export const postController = {
-  getPost: (cursor: number | string, status: string) => {
-    return `/post/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
+export const algorithmController = {
+  createAlgorithm: () => {
+    return `/algorithm/`;
   },
-  createPost: () => {
-    return `/post/create`;
+  getAlgorithm: (cursor: number | string, status: string) => {
+    return `/algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
   },
-  deletePost: (id: string) => {
-    return `/post/${id}/delete`;
+  deleteAlgorithm: (id: string) => {
+    return `/algorithm/${id}`;
   },
-  modifyPost: (id: string) => {
-    return `/post/${id}/modify`;
+  modifyAlgorithm: (id: string) => {
+    return `/algorithm/${id}`;
   },
-  reportPost: (id: string) => {
-    return `/post/${id}/report`;
+  reportAlgorithm: (id: string) => {
+    return `/algorithm/${id}/report`;
   },
-  setStatusPost: (id: string) => {
-    return `/post/${id}/setStatus`;
+  setStatusAlgorithm: (id: string) => {
+    return `/algorithm/${id}/status`;
   },
 };
 
@@ -45,6 +45,12 @@ export const emojiController = {
 //확인
 export const verifyController = {
   getQuestion: () => {
-    return `/verify/`;
+    return `/verify`;
   },
+};
+
+export const ruleController = {
+  getRuleUrl: () => {
+    return `/rule/web`
+  }
 };
