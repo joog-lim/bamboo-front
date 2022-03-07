@@ -6,7 +6,7 @@ import Algorithms from "components/algorithms/algorithms";
 import SideBar from "components/Sidebar/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
 import { algorithm, getPostRes } from "types/api";
-import Algorithm from "utils/api/post";
+import Algorithm from "utils/api/algorithm";
 import {
   hasTokenState,
   algorithmFilterState,
