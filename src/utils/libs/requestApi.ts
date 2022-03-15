@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import errHandler from "./error";
 
 export interface requestApiV2DTO extends AxiosRequestConfig {
-  canHeader: true;
+  canHeader?: boolean;
 }
 const RequestApiV2 = (p: requestApiV2DTO) => {
   try {
