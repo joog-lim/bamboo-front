@@ -19,15 +19,17 @@ export interface defaultAlgorithm {
 }
 
 export interface algorithm extends defaultAlgorithm {
-  createdAt: number;
-  id: string;
-  number: number;
   status: string;
+  createdAt: number;
+  idx: string;
+  algorithmNumber: number;
   reason?: string;
+  emojiis: Array<number>;
+  emojiCount: number;
 }
 
 export interface getPostRes {
-  posts: algorithm[];
+  data: { data: algorithm[] };
   cursor: number;
   hasNext: boolean;
 }

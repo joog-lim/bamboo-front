@@ -32,13 +32,13 @@ const MainPresenter: React.FC = () => {
     Algorithm.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
       (res: AxiosResponse<getPostRes> | void) => {
         if (res?.data) {
-          posts = res.data.posts;
+          posts = res.data.data.data;
           cursor2 = res.data.cursor;
           hasNext = res.data.hasNext;
           setAlgorithm(
             [
               algorithm.concat(
-                posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
+                posts || [{ number: 0, createdAt: 0, idx: "", status: "" }]
               ),
             ][0]
           );
