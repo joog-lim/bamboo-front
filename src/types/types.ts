@@ -11,9 +11,3 @@ export interface hasToken {
   isLogin: boolean;
   isAdmin: boolean;
 }
-
-const EmojiTypeObject = {
-  LEAF: "leaf",
-} as const;
-
-export type EmojiType = typeof EmojiTypeObject[keyof typeof EmojiTypeObject];

@@ -1,5 +1,3 @@
-import { EmojiType } from "types/types";
-
 //알고리즘 관리
 export const algorithmController = {
   createAlgorithm: () => {
@@ -34,11 +32,8 @@ export const authController = {
 
 //이모지
 export const emojiController = {
-  getEmoji: (emoji: number) => {
-    return `/account/emoji?num=${emoji}`;
-  },
-  updateEmoji: (emoji: EmojiType) => {
-    return `/account/emoji/${emoji}`;
+  updateEmoji: () => {
+    return `/leaf/`;
   },
 };
 
@@ -51,6 +46,6 @@ export const verifyController = {
 
 export const ruleController = {
   getRuleUrl: () => {
-    return `/rule/web`
-  }
+    return `/rule/web`;
+  },
 };
