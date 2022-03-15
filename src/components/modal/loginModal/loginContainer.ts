@@ -3,6 +3,7 @@ import { Styles } from "react-modal";
 
 import { hasTokenState } from "recoil/atom";
 import auth from "utils/api/auth";
+import axios from "axios";
 
 export const customStyles: Styles = {
   content: {

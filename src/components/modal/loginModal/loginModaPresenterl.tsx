@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { useRecoilState } from "recoil";
 import { GoogleLogin } from "react-google-login";
-
 import { hasTokenState } from "recoil/atom";
 import s from "./loginModal.module.scss";
 import useLogin, { customStyles } from "./loginContainer";
@@ -53,7 +52,7 @@ const LoginModal: React.FC = () => {
         <h1 className={s.h1}>로그인하기</h1>
         <h2 className={s.h2}>학교 계정으로 로그인해주세요!</h2>
         <GoogleLogin
-          clientId={process.env.NEXT_PUBLIC_APP_CLIENT_ID ?? ""}
+          clientId="957329737930-eb08rfsefqr3es8q8kd9j5ncg9s3r9vh.apps.googleusercontent.com"
           buttonText="SIGN IN WITH GOOGLE"
           onSuccess={onSuccessGoogle}
           onFailure={onFailureGoogle}
