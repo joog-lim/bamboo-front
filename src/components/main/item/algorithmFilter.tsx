@@ -40,7 +40,15 @@ const AlgorithmFilter: React.FC = () => {
         {React.Children.map(tags, (child: string) => (
           <li
             onClick={() => {
-              setData([{ number: 0, createdAt: 0, id: "", status: "" }]);
+              setData([
+                {
+                  algorithmNumber: 0,
+                  createdAt: 0,
+                  idx: "",
+                  emojiis: [],
+                  emojiCount: 0,
+                },
+              ]);
               setAlgorithmFilter(algorithmsState[child]);
               setReLoading(true);
             }}

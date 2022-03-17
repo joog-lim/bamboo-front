@@ -5,7 +5,7 @@ import s from "./main.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "components/Sidebar/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
-import { algorithm, getPostRes } from "types/api";
+import { algorithm, getAlgorithmsRes } from "types/api";
 import Algorithm from "utils/api/algorithm";
 import {
   hasTokenState,
@@ -30,20 +30,15 @@ const MainPresenter: React.FC = () => {
   const getPostList = () => {
     let posts: algorithm[] | undefined;
     Algorithm.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
-      (res: AxiosResponse<getPostRes> | void) => {
+      (res: AxiosResponse<getAlgorithmsRes> | void) => {
         if (res?.data) {
-          posts = res.data.data.data;
-          cursor2 = res.data.cursor;
-          hasNext = res.data.hasNext;
-          setAlgorithm(
-            [
-              algorithm.concat(
-                posts || [{ number: 0, createdAt: 0, idx: "", status: "" }]
-              ),
-            ][0]
-          );
-          setIsHasNext(res.data.hasNext || false);
-          setCursor(res.data.cursor);
+          const algorithmData = res.data.data;
+          posts = algorithmData.data;
+          cursor2 = algorithmData.nextCursor;
+          hasNext = algorithmData.hasNext;
+          setAlgorithm([algorithm.concat(posts || algorithm)][0]);
+          setIsHasNext(algorithmData.hasNext || false);
+          setCursor(algorithmData.nextCursor);
         }
       }
     );
