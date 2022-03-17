@@ -16,7 +16,7 @@ const Logo: React.FC = () => {
         rx="15"
         transform="rotate(-45 16 172.944)"
         fill="#57CC4D"
-        fill-opacity="0.25"
+        fillOpacity="0.25"
       />
       <rect
         x="65"
@@ -34,14 +34,14 @@ const Logo: React.FC = () => {
       <path
         d="M179.5 156.5L232 210.944L233.5 212.5"
         stroke="#57CC4D"
-        stroke-width="7"
-        stroke-linecap="round"
+        strokeWidth="7"
+        strokeLinecap="round"
       />
       <path
         d="M201.5 177.5L234 166.5"
         stroke="#57CC4D"
-        stroke-width="7"
-        stroke-linecap="round"
+        strokeWidth="7"
+        strokeLinecap="round"
       />
     </svg>
   );
