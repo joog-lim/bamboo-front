@@ -34,8 +34,8 @@ const LoginModal: React.FC = () => {
     tryLogin(response.tokenId);
   };
 
-  const onFailureGoogle = (response: any) => {
-    alert("구글 로그인에 실패하였습니다." + response);
+  const onFailureGoogle = (response: { error: string }) => {
+    alert("구글 로그인에 실패하였습니다. " + response.error);
   };
 
   return (
@@ -52,7 +52,7 @@ const LoginModal: React.FC = () => {
         <h1 className={s.h1}>로그인하기</h1>
         <h2 className={s.h2}>학교 계정으로 로그인해주세요!</h2>
         <GoogleLogin
-          clientId="957329737930-eb08rfsefqr3es8q8kd9j5ncg9s3r9vh.apps.googleusercontent.com"
+          clientId={process.env.NEXT_PUBLIC_APP_CLIENT_ID ?? ""}
           buttonText="SIGN IN WITH GOOGLE"
           onSuccess={onSuccessGoogle}
           onFailure={onFailureGoogle}
