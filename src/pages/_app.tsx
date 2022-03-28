@@ -9,6 +9,15 @@ ReactModal.setAppElement("#__next");
 ReactModal.defaultStyles = defaultStyles;
 
 function MyApp({ Component, pageProps }: AppProps) {
+  console.info(
+    "%c대나무 숲 상시 채용 공고(하단 링크 클릭)",
+    "background-color:#ffffff; color:#57cc4d; font-size:23px; padding: 30px 20px;"
+  );
+
+  console.info(
+    "%chttps://joog-lim.notion.site/6b030590c8c744a0a1bac84f6f9f4ce8",
+    "background-color:#57cc4d; color:#57cc4d; font-size:18px; padding: 15px;"
+  );
   return (
     <>
       <Head>
