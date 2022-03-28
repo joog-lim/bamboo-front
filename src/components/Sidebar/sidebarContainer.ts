@@ -4,7 +4,6 @@ import verify from "utils/api/verity";
 import Algorithm from "src/utils/api/algorithm";
 import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
-
 export const useCreatePost = (question: verifyType) => {
   const [title, setTitle] = useState<any>("");
   const [content, setContent] = useState<string>("");
@@ -21,7 +20,7 @@ export const useCreatePost = (question: verifyType) => {
         title,
         content,
         tag,
-        question.id,
+        question.data.id,
         questionAnswer
       );
       alert(
@@ -55,16 +54,6 @@ export const useGetQuestion = () => {
       .then((res: AxiosResponse<verifyType> | void) => setQuestion(res?.data));
   }, []);
   return question;
-};
-
-export const useGetCount = () => {
-  const [count, setCount] = useState<any>();
-  useEffect(() => {
-    RequestApi({
-      url: process.env.NEXT_PUBLIC_APP_BASE_URLV2 + "/Algorithm/count",
-    }).then((res: any) => setCount(res.data));
-  }, []);
-  return count;
 };
 
 export const onclick = () => {
