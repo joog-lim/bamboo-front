@@ -69,9 +69,9 @@ const MainPresenter: React.FC = () => {
   useEffect(() => {
     getPostList();
     setReLoading(false);
-  }, [isReLoading]);
+  }, [isReLoading, isAdmin]);
 
-  cursor2 = cursor;
+  cursor2 = cursor ? undefined : cursor;
   hasNext = isHasNext;
 
   return (
