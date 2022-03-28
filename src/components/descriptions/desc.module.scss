@@ -41,6 +41,8 @@
     text-decoration: underline solid c.$green-color 1px;
     color: c.$green-color;
   }
+
+  h2,
   .title {
     font-weight: bold;
     font-size: 18px;
@@ -54,6 +56,7 @@
     text-decoration: underline;
     @include greenText;
   }
+  h3,
   .bold {
     font-weight: bold;
     margin: 5px 0;

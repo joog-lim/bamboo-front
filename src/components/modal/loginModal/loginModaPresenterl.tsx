@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { useRecoilState } from "recoil";
 import { GoogleLogin } from "react-google-login";
-
 import { hasTokenState } from "recoil/atom";
 import s from "./loginModal.module.scss";
 import useLogin, { customStyles } from "./loginContainer";
@@ -35,8 +34,8 @@ const LoginModal: React.FC = () => {
     tryLogin(response.tokenId);
   };
 
-  const onFailureGoogle = (response: any) => {
-    alert("구글 로그인에 실패하였습니다." + response);
+  const onFailureGoogle = (response: { error: string }) => {
+    alert("구글 로그인에 실패하였습니다. " + response.error);
   };
 
   return (

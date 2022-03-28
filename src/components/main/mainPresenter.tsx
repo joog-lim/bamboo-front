@@ -5,8 +5,8 @@ import s from "./main.module.scss";
 import Algorithms from "components/algorithms/algorithms";
 import SideBar from "components/Sidebar/sidebarPresenter";
 import AlgorithmFilter from "./item/algorithmFilter";
-import { algorithm, getPostRes } from "types/api";
-import Algorithm from "utils/api/post";
+import { algorithm, getAlgorithmsRes } from "types/api";
+import Algorithm from "utils/api/algorithm";
 import {
   hasTokenState,
   algorithmFilterState,
@@ -30,20 +30,15 @@ const MainPresenter: React.FC = () => {
   const getPostList = () => {
     let posts: algorithm[] | undefined;
     Algorithm.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
-      (res: AxiosResponse<getPostRes> | void) => {
+      (res: AxiosResponse<getAlgorithmsRes> | void) => {
         if (res?.data) {
-          posts = res.data.posts;
-          cursor2 = res.data.cursor;
-          hasNext = res.data.hasNext;
-          setAlgorithm(
-            [
-              algorithm.concat(
-                posts || [{ number: 0, createdAt: 0, id: "", status: "" }]
-              ),
-            ][0]
-          );
-          setIsHasNext(res.data.hasNext || false);
-          setCursor(res.data.cursor);
+          const algorithmData = res.data.data;
+          posts = algorithmData.data;
+          cursor2 = algorithmData.nextCursor;
+          hasNext = algorithmData.hasNext;
+          setAlgorithm([algorithm.concat(posts || algorithm)][0]);
+          setIsHasNext(algorithmData.hasNext || false);
+          setCursor(algorithmData.nextCursor);
         }
       }
     );
@@ -74,9 +69,9 @@ const MainPresenter: React.FC = () => {
   useEffect(() => {
     getPostList();
     setReLoading(false);
-  }, [isReLoading]);
+  }, [isReLoading, isAdmin]);
 
-  cursor2 = cursor;
+  cursor2 = cursor ? undefined : cursor;
   hasNext = isHasNext;
 
   return (
@@ -92,13 +87,13 @@ const MainPresenter: React.FC = () => {
             .slice(1)
             ?.map((item: algorithm) => <Algorithms data={item} />)
         )}
-        <p>
+        <div>
           {hasNext ? (
             <SpinnerBar background={false} />
           ) : (
             "더 이상 알고리즘이 존재하지 않아요!"
           )}
-        </p>
+        </div>
       </article>
     </main>
   );

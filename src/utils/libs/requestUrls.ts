@@ -1,21 +1,18 @@
-import { EmojiType } from "types/types";
-
 //알고리즘 관리
 export const algorithmController = {
   createAlgorithm: () => {
     return `/algorithm/`;
   },
-  getAlgorithm: (cursor: number | string, status: string) => {
-    return `/algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
+  getAlgorithm: (cursor: number | string, status: string, isAdmin: boolean) => {
+    return `/algorithm/list/cursor${
+      isAdmin ? "/admin?" : "?"
+    }count=15&criteria=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (id: string) => {
     return `/algorithm/${id}`;
   },
   modifyAlgorithm: (id: string) => {
     return `/algorithm/${id}`;
-  },
-  reportAlgorithm: (id: string) => {
-    return `/algorithm/${id}/report`;
   },
   setStatusAlgorithm: (id: string) => {
     return `/algorithm/${id}/status`;
@@ -34,11 +31,8 @@ export const authController = {
 
 //이모지
 export const emojiController = {
-  getEmoji: (emoji: number) => {
-    return `/account/emoji?num=${emoji}`;
-  },
-  updateEmoji: (emoji: EmojiType) => {
-    return `/account/emoji/${emoji}`;
+  updateEmoji: () => {
+    return `/leaf/`;
   },
 };
 
@@ -51,6 +45,6 @@ export const verifyController = {
 
 export const ruleController = {
   getRuleUrl: () => {
-    return `/rule/web`
-  }
+    return `algorithm/rule/web`;
+  },
 };

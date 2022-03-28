@@ -32,6 +32,7 @@ const useLogin = (
       setIsLogin({ isAdmin: res?.data.data.isAdmin, isLogin: true });
       setIsLoading(false);
       closeModal();
+      localStorage.setItem("isAdmin", res?.data.data.isAdmin);
     } catch {
       alert("로그인에 실패하였습니다\n학교 계정인 지 확인하여주세요.");
     }

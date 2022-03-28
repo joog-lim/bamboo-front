@@ -9,44 +9,53 @@ import {
 } from "recoil/atom";
 import { AlgorithmType } from "src/types/types";
 
+const tags: string[] = ["대기", "수락", "거절", "신고"];
+
+const algorithmsState: { [idx: string]: AlgorithmType } = {
+  대기: "PENDING",
+  수락: "ACCEPTED",
+  거절: "REJECTED",
+  신고: "REPORTED",
+};
+
+const algorithmsStateEng = {
+  PENDING: "대기",
+  ACCEPTED: "수락",
+  REJECTED: "거절",
+  REPORTED: "신고",
+};
+
 const AlgorithmFilter: React.FC = () => {
-  const tags: string[] = ["대기", "수락", "거절", "삭제"];
-
-  const algorithmsState: { [idx: string]: AlgorithmType } = {
-    대기: "PENDING",
-    수락: "ACCEPTED",
-    거절: "REJECTED",
-    삭제: "DELETED",
-  };
-
-  const algorithmsStateEng = {
-    PENDING: "대기",
-    ACCEPTED: "수락",
-    REJECTED: "거절",
-    DELETED: "삭제",
-  };
-
   const [algorithmFilter, setAlgorithmFilter] = useRecoilState(
     algorithmFilterState
   );
 
-  const [data, setData] = useRecoilState(algorithmState);
-  const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
+  const [_data, setData] = useRecoilState(algorithmState);
+  const [_isReLoading, setReLoading] = useRecoilState(reLoadingState);
+
+  const onClickAlgorithmBtn = (tag: string) => {
+    if (algorithmFilter === tag) {
+      return;
+    }
+    setData([
+      {
+        algorithmNumber: 0,
+        createdAt: 0,
+        idx: "",
+        emojiis: [],
+        emojiCount: 0,
+      },
+    ]);
+    setAlgorithmFilter(algorithmsState[tag]);
+    setReLoading(true);
+  };
 
   return (
     <button className={s.algoritmFilterBtn}>
       {algorithmsStateEng[algorithmFilter]}
       <ul>
-        {React.Children.map(tags, (child: string) => (
-          <li
-            onClick={() => {
-              setData([{ number: 0, createdAt: 0, id: "", status: "" }]);
-              setAlgorithmFilter(algorithmsState[child]);
-              setReLoading(true);
-            }}
-          >
-            {child}
-          </li>
+        {React.Children.map(tags, (tag: string) => (
+          <li onClick={() => onClickAlgorithmBtn(tag)}>{tag}</li>
         ))}
       </ul>
     </button>
