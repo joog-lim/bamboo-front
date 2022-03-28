@@ -8,7 +8,7 @@ const RequestApiV2 = (p: requestApiV2DTO) => {
   try {
     const res = axios({
       method: p.method,
-      baseURL: "https://server.joog-lim.info/apiV3/test",
+      baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL,
       url: p.url,
       data: p.data,
       headers: Object.assign(
