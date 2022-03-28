@@ -87,13 +87,13 @@ const MainPresenter: React.FC = () => {
             .slice(1)
             ?.map((item: algorithm) => <Algorithms data={item} />)
         )}
-        <p>
+        <div>
           {hasNext ? (
             <SpinnerBar background={false} />
           ) : (
             "더 이상 알고리즘이 존재하지 않아요!"
           )}
-        </p>
+        </div>
       </article>
     </main>
   );
