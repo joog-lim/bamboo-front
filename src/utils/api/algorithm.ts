@@ -2,9 +2,8 @@ import { algorithmController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
 import {
   createAlgorithmRes,
-  deleteReq,
   deleteRes,
-  getPostRes,
+  getAlgorithmsRes,
   modifyRes,
   reportRes,
   setStatusRes,
@@ -16,10 +15,10 @@ class Algorithm {
     isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
-  ): Promise<void | AxiosResponse<getPostRes>> {
+  ): Promise<void | AxiosResponse<getAlgorithmsRes>> {
     try {
       return RequestApiV2({
-        url: algorithmController.getAlgorithm(cursor, status),
+        url: algorithmController.getAlgorithm(cursor, status, isAdmin),
         canHeader: isAdmin,
       });
     } catch (e: any) {
@@ -79,11 +78,12 @@ class Algorithm {
   ): Promise<void | AxiosResponse<reportRes>> {
     try {
       const data = {
+        status: "REPORTED",
         reason,
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.reportAlgorithm(id),
+        url: algorithmController.setStatusAlgorithm(id),
         data: data,
       });
     } catch (e: any) {
@@ -115,7 +115,7 @@ class Algorithm {
   setStatusAlgorithm(
     id: string,
     status = "ACCEPTED",
-    reason?: string
+    reason = ""
   ): Promise<void | AxiosResponse<setStatusRes>> {
     try {
       const data = {
@@ -123,7 +123,7 @@ class Algorithm {
         reason,
       };
       return RequestApiV2({
-        method: "POST",
+        method: "PATCH",
         url: algorithmController.setStatusAlgorithm(id),
         data: data,
         canHeader: true,

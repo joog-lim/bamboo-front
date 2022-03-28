@@ -3,17 +3,16 @@ export const algorithmController = {
   createAlgorithm: () => {
     return `/algorithm/`;
   },
-  getAlgorithm: (cursor: number | string, status: string) => {
-    return `/algorithm/list/cursor/?count=15&criteria=${cursor}&status=${status}`;
+  getAlgorithm: (cursor: number | string, status: string, isAdmin: boolean) => {
+    return `/algorithm/list/cursor${
+      isAdmin ? "/admin?" : "?"
+    }count=15&criteria=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (id: string) => {
     return `/algorithm/${id}`;
   },
   modifyAlgorithm: (id: string) => {
     return `/algorithm/${id}`;
-  },
-  reportAlgorithm: (id: string) => {
-    return `/algorithm/${id}/report`;
   },
   setStatusAlgorithm: (id: string) => {
     return `/algorithm/${id}/status`;
