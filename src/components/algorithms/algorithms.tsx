@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
 import { algorithmsProps } from "./algorithmsContainer";
-import { hasTokenState } from "recoil/atom";
+import { hasTokenState, algorithmFilterState } from "recoil/atom";
 import { useRecoilValue } from "recoil";
 import { Leaf } from "assets/svg";
 import { useState } from "react";
@@ -11,6 +11,8 @@ import { emojiRes } from "types/api";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
+  const AlgorithmFilter = useRecoilValue(algorithmFilterState);
+
   const [emojiCnt, setEmojiCnt] = useState<number>(0);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(false);
   const number = p.data.algorithmNumber;
@@ -56,7 +58,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
     <article className={style.algorithmsBox}>
       <Header
         id={p.data.idx}
-        status={p.data.status}
+        status={AlgorithmFilter}
         createdAt={p.data.createdAt}
         number={number}
         tag={p.data.tag}
@@ -72,12 +74,14 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
               <h4>거절 사유</h4> <p>{p.data.reason}</p>
             </>
           ),
-          DELETED: (
+          REPORTED: (
             <>
               <h4>신고 사유</h4> <p>{p.data.reason}</p>
             </>
           ),
-        }[p.data.status]}
+          PENDING: <></>,
+          ACCEPTED: <></>,
+        }[AlgorithmFilter]}
       <div>
         <button className={style.emojiBtn} onClick={onEmojiClick}>
           <Leaf isClick={isEmojiClick} />

@@ -25,13 +25,13 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
     <header className={s.header}>
       <div>
         <h3>
-          {p.status === "PENDING" ? <>{p.id}</> : <>#{p.number}번째</>}
+          #{p.number}번째
           {isAdmin
             ? {
                 PENDING: " 대기 중",
                 ACCEPTED: " 알고리즘",
                 REJECTED: " 거절됨",
-                DELETED: " 삭제 요청됨",
+                REPORTED: " 신고됨",
               }[p.status]
             : " 알고리즘"}
         </h3>
@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
               </>
             ),
             REJECTED: <button onClick={setStatusAlgorithm}>거절취소</button>,
-            DELETED: (
+            REPORTED: (
               <>
                 <AlgorithmModal
                   isRed

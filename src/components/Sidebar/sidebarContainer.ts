@@ -17,7 +17,13 @@ export const useCreatePost = (question: verifyType) => {
     } else if (tag === "") {
       alert("태그를 선택해주세요.");
     } else {
-      Algorithm.createAlgorithm(title, content, tag, question.id, questionAnswer);
+      Algorithm.createAlgorithm(
+        title,
+        content,
+        tag,
+        question.id,
+        questionAnswer
+      );
       alert(
         "성공적으로 알고리즘이 대기 상태에 들어갔습니다!\n곧 수락 상태로 보실 수 있을 거에요!"
       );
@@ -79,5 +85,5 @@ export const transfer: { [idx: string]: any } = {
   PENDING: "대기중인",
   ACCEPTED: "수락된",
   REJECTED: "거절된",
-  DELETED: "삭제 요청된",
+  REPORTED: "신고된",
 };
