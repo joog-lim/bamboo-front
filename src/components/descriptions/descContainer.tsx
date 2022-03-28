@@ -2,9 +2,9 @@ import Link from "next/link";
 import HeadingPresenter from "components/heading/headingPresenter";
 import s from "./desc.module.scss";
 import Rule, { resRuleData } from "utils/api/rule";
-import { useState } from "react";
-import { useEffect } from "@storybook/addons";
+import { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
+import React from "react";
 
 // outer interface
 export interface descPresenterProps {
@@ -52,7 +52,7 @@ export const descHeading: React.FC<descHeadingProps> = ({ descType }) => {
   );
 };
 
-export const descAbout = () => {
+export const descAbout: React.FC = () => {
   return (
     <article className={s.descAboutWrapper}>
       <h1 className={s.bold}>안녕하세요, 광대숲 개발자입니다.</h1>
@@ -72,12 +72,9 @@ export const descAbout = () => {
         A. 댓글 기능이 없는 이유는, 댓글의 여론이 좋지 않아 게시글로 자신만의
         이야기를 쉬이 나눌 수 없는 환경을 예방하기 위함입니다.
       </p>
-      <h3 className={s.bold}>Q. 글에 반응을 달고 싶어요.</h3>
-      <p className={s.answer}>
-        A. 각 알고리즘들에 반응을 표시하기 위해 이모지를 다는 방안을 검토 중에
-        있습니다.
-      </p>
-      <h3 className={s.bold}>Q. 내 의견을 찾을 수 없어요.</h3>
+      <h3 className={s.bold}>
+        Q. 내 의견을 찾을 수 없어요. / 내 글이 안 보여요.
+      </h3>
       <p className={s.answer}>
         A. 광대숲은 모든 글이 관리자의 허가를 맡아서 올라가기에 올라갈 때 시간이
         걸릴 수 있습니다. 또한 부적절한 내용으로 검토 및 삭제가 되었을 수
@@ -108,15 +105,60 @@ export const descAbout = () => {
 };
 
 const useGetRuleContents = () => {
-  const [rule, setRule] = useState<resRuleData>();
+  const [rule, setRule] = useState<any | null>({
+    data: [
+      {
+        content: {
+          _id: 0,
+          title: "대기 중",
+          content: "대기 중",
+          subContent: [
+            {
+              _id: 0,
+              title: "대기 중",
+              content: "대기 중",
+            },
+          ],
+        },
+      },
+    ],
+  });
   useEffect(() => {
     Rule.getRule().then((res: AxiosResponse<resRuleData> | void) =>
-      setRule(res?.data)
+      setRule(res?.data || null)
     );
   }, []);
   return rule;
 };
 
-export const descRule = () => {
-  return <div>룰입니다.</div>;
+export const descRule = (): JSX.Element => {
+  const rules = useGetRuleContents();
+  let element;
+  if (rules?.data.content) {
+    element = rules?.data.content.map((content: any) => {
+      if (content.subContent) {
+        return (
+          <Fragment key={content._id}>
+            <h2 key={content._id + "title"}>{content.title}</h2>
+            <p key={content._id + "content"}>{content.content}</p>
+            {content.subContent.map((content: any) => {
+              return (
+                <Fragment key={content._id}>
+                  <h3 key={content._id + "title"}>{content.title}</h3>
+                  <p key={content._id + "content"}>{content.content}</p>
+                </Fragment>
+              );
+            })}
+          </Fragment>
+        );
+      }
+      return (
+        <Fragment key={content._id}>
+          <h2>{content.title}</h2>
+          <p>{content.content}</p>
+        </Fragment>
+      );
+    });
+  }
+  return <div className={s.descAboutWrapper}>{element}</div>;
 };

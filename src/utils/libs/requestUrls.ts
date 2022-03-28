@@ -46,6 +46,6 @@ export const verifyController = {
 
 export const ruleController = {
   getRuleUrl: () => {
-    return `/rule/web`;
+    return `algorithm/rule/web`;
   },
 };
