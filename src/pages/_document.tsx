@@ -5,7 +5,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <html lang="ko" />
           <link rel="icon" href="/favicon.ico" />
           <meta charSet="UTF-8" />
           <meta
@@ -43,6 +42,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:creator" content="@https://joog-lim.info" />
         </Head>
         <body>
+          <html lang="ko" />
           <div id="root">
             <Main />
             <NextScript />
