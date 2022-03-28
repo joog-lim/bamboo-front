@@ -28,7 +28,7 @@ class Emoji {
     number: number
   ): Promise<void | AxiosResponse<emojiRes>> {
     const data = {
-      num: number,
+      number: number,
     };
     try {
       return RequestApiV2({
