@@ -23,7 +23,7 @@ interface descHeadingProps {
  * props : about, rule
  */
 
-export const descHeading: React.FC<descHeadingProps> = ({ descType }) => {
+export const DescHeading: React.FC<descHeadingProps> = ({ descType }) => {
   return (
     <>
       <HeadingPresenter
@@ -52,7 +52,7 @@ export const descHeading: React.FC<descHeadingProps> = ({ descType }) => {
   );
 };
 
-export const descAbout: React.FC = () => {
+export const DescAbout: React.FC = () => {
   return (
     <article className={s.descAboutWrapper}>
       <h1 className={s.bold}>안녕하세요, 광대숲 개발자입니다.</h1>
@@ -131,7 +131,7 @@ const useGetRuleContents = () => {
   return rule;
 };
 
-export const descRule = (): JSX.Element => {
+export const DescRule: React.FC = () => {
   const rules = useGetRuleContents();
   let element;
   if (rules?.data.content) {
