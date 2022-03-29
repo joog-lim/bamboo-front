@@ -40,6 +40,12 @@ export interface getAlgorithmsRes {
   success: boolean;
 }
 
+export interface getPostRes {
+  posts: algorithm[];
+  cursor: number;
+  hasNext: boolean;
+}
+
 // create algorithm
 
 export interface createAlgorithmReq extends defaultAlgorithm {
@@ -148,6 +154,17 @@ export interface verify {
     id: string;
     question: string;
   };
+}
+
+// emoji
+
+export interface emojiReq {
+  num: number;
+}
+
+export interface emojiRes {
+  leaf: number;
+  message: string;
 }
 
 // emoji

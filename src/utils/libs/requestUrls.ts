@@ -1,3 +1,5 @@
+import { EmojiType } from "types/types";
+
 //알고리즘 관리
 export const algorithmController = {
   createAlgorithm: () => {
