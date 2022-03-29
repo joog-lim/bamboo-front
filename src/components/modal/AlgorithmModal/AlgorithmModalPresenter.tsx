@@ -21,7 +21,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   //좋은 방법이 있다면 알려주세요.
   const [content, setContent] = useState("default32rewfdas");
   const [title, setTitle] = useState("default32rewfdas");
-  const [reason, setReason] = useState("");
+  const [_reason, setReason] = useState("");
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [openModal, closeModal] = modalController(setModalIsOpen);

@@ -46,7 +46,7 @@ const SideBar: React.FC = () => {
         res: AxiosResponse<{ data: { status: string; count: number }[] }> | void
       ) => setCount(res?.data.data ?? [{ status: "loading", count: 0 }])
     );
-  }, []);
+  }, [isAdmin]);
 
   const tagCasement = () => {
     setTagClicked(true);

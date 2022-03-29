@@ -10,7 +10,7 @@ import LoginModal from "../modal/loginModal/loginModaPresenterl";
 import { useEffect } from "react";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const [_, setHasToken] = useRecoilState(hasTokenState);
+  const [_hasToken, setHasToken] = useRecoilState(hasTokenState);
   useEffect(() => {
     localStorage.getItem("token") &&
       setHasToken({
