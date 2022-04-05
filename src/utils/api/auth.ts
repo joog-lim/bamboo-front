@@ -4,22 +4,25 @@ import { AxiosResponse } from "axios";
 import { authRes } from "types/api";
 
 class Auth {
-  login(): Promise<void | AxiosResponse> {
+  loginByPassword(password: string): Promise<void | AxiosResponse<authRes>> {
     try {
+      const data = {
+        password,
+      };
       return RequestApiV2({
         url: authController.login(),
         method: "POST",
-        canHeader: true,
+        data: data,
       });
     } catch (e: any) {
       throw new Error(e);
     }
   }
 
-  tokenRefresh(): Promise<void | AxiosResponse> {
+  GoogleLogin(): Promise<void | AxiosResponse<authRes>> {
     try {
       return RequestApiV2({
-        url: authController.token(),
+        url: authController.googleLogin(),
         method: "POST",
         canHeader: true,
       });

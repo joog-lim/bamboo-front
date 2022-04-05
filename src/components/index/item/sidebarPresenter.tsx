@@ -1,22 +1,20 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 
 import s from "./sidebar.module.scss";
 import HeadingPresenter from "components/heading/headingPresenter";
 import { tags } from "./sidebarContainer";
-import { useGetQuestion, useCreatePost, transfer } from "./sidebarContainer";
+import {
+  useGetQuestion,
+  useCreatePost,
+  useGetCount,
+  transfer,
+} from "./sidebarContainer";
 import { hasTokenState } from "recoil/atom";
-import { useEffect } from "react";
-import RequestApi from "utils/libs/requestApi";
-import { AxiosResponse } from "axios";
 
 const SideBar: React.FC = () => {
   const { isAdmin } = useRecoilValue(hasTokenState);
-  const [tagClicked, setTagClicked] = useState<boolean>(false);
   const question = useGetQuestion();
-  const [count, setCount] = useState<Array<{ status: string; count: number }>>([
-    { status: "loading", count: 0 },
-  ]);
   const [
     tryCreatePost,
     setTitle,
@@ -29,31 +27,15 @@ const SideBar: React.FC = () => {
     questionAnswer,
   ] = useCreatePost(
     question ?? {
-      data: {
-        id: "",
-        question: "",
-      },
+      id: "",
+      question: "",
     }
   );
-
-  useEffect(() => {
-    if (isAdmin) return;
-    RequestApi({
-      url: "/algorithm/count",
-      canHeader: true,
-    }).then(
-      (
-        res: AxiosResponse<{ data: { status: string; count: number }[] }> | void
-      ) => setCount(res?.data.data ?? [{ status: "loading", count: 0 }])
-    );
-  }, [isAdmin]);
-
-  const tagCasement = () => {
-    setTagClicked(true);
-    setTimeout(() => {
-      setTagClicked(false);
-    }, 100);
-  };
+  const count = useGetCount();
+  const [tagClicked, setTagClicked] = useState<boolean>(false); // tagClicked의 값을 setTimeout을 사용하여 몇 초 뒤 false값을 줌
+  let ChangeTagValues = setTimeout(function () {
+    setTagClicked(false);
+  }, 500);
 
   return isAdmin ? (
     <section>
@@ -64,12 +46,14 @@ const SideBar: React.FC = () => {
       <article className={s.admin}>
         <h3>알고리즘 현황</h3>
         <br />
-        {count.map((item: { status: string; count: number }, i: number) => (
-          <Fragment key={i}>
-            <h3>{transfer[item.status]} 알고리즘</h3>
-            <p>{item.count}개</p>
-          </Fragment>
-        ))}
+        {React.Children.toArray(
+          count?.map((item: { _id: string; count: number }) => (
+            <>
+              <h3>{transfer[item._id]} 알고리즘</h3>
+              <p>{item.count}개</p>
+            </>
+          ))
+        )}
       </article>
     </section>
   ) : (
@@ -89,13 +73,15 @@ const SideBar: React.FC = () => {
           value={title}
         />
         <button className={s.tagBtn}>
-          {!tag ? "태그" : tag}
-          <ul className={tagClicked ? s.tagClose : s.tagOpen}>
+          {tag === "" ? "태그" : tag}
+          <ul
+            className={tagClicked ? s.tagClose : s.tagOpen} // 삼항연산자로 오류 해결 해보기
+          >
             {React.Children.map(tags, (child) => (
               <li
                 onClick={() => {
                   setTag(child);
-                  tagCasement();
+                  setTagClicked(true);
                 }}
               >
                 #{child}
@@ -105,7 +91,7 @@ const SideBar: React.FC = () => {
         </button>
         <input
           className={s.fullInput}
-          placeholder={`Q. ${question?.data.question ?? "질문을 준비 중입니다."}
+          placeholder={`Q. ${question?.question ?? "질문을 준비 중입니다."}
             `}
           onChange={({ target: { value } }) => {
             setQuestionAnswer(value);

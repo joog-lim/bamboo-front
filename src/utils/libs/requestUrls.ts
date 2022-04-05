@@ -1,50 +1,50 @@
+import { EmojiType } from "types/types";
+
 //알고리즘 관리
-export const algorithmController = {
-  createAlgorithm: () => {
-    return `/algorithm/`;
+export const postController = {
+  getPost: (cursor: number | string, status: string) => {
+    return `/post/AlgorithemList?count=15&cursor=${cursor}&status=${status}`;
   },
-  getAlgorithm: (cursor: number | string, status: string, isAdmin: boolean) => {
-    return `/algorithm/list/cursor${
-      isAdmin ? "/admin?" : "?"
-    }count=15&criteria=${cursor}&status=${status}`;
+  createPost: () => {
+    return `/post/create`;
   },
-  deleteAlgorithm: (id: string) => {
-    return `/algorithm/${id}`;
+  deletePost: (id: string) => {
+    return `/post/${id}/delete`;
   },
-  modifyAlgorithm: (id: string) => {
-    return `/algorithm/${id}`;
+  modifyPost: (id: string) => {
+    return `/post/${id}/modify`;
   },
-  setStatusAlgorithm: (id: string) => {
-    return `/algorithm/${id}/status`;
+  reportPost: (id: string) => {
+    return `/post/${id}/report`;
+  },
+  setStatusPost: (id: string) => {
+    return `/post/${id}/setStatus`;
   },
 };
 
 //계정
 export const authController = {
   login: () => {
-    return `/login`;
+    return `/auth/`;
   },
-  token: () => {
-    return `/token`;
+  googleLogin: () => {
+    return `/account/account/login`;
   },
 };
 
 //이모지
 export const emojiController = {
-  updateEmoji: () => {
-    return `/leaf/`;
+  getEmoji: (emoji: number) => {
+    return `/account/emoji?num=${emoji}`;
+  },
+  updateEmoji: (emoji: EmojiType) => {
+    return `/account/emoji/${emoji}`;
   },
 };
 
 //확인
 export const verifyController = {
   getQuestion: () => {
-    return `/verify`;
-  },
-};
-
-export const ruleController = {
-  getRuleUrl: () => {
-    return `algorithm/rule/web`;
+    return `/verify/`;
   },
 };

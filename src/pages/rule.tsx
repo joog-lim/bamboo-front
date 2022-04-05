@@ -8,21 +8,11 @@ const Rule: React.FC = () => {
   return (
     <>
       <Head>
-        <title>광주소프트웨어마이스터고등학교 규칙</title>
+        <title>광대숲 규칙</title>
         <meta
           name="description"
-          content="광주소프트웨어마이스터고등학교 대나무숲의 규칙 페이지입니다."
+          content="광주소프트웨어마이스터고등학교 대나무숲 규칙"
         />
-        {/* 오픈그래프 */}
-        <meta
-          property="og:title"
-          content="광주소프트웨어마이스터고등학교 대나무숲 규칙 페이지"
-        />
-        <meta
-          property="og:description"
-          content="광주소프트웨어마이스터고등학교 대나무숲의 규칙 페이지입니다."
-        />
-        <meta property="og:url" content="https://joog-lim.info/rule" />
       </Head>
       <HeaderPresenter location={config.LINK.RULE} />
       <div className={styles.wrap}>

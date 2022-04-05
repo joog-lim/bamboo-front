@@ -1,24 +1,25 @@
-import { algorithmController } from "../libs/requestUrls";
+import { postController } from "../libs/requestUrls";
 import RequestApiV2 from "../libs/requestApi";
 import {
   createAlgorithmRes,
+  deleteReq,
   deleteRes,
-  getAlgorithmsRes,
+  getPostRes,
   modifyRes,
   reportRes,
   setStatusRes,
 } from "types/api";
 import { AxiosResponse } from "axios";
 
-class Algorithm {
-  getAlgorithm(
+class Post {
+  getPost(
     isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
-  ): Promise<void | AxiosResponse<getAlgorithmsRes>> {
+  ): Promise<void | AxiosResponse<getPostRes>> {
     try {
       return RequestApiV2({
-        url: algorithmController.getAlgorithm(cursor, status, isAdmin),
+        url: postController.getPost(cursor, status),
         canHeader: isAdmin,
       });
     } catch (e: any) {
@@ -26,7 +27,7 @@ class Algorithm {
     }
   }
 
-  createAlgorithm(
+  createPost(
     title: string,
     content: string,
     tag: string,
@@ -38,14 +39,14 @@ class Algorithm {
         title,
         content,
         tag,
-        verify: {
+        verifier: {
           id: questionId,
           answer: questionAnswer,
         },
       };
       return RequestApiV2({
         method: "POST",
-        url: algorithmController.createAlgorithm(),
+        url: postController.createPost(),
         data: data,
       });
     } catch (e: any) {
@@ -53,7 +54,7 @@ class Algorithm {
     }
   }
 
-  deleteAlgorithm(
+  deletePost(
     id: string,
     reason: string
   ): Promise<void | AxiosResponse<deleteRes>> {
@@ -63,7 +64,7 @@ class Algorithm {
     try {
       return RequestApiV2({
         method: "DELETE",
-        url: algorithmController.deleteAlgorithm(id),
+        url: postController.deletePost(id),
         data: data,
         canHeader: true,
       });
@@ -72,18 +73,17 @@ class Algorithm {
     }
   }
 
-  reportAlgorithm(
+  reportPost(
     id: string,
     reason: string
   ): Promise<void | AxiosResponse<reportRes>> {
     try {
       const data = {
-        status: "REPORTED",
         reason,
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.setStatusAlgorithm(id),
+        url: postController.reportPost(id),
         data: data,
       });
     } catch (e: any) {
@@ -91,19 +91,22 @@ class Algorithm {
     }
   }
 
-  modifyAlgorithm(
+  modifyPost(
     id: string,
     title: string,
+    reason: string,
     content: string
   ): Promise<void | AxiosResponse<modifyRes>> {
     try {
       const data = {
+        status,
+        reason,
         title,
         content,
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.modifyAlgorithm(id),
+        url: postController.modifyPost(id),
         data: data,
         canHeader: true,
       });
@@ -112,10 +115,10 @@ class Algorithm {
     }
   }
 
-  setStatusAlgorithm(
+  setStatusPost(
     id: string,
     status = "ACCEPTED",
-    reason = ""
+    reason?: string
   ): Promise<void | AxiosResponse<setStatusRes>> {
     try {
       const data = {
@@ -123,8 +126,8 @@ class Algorithm {
         reason,
       };
       return RequestApiV2({
-        method: "PATCH",
-        url: algorithmController.setStatusAlgorithm(id),
+        method: "POST",
+        url: postController.setStatusPost(id),
         data: data,
         canHeader: true,
       });
@@ -134,4 +137,4 @@ class Algorithm {
   }
 }
 
-export default new Algorithm();
+export default new Post();

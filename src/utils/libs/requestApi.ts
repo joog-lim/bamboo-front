@@ -8,7 +8,7 @@ const RequestApiV2 = (p: requestApiV2DTO) => {
   try {
     const res = axios({
       method: p.method,
-      baseURL: process.env.NEXT_PUBLIC_APP_BASE_URL,
+      baseURL: process.env.NEXT_PUBLIC_APP_BASE_URLV2,
       url: p.url,
       data: p.data,
       headers: Object.assign(

@@ -15,12 +15,12 @@ const Leaf: React.FC<{ isClick: boolean }> = (p) => {
       <path
         d="M7 6L15.75 15.7221L16 16"
         stroke={p.isClick ? "#76B157" : "#57CC4D"}
-        strokeLinecap="round"
+        stroke-linecap="round"
       />
       <path
         d="M11 10L16 8"
         stroke={p.isClick ? "#76B157" : "#57CC4D"}
-        strokeLinecap="round"
+        stroke-linecap="round"
       />
     </svg>
   );

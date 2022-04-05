@@ -1,15 +1,6 @@
-import { AlgorithmType } from "./types";
-
 export interface errRes {
   success?: boolean;
   message?: string;
-}
-
-export interface defaultResponese<T> {
-  success: boolean;
-  code: string;
-  message: string;
-  data: T;
 }
 
 // algorithm
@@ -22,22 +13,10 @@ export interface defaultAlgorithm {
 
 export interface algorithm extends defaultAlgorithm {
   createdAt: number;
-  idx: string;
-  algorithmNumber: number;
+  id: string;
+  number: number;
+  status: string;
   reason?: string;
-  emojiis: Array<number>;
-  emojiCount: number;
-}
-
-export interface getAlgorithmsRes {
-  data: {
-    data: algorithm[];
-    nextCursor: number;
-    hasNext: boolean;
-    status: AlgorithmType;
-  };
-  message: string;
-  success: boolean;
 }
 
 export interface getPostRes {
@@ -139,32 +118,19 @@ export interface getCount {
 // auth
 
 export interface authReq {
-  googleToken: string;
+  password: string;
 }
 
 export interface authRes {
-  accessToken: string;
-  refreshToken: string;
+  success: boolean;
+  token: string;
 }
 
-// verify
+// verity
 
 export interface verify {
-  data: {
-    id: string;
-    question: string;
-  };
-}
-
-// emoji
-
-export interface emojiReq {
-  num: number;
-}
-
-export interface emojiRes {
-  leaf: number;
-  message: string;
+  id: string;
+  question: string;
 }
 
 // emoji

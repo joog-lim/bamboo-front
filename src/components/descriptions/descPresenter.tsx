@@ -6,12 +6,12 @@ const DescPresenter: React.FC<c.descPresenterProps> = (
 ) => {
   return (
     <main className={s.main}>
-      <c.DescHeading descType={p.descType} />
+      <c.descHeading descType={p.descType} />
       <section className={s.descContentWrapper}>
         {
           {
-            about: <c.DescAbout />,
-            rule: <c.DescRule />,
+            about: <c.descAbout />,
+            rule: <c.descRule />,
           }[p.descType]
         }
       </section>
