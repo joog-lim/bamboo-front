@@ -4,32 +4,34 @@ import s from "./header.module.scss";
 import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
 import { hasTokenState } from "recoil/atom";
-import Post from "utils/api/post";
+import Algorithm from "src/utils/api/algorithm";
 import { AxiosResponse } from "axios";
 import { setStatusRes } from "types/api";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(hasTokenState);
 
-  const setStatusPost = () => {
-    Post.setStatusPost(p.id).then((res: AxiosResponse<setStatusRes> | void) => {
-      res?.status === 200
-        ? alert("성공적으로 수정되었습니다.")
-        : alert("실패하였습니다.");
-    });
+  const setStatusAlgorithm = () => {
+    Algorithm.setStatusAlgorithm(p.id).then(
+      (res: AxiosResponse<setStatusRes> | void) => {
+        res?.status === 200
+          ? alert("성공적으로 수정되었습니다.")
+          : alert("실패하였습니다.");
+      }
+    );
   };
 
   return (
     <header className={s.header}>
       <div>
         <h3>
-          {p.status === "PENDING" ? <>{p.id}</> : <>#{p.number}번째</>}
+          #{p.number}번째
           {isAdmin
             ? {
                 PENDING: " 대기 중",
                 ACCEPTED: " 알고리즘",
                 REJECTED: " 거절됨",
-                DELETED: " 삭제 요청됨",
+                REPORTED: " 신고됨",
               }[p.status]
             : " 알고리즘"}
         </h3>
@@ -41,7 +43,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
           {
             PENDING: (
               <>
-                <button onClick={setStatusPost}>수락</button>
+                <button onClick={setStatusAlgorithm}>수락</button>
                 <AlgorithmModal
                   isRed={false}
                   isHeading={false}
@@ -84,8 +86,8 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                 </AlgorithmModal>
               </>
             ),
-            REJECTED: <button onClick={setStatusPost}>거절취소</button>,
-            DELETED: (
+            REJECTED: <button onClick={setStatusAlgorithm}>거절취소</button>,
+            REPORTED: (
               <>
                 <AlgorithmModal
                   isRed
@@ -95,7 +97,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                 >
                   삭제
                 </AlgorithmModal>
-                <button onClick={setStatusPost}>기각</button>
+                <button onClick={setStatusAlgorithm}>기각</button>
               </>
             ),
           }[p.status]}

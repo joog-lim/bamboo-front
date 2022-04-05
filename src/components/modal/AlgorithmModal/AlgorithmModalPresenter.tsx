@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import s from "./algorithmModal.module.scss";
 import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
-import Post from "src/utils/api/post";
+import Algorithm from "src/utils/api/algorithm";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { loadingState } from "recoil/atom";
 import { useRecoilState } from "recoil";
@@ -21,13 +21,13 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   //좋은 방법이 있다면 알려주세요.
   const [content, setContent] = useState("default32rewfdas");
   const [title, setTitle] = useState("default32rewfdas");
-  const [reason, setReason] = useState("");
+  const [_reason, setReason] = useState("");
   const [isLoading, setIsLoading] = useRecoilState(loadingState);
 
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
-  const reportPost = () => {
-    Post.reportPost(p.algorithmId, content).then(
+  const reportAlgorithm = () => {
+    Algorithm.reportAlgorithm(p.algorithmId, content).then(
       (res: AxiosResponse<reportRes> | void) => {
         setIsLoading(false);
         const result =
@@ -40,8 +40,8 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
     );
   };
 
-  const modifyPost = () => {
-    Post.modifyPost(p.algorithmId, title, reason, content).then(
+  const modifyAlgorithm = () => {
+    Algorithm.modifyAlgorithm(p.algorithmId, title, content).then(
       (res: AxiosResponse<modifyRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -52,8 +52,8 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
     );
   };
 
-  const setStatusPost = (status: string) => {
-    Post.setStatusPost(p.algorithmId, status, content).then(
+  const setStatusAlgorithm = (status: string) => {
+    Algorithm.setStatusAlgorithm(p.algorithmId, status, content).then(
       (res: AxiosResponse<setStatusRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -64,8 +64,8 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
     );
   };
 
-  const deletePost = () => {
-    Post.deletePost(p.algorithmId, content).then(
+  const deleteAlgorithm = () => {
+    Algorithm.deleteAlgorithm(p.algorithmId, content).then(
       (res: AxiosResponse<deleteRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -83,19 +83,19 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
     setIsLoading(true);
     switch (p.children) {
       case "삭제": {
-        deletePost();
+        deleteAlgorithm();
         break;
       }
       case "신고": {
-        reportPost();
+        reportAlgorithm();
         break;
       }
       case "거절": {
-        setStatusPost("REJECTED");
+        setStatusAlgorithm("REJECTED");
         break;
       }
       case "수정": {
-        modifyPost();
+        modifyAlgorithm();
         break;
       }
       default:

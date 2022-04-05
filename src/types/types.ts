@@ -2,7 +2,7 @@ const AlgorithmStateTypeObject = {
   ACCEPTED: "ACCEPTED",
   PENDING: "PENDING",
   REJECTED: "REJECTED",
-  DELETED: "DELETED",
+  REPORTED: "REPORTED",
 } as const;
 
 export type AlgorithmType = typeof AlgorithmStateTypeObject[keyof typeof AlgorithmStateTypeObject];
@@ -11,9 +11,3 @@ export interface hasToken {
   isLogin: boolean;
   isAdmin: boolean;
 }
-
-const EmojiTypeObject = {
-  LEAF: "leaf",
-} as const;
-
-export type EmojiType = typeof EmojiTypeObject[keyof typeof EmojiTypeObject];
