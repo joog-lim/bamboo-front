@@ -57,7 +57,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   return (
     <article className={style.algorithmsBox}>
       <Header
-        id={p.data.idx}
+        id={String(p.data.idx)}
         status={AlgorithmFilter}
         createdAt={p.data.createdAt}
         number={number}
