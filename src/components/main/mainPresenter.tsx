@@ -71,7 +71,7 @@ const MainPresenter: React.FC = () => {
     setReLoading(false);
   }, [isReLoading, isAdmin]);
 
-  cursor2 = cursor ? undefined : cursor;
+  cursor2 ??= cursor;
   hasNext = isHasNext;
 
   return (
