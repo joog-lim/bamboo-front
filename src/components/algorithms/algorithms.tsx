@@ -15,7 +15,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   const [emojiCnt, setEmojiCnt] = useState<number>(0);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(false);
-  const number = p.data.algorithmNumber;
+  const number = p.data.idx;
 
   const addEmoji = () => {
     emojiController
@@ -57,7 +57,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   return (
     <article className={style.algorithmsBox}>
       <Header
-        id={p.data.idx}
+        id={String(p.data.idx)}
         status={AlgorithmFilter}
         createdAt={p.data.createdAt}
         number={number}
