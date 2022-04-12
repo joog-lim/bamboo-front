@@ -15,14 +15,14 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   const [emojiCnt, setEmojiCnt] = useState<number>(0);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(false);
-  const number = p.data.idx;
-
+  const { number, idx } = p.data.algorithmNumber;
+  
   const addEmoji = () => {
     emojiController
-      .addEmoji(isLogin, number)
+      .addEmoji(isLogin, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
         if (res?.status === 200) {
-          window.localStorage.setItem(String(number), "true");
+          window.localStorage.setItem(String(idx), "true");
         } else {
           setEmojiClick(false);
           setEmojiCnt(emojiCnt);
@@ -32,10 +32,10 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   const deleteEmoji = () => {
     emojiController
-      .deleteEmoji(isLogin, number)
+      .deleteEmoji(isLogin, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
         if (res?.status === 200) {
-          window.localStorage.setItem(String(number), "false");
+          window.localStorage.setItem(String(idx), "false");
         } else {
           setEmojiClick(true);
           setEmojiCnt(emojiCnt);
@@ -57,7 +57,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   return (
     <article className={style.algorithmsBox}>
       <Header
-        id={String(p.data.idx)}
+        id={String(idx)}
         status={AlgorithmFilter}
         createdAt={p.data.createdAt}
         number={number}
