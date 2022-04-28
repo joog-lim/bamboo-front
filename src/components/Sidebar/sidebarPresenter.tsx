@@ -11,7 +11,7 @@ import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
 
 const SideBar: React.FC = () => {
-  const { isAdmin } = useRecoilValue(hasTokenState);
+  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const [tagClicked, setTagClicked] = useState<boolean>(false);
   const question = useGetQuestion();
   const [count, setCount] = useState<Array<{ status: string; count: number }>>([
@@ -103,15 +103,19 @@ const SideBar: React.FC = () => {
             ))}
           </ul>
         </button>
-        <input
-          className={s.fullInput}
-          placeholder={`Q. ${question?.data.question ?? "질문을 준비 중입니다."}
+        {!isLogin && (
+          <input
+            className={s.fullInput}
+            placeholder={`Q. ${
+              question?.data.question ?? "질문을 준비 중입니다."
+            }
             `}
-          onChange={({ target: { value } }) => {
-            setQuestionAnswer(value);
-          }}
-          value={questionAnswer}
-        />
+            onChange={({ target: { value } }) => {
+              setQuestionAnswer(value);
+            }}
+            value={questionAnswer}
+          />
+        )}
         <div className={s.textareaBox}>
           <textarea
             className={s.fullTextarea}
