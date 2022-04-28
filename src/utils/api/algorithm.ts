@@ -12,6 +12,7 @@ import { AxiosResponse } from "axios";
 
 class Algorithm {
   getAlgorithm(
+    isLogin: boolean,
     isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
@@ -19,7 +20,7 @@ class Algorithm {
     try {
       return RequestApiV2({
         url: algorithmController.getAlgorithm(cursor, status, isAdmin),
-        canHeader: isAdmin,
+        canHeader: isLogin,
       });
     } catch (e: any) {
       throw new Error(e);

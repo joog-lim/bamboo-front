@@ -17,7 +17,7 @@ import SpinnerBar from "components/spinner/spinnerPresenter";
 import { AxiosResponse } from "axios";
 
 const MainPresenter: React.FC = () => {
-  const { isAdmin } = useRecoilValue(hasTokenState);
+  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const algorithmFilter = useRecoilValue(algorithmFilterState);
   const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
 
@@ -29,7 +29,7 @@ const MainPresenter: React.FC = () => {
 
   const getPostList = () => {
     let posts: algorithm[] | undefined;
-    Algorithm.getAlgorithm(isAdmin, cursor2, algorithmFilter).then(
+    Algorithm.getAlgorithm(isLogin, isAdmin, cursor2, algorithmFilter).then(
       (res: AxiosResponse<getAlgorithmsRes> | void) => {
         if (res?.data) {
           const algorithmData = res.data.data;
