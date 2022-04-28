@@ -1,11 +1,14 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface HeaderProps {
-  id: string;
+  idx: number;
   status: string;
   createdAt: number;
   number: number | string;
   title?: string;
   content?: string;
   tag?: string;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export const getDate = (timestamp: number): string => {

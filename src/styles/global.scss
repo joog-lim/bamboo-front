@@ -6,6 +6,9 @@ $default-font: "NanumSquareRound", sans-serif;
 body {
   font-family: $default-font;
   box-sizing: border-box;
+  button {
+    font-family: $default-font;
+  }
   &::selection {
     color: #5f9025;
     background-color: #ebf6e0;

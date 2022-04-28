@@ -27,6 +27,7 @@ export interface algorithm extends defaultAlgorithm {
   reason?: string;
   emojiis: Array<number>;
   emojiCount: number;
+  isClicked: boolean;
 }
 
 export interface getAlgorithmsRes {

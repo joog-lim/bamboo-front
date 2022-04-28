@@ -12,6 +12,7 @@ import { AxiosResponse } from "axios";
 
 class Algorithm {
   getAlgorithm(
+    isLogin: boolean,
     isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
@@ -19,7 +20,7 @@ class Algorithm {
     try {
       return RequestApiV2({
         url: algorithmController.getAlgorithm(cursor, status, isAdmin),
-        canHeader: isAdmin,
+        canHeader: isLogin,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -54,7 +55,7 @@ class Algorithm {
   }
 
   deleteAlgorithm(
-    id: string,
+    idx: number,
     reason: string
   ): Promise<void | AxiosResponse<deleteRes>> {
     const data = {
@@ -63,7 +64,7 @@ class Algorithm {
     try {
       return RequestApiV2({
         method: "DELETE",
-        url: algorithmController.deleteAlgorithm(id),
+        url: algorithmController.deleteAlgorithm(idx),
         data: data,
         canHeader: true,
       });
@@ -73,7 +74,7 @@ class Algorithm {
   }
 
   reportAlgorithm(
-    id: string,
+    idx: number,
     reason: string
   ): Promise<void | AxiosResponse<reportRes>> {
     try {
@@ -83,7 +84,7 @@ class Algorithm {
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.setStatusAlgorithm(id),
+        url: algorithmController.setStatusAlgorithm(idx),
         data: data,
       });
     } catch (e: any) {
@@ -92,7 +93,7 @@ class Algorithm {
   }
 
   modifyAlgorithm(
-    id: string,
+    idx: number,
     title: string,
     content: string
   ): Promise<void | AxiosResponse<modifyRes>> {
@@ -103,7 +104,7 @@ class Algorithm {
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.modifyAlgorithm(id),
+        url: algorithmController.modifyAlgorithm(idx),
         data: data,
         canHeader: true,
       });
@@ -113,7 +114,7 @@ class Algorithm {
   }
 
   setStatusAlgorithm(
-    id: string,
+    idx: number,
     status = "ACCEPTED",
     reason = ""
   ): Promise<void | AxiosResponse<setStatusRes>> {
@@ -124,7 +125,7 @@ class Algorithm {
       };
       return RequestApiV2({
         method: "PATCH",
-        url: algorithmController.setStatusAlgorithm(id),
+        url: algorithmController.setStatusAlgorithm(idx),
         data: data,
         canHeader: true,
       });

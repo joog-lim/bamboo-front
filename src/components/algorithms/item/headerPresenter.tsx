@@ -1,5 +1,4 @@
 import { useRecoilValue } from "recoil";
-
 import s from "./header.module.scss";
 import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
@@ -12,11 +11,13 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(hasTokenState);
 
   const setStatusAlgorithm = () => {
-    Algorithm.setStatusAlgorithm(p.id).then(
+    p.setIsLoading(true);
+    Algorithm.setStatusAlgorithm(p.idx).then(
       (res: AxiosResponse<setStatusRes> | void) => {
         res?.status === 200
           ? alert("성공적으로 수정되었습니다.")
           : alert("실패하였습니다.");
+        p.setIsLoading(false);
       }
     );
   };
@@ -48,7 +49,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isRed={false}
                   isHeading={false}
                   isReason
-                  algorithmId={p.id}
+                  algorithmIdx={p.idx}
                   title={p.title}
                   content={p.content}
                 >
@@ -58,7 +59,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isRed
                   isHeading
                   isReason={false}
-                  algorithmId={p.id}
+                  algorithmIdx={p.idx}
                 >
                   거절
                 </AlgorithmModal>
@@ -70,7 +71,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isRed={false}
                   isHeading={false}
                   isReason
-                  algorithmId={p.id}
+                  algorithmIdx={p.idx}
                   title={p.title}
                   content={p.content}
                 >
@@ -80,7 +81,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isRed
                   isHeading
                   isReason={false}
-                  algorithmId={p.id}
+                  algorithmIdx={p.idx}
                 >
                   삭제
                 </AlgorithmModal>
@@ -93,7 +94,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
                   isRed
                   isHeading
                   isReason={false}
-                  algorithmId={p.id}
+                  algorithmIdx={p.idx}
                 >
                   삭제
                 </AlgorithmModal>
@@ -102,7 +103,7 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
             ),
           }[p.status]}
         {!isAdmin && (
-          <AlgorithmModal isRed isHeading isReason={false} algorithmId={p.id}>
+          <AlgorithmModal isRed isHeading isReason={false} algorithmIdx={p.idx}>
             신고
           </AlgorithmModal>
         )}
