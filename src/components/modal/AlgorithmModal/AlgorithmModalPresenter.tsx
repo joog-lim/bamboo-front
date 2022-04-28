@@ -27,7 +27,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   const [openModal, closeModal] = modalController(setModalIsOpen);
 
   const reportAlgorithm = () => {
-    Algorithm.reportAlgorithm(p.algorithmId, content).then(
+    Algorithm.reportAlgorithm(p.algorithmIdx, content).then(
       (res: AxiosResponse<reportRes> | void) => {
         setIsLoading(false);
         const result =
@@ -41,7 +41,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const modifyAlgorithm = () => {
-    Algorithm.modifyAlgorithm(p.algorithmId, title, content).then(
+    Algorithm.modifyAlgorithm(p.algorithmIdx, title, content).then(
       (res: AxiosResponse<modifyRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -53,7 +53,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const setStatusAlgorithm = (status: string) => {
-    Algorithm.setStatusAlgorithm(p.algorithmId, status, content).then(
+    Algorithm.setStatusAlgorithm(p.algorithmIdx, status, content).then(
       (res: AxiosResponse<setStatusRes> | void) => {
         setIsLoading(false);
         res?.status === 200
@@ -65,7 +65,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   };
 
   const deleteAlgorithm = () => {
-    Algorithm.deleteAlgorithm(p.algorithmId, content).then(
+    Algorithm.deleteAlgorithm(p.algorithmIdx, content).then(
       (res: AxiosResponse<deleteRes> | void) => {
         setIsLoading(false);
         res?.status === 200

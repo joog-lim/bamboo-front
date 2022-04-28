@@ -41,9 +41,10 @@ const AlgorithmFilter: React.FC = () => {
       {
         algorithmNumber: 0,
         createdAt: 0,
-        idx: "",
+        idx: 0,
         emojiis: [],
         emojiCount: 0,
+        isClicked: false,
       },
     ]);
     setAlgorithmFilter(algorithmsState[tag]);

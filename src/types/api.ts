@@ -22,11 +22,12 @@ export interface defaultAlgorithm {
 
 export interface algorithm extends defaultAlgorithm {
   createdAt: number;
-  idx: string;
+  idx: number;
   algorithmNumber: number;
   reason?: string;
   emojiis: Array<number>;
   emojiCount: number;
+  isClicked: boolean;
 }
 
 export interface getAlgorithmsRes {
