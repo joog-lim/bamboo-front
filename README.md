@@ -4,7 +4,7 @@
 
 ## 설치
 
-- [yarn](https://yarnpkg.com/) 또는 [npm](https://www.npmjs.com/)을 이용합니다.
+- [yarn](https://yarnpkg.com/)을 이용합니다.
 - [Git](https://git-scm.com/)을 이용합니다.
 
 ### yarn 

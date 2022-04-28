@@ -49,7 +49,7 @@ const MainPresenter: React.FC = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
 
-    if (scrollTop + clientHeight >= scrollHeight && hasNext) {
+    if (scrollTop + clientHeight >= scrollHeight * 0.9 && hasNext) {
       getPostList();
       hasNext = false;
     }

@@ -17,7 +17,6 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const [emojiCnt, setEmojiCnt] = useState<number>(p.data.emojiCount);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(p.data.isClicked);
   const idx = p.data.idx;
-
   const addEmoji = () => {
     emojiController
       .addEmoji(isLogin, idx)
