@@ -8,8 +8,10 @@ import { useState } from "react";
 import emojiController from "utils/api/emoji";
 import { AxiosResponse } from "axios";
 import { emojiRes } from "types/api";
+import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const AlgorithmFilter = useRecoilValue(algorithmFilterState);
   const [emojiCnt, setEmojiCnt] = useState<number>(p.data.emojiCount);
@@ -51,6 +53,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   return (
     <article className={style.algorithmsBox}>
+      {isLoading && <SpinnerBar background={true} />}
       <Header
         idx={idx}
         status={AlgorithmFilter}
@@ -59,6 +62,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
         tag={p.data.tag}
         content={p.data.content}
         title={p.data.title}
+        setIsLoading={setIsLoading}
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>

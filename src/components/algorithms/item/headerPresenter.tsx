@@ -11,11 +11,13 @@ const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(hasTokenState);
 
   const setStatusAlgorithm = () => {
+    p.setIsLoading(true);
     Algorithm.setStatusAlgorithm(p.idx).then(
       (res: AxiosResponse<setStatusRes> | void) => {
         res?.status === 200
           ? alert("성공적으로 수정되었습니다.")
           : alert("실패하였습니다.");
+        p.setIsLoading(false);
       }
     );
   };
