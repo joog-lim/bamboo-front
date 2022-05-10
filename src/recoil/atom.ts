@@ -18,7 +18,14 @@ export const algorithmFilterState = atom<AlgorithmType>({
 export const algorithmState = atom<algorithm[]>({
   key: "algorithmState",
   default: [
-    { algorithmNumber: 0, createdAt: 0, idx: 0, emojiis: [], emojiCount: 0 },
+    {
+      algorithmNumber: 0,
+      createdAt: 0,
+      idx: 0,
+      emojiis: [],
+      emojiCount: 0,
+      isClicked: false,
+    },
   ],
 });
 

@@ -8,22 +8,20 @@ import { useState } from "react";
 import emojiController from "utils/api/emoji";
 import { AxiosResponse } from "axios";
 import { emojiRes } from "types/api";
+import SpinnerBar from "components/spinner/spinnerPresenter";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
   const AlgorithmFilter = useRecoilValue(algorithmFilterState);
-
-  const [emojiCnt, setEmojiCnt] = useState<number>(0);
-  const [isEmojiClick, setEmojiClick] = useState<boolean>(false);
-  const { algorithmNumber, idx } = p.data;
-  
+  const [emojiCnt, setEmojiCnt] = useState<number>(p.data.emojiCount);
+  const [isEmojiClick, setEmojiClick] = useState<boolean>(p.data.isClicked);
+  const idx = p.data.idx;
   const addEmoji = () => {
     emojiController
       .addEmoji(isLogin, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
-        if (res?.status === 200) {
-          window.localStorage.setItem(String(idx), "true");
-        } else {
+        if (res?.status !== 200) {
           setEmojiClick(false);
           setEmojiCnt(emojiCnt);
         }
@@ -34,9 +32,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
     emojiController
       .deleteEmoji(isLogin, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
-        if (res?.status === 200) {
-          window.localStorage.setItem(String(idx), "false");
-        } else {
+        if (res?.status !== 200) {
           setEmojiClick(true);
           setEmojiCnt(emojiCnt);
         }
@@ -56,14 +52,16 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   return (
     <article className={style.algorithmsBox}>
+      {isLoading && <SpinnerBar background={true} />}
       <Header
-        id={String(idx)}
+        idx={idx}
         status={AlgorithmFilter}
         createdAt={p.data.createdAt}
-        number={algorithmNumber}
+        number={p.data.algorithmNumber}
         tag={p.data.tag}
         content={p.data.content}
         title={p.data.title}
+        setIsLoading={setIsLoading}
       />
       <h4>{p.data.title}</h4>
       <p>{p.data.content}</p>

@@ -8,14 +8,14 @@ export const algorithmController = {
       isAdmin ? "/admin?" : "?"
     }count=15&criteria=${cursor}&status=${status}`;
   },
-  deleteAlgorithm: (id: string) => {
-    return `/algorithm/${id}`;
+  deleteAlgorithm: (idx: number) => {
+    return `/algorithm/${idx}`;
   },
-  modifyAlgorithm: (id: string) => {
-    return `/algorithm/${id}`;
+  modifyAlgorithm: (idx: number) => {
+    return `/algorithm/${idx}`;
   },
-  setStatusAlgorithm: (id: string) => {
-    return `/algorithm/${id}/status`;
+  setStatusAlgorithm: (idx: number) => {
+    return `/algorithm/${idx}/status`;
   },
 };
 
