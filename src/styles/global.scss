@@ -1,4 +1,5 @@
 @use "reset";
+@use "module" as c;
 @import url("https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css");
 
 $default-font: "NanumSquareRound", sans-serif;
@@ -16,5 +17,20 @@ body {
   & ::-moz-selection {
     color: #5f9025;
     background-color: #ebf6e0;
+  }
+}
+
+html {
+  font-size: 16px;
+  @media (max-width: c.$mobile) {
+    font-size: 10px;
+  }
+}
+
+.ReactModal__Content {
+  @media (max-width: c.$mobile) {
+    max-width: none !important;
+    width: 80vw !important;
+    height: 80vh !important;
   }
 }
