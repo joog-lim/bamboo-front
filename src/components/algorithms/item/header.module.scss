@@ -3,12 +3,12 @@
 .header {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: c.$font14px;
   color: c.$gray-color;
   width: 100%;
   h3 {
-    margin-right: 10px;
-    font-size: 18px;
+    margin-right: 0.625rem;
+    font-size: c.$font18px;
     color: c.$green-color;
   }
   div {
@@ -20,8 +20,8 @@
   }
   button {
     position: relative;
-    padding: 0 0 0 15px;
-    font-size: 14px;
+    padding: 0 0 0 0.938rem;
+    font-size: c.$font14px;
   }
   button:last-child {
     color: c.$red-color;

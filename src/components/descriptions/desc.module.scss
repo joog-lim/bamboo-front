@@ -1,9 +1,9 @@
 @use "styles/module" as c;
 
 @mixin commonTextStyle {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: normal;
-  line-height: 30px;
+  line-height: 1.875rem;
 }
 
 @mixin greenText {
@@ -25,7 +25,7 @@
 }
 
 .greenLine {
-  margin: 40px 0;
+  margin: 2.5rem 0;
   border: 0;
   width: 60vw;
   height: 1px;
@@ -45,11 +45,11 @@
   h2,
   .title {
     font-weight: bold;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: c.$font18px;
+    line-height: 1.25rem;
     margin: {
-      top: 30px;
-      bottom: 20px;
+      top: 1.875rem;
+      bottom: 1.25rem;
     }
   }
   .href {
@@ -59,18 +59,18 @@
   h3,
   .bold {
     font-weight: bold;
-    margin: 5px 0;
+    margin: 0.313rem 0;
   }
   .answer {
-    padding-left: 20px;
+    padding-left: 1.25rem;
   }
   .answer2 {
-    padding-left: 40px;
+    padding-left: 2.5rem;
   }
   p {
-    padding-bottom: 20px;
+    padding-bottom: 1.25rem;
     &:last-child {
-      margin-bottom: 134px;
+      margin-bottom: 8.375rem;
     }
   }
 }

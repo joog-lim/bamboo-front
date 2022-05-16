@@ -1,9 +1,9 @@
 @use "styles/module" as c;
 
 .inputWrapper {
-  width: 350px;
+  width: 21.875rem;
   @media (max-width: c.$laptop) {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 2.5rem);
   }
 }
 
@@ -11,7 +11,7 @@
   @include c.every-input;
   width: 76.5%;
   @media (max-width: c.$laptop) {
-    width: calc(100% - 60px);
+    width: calc(100% - 3.75rem);
   }
 }
 
@@ -19,19 +19,19 @@
   @include c.drop-down-btn;
   color: white;
   background-color: c.$green-color;
-  margin-left: 5px;
+  margin-left: 0.313rem;
   li {
     border: 1px solid c.$green-color;
     &:last-child {
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 0.313rem;
+      border-bottom-left-radius: 0.313rem;
     }
     & + li {
       border-top: none;
     }
   }
   &:hover {
-    width: 58px;
+    width: 3.625rem;
   }
 }
 
@@ -49,16 +49,16 @@
   @media (max-width: c.$laptop) {
     width: 100%;
   }
-  margin: 5px 0;
+  margin: 0.313rem 0;
 }
 
 .textareaBox {
   @include c.every-box;
-  padding: 10px 0 10px 10px;
-  width: calc(100% - 20px);
+  padding: 0.625rem 0 0.625rem 0.625rem;
+  width: calc(100% - 1.25rem);
   @media (max-width: c.$laptop) {
     width: 100%;
-    padding: 10px;
+    padding: 0.625rem;
   }
 }
 
@@ -71,20 +71,20 @@
   }
   resize: none;
   box-shadow: none;
-  min-height: 80px;
+  min-height: 5rem;
 }
 
 .submitBtn {
   @include c.green-short-btn;
-  margin: 0 0 0 calc(100% - 68px);
+  margin: 0 0 0 calc(100% - 4.25rem);
 }
 
 .admin {
   @include c.every-box;
   height: fit-content;
-  width: 330px;
+  width: 20.625rem;
   @media (max-width: c.$laptop) {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 2.5rem);
   }
   h3 {
     font-weight: 700;
@@ -92,6 +92,6 @@
   }
   p {
     font-size: c.$font18px;
-    margin: 10px 0 20px;
+    margin: 0.625rem 0 1.25rem;
   }
 }

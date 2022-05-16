@@ -6,15 +6,15 @@
   @include c.drop-down-btn;
   @include c.black-shadow;
   position: absolute;
-  top: -20px;
+  top: -1.25rem;
   right: 0;
   z-index: 1;
   color: c.$black-color;
   background-color: c.$white-color;
   text-align: center;
-  width: 109px;
+  width: 6.875rem;
   font-weight: 700;
-  padding: 12px;
+  padding: 0.75rem;
   li {
     font-weight: 400;
   }

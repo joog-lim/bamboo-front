@@ -10,20 +10,20 @@
   background-color: white;
   z-index: 2;
   nav {
-    padding: 15px 0;
+    padding: 0.938rem 0;
   }
   h1 {
     align-self: center;
   }
   @media (max-width: c.$laptop) {
-    padding: 15px 20px;
+    padding: 0.938rem 1.25rem;
   }
 }
 
 .nav {
   display: flex;
   li {
-    margin: 7px 0 7px 3vw;
+    margin: 0.438rem 0 0.438rem 3vw;
   }
 
   button {
