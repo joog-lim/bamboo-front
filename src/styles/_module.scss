@@ -10,12 +10,15 @@ $shadow-color: rgba(0, 0, 0, 0.25);
 $shadow-color-green: rgba(87, 204, 77, 0.25);
 
 $laptop: "1080px";
+$mobile: "425px";
+
+$mobile-font: 0.75rem;
 
 // set font size
 
-$font18px: 1.125em;
-$font16px: 1em;
-$font14px: 0.875em;
+$font18px: 1.125rem;
+$font16px: 1rem;
+$font14px: 0.875rem;
 
 //...ect
 
@@ -30,7 +33,7 @@ $font14px: 0.875em;
 }
 
 @mixin green-shadow {
-  box-shadow: 1px 0px 10px $shadow-color-green;
+  box-shadow: 1px 0px 0.75rem $shadow-color-green;
 }
 
 // button styles
@@ -44,19 +47,19 @@ $font14px: 0.875em;
 }
 
 @mixin filter-btn {
-  padding: 10px;
+  padding: 0.625rem;
   font-weight: 700;
 }
 
 @mixin log-btn {
   @include every-btn;
-  padding: 12px 50px;
+  padding: 0.75rem 3.125rem;
   font-weight: 700;
 }
 
 @mixin short-btn {
   @include every-btn;
-  padding: 10px 15px;
+  padding: 0.75rem 0.938rem;
 }
 
 @mixin green-short-btn {
@@ -77,17 +80,17 @@ $font14px: 0.875em;
 @mixin drop-down-btn {
   @include is-radius;
   font-size: $font16px;
-  padding: 10px 15px;
+  padding: 0.75rem 0.938rem;
   text-align: center;
   position: absolute;
   li {
     display: none;
-    padding: 7px 0;
+    padding: 0.438rem 0;
     background-color: $white-color;
     color: $black-color;
   }
   li:nth-child(1) {
-    margin-top: 10px;
+    margin-top: 0.75rem;
   }
   &:hover {
     padding-left: 0;
@@ -107,7 +110,7 @@ $font14px: 0.875em;
 @mixin every-box {
   @include is-radius;
   @include black-shadow;
-  padding: 15px;
+  padding: 0.938rem;
 }
 
 // input styles
@@ -115,7 +118,7 @@ $font14px: 0.875em;
 @mixin every-input {
   @include is-radius;
   @include black-shadow;
-  padding: 10px;
+  padding: 0.75rem;
   font-size: $font16px;
   &::placeholder {
     color: #c4c4c4;

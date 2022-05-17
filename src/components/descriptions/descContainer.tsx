@@ -5,6 +5,7 @@ import Rule, { resRuleData } from "utils/api/rule";
 import { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
 import React from "react";
+import SpinnerBar from "components/spinner/spinnerPresenter";
 
 // outer interface
 export interface descPresenterProps {
@@ -159,6 +160,8 @@ export const DescRule: React.FC = () => {
         </Fragment>
       );
     });
+  } else {
+    <SpinnerBar background={false} />;
   }
   return <div className={s.descAboutWrapper}>{element}</div>;
 };

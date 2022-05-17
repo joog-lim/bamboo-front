@@ -2,41 +2,41 @@
 
 .algorithmsBox {
   @include c.every-box;
-  width: calc(100vw - 32vw - 350px);
-  padding: 15px;
-  margin-bottom: 20px;
+  width: calc(100vw - 32vw - 21.875rem);
+  padding: 0.938rem;
+  margin-bottom: 1.25rem;
   position: relative;
   h4 {
-    font-size: 16px;
+    font-size: c.$font16px;
     font-weight: 700;
-    margin: 10px 0;
+    margin: 0.625rem 0;
   }
   p {
-    line-height: 25px;
+    line-height: 1.563rem;
     white-space: pre-wrap;
     word-break: break-all;
   }
   @media (max-width: c.$laptop) {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 2.5rem);
   }
 }
 
 .algorithmsBoxAdmin {
   @include c.every-box;
-  padding: 15px;
-  margin: 0 0 20px 20px;
+  padding: 0.938rem;
+  margin: 0 0 1.25rem 1.25rem;
   header {
     display: flex;
-    font-size: 14px;
+    font-size: c.$font14px;
     color: c.$gray-color;
     h3 {
       margin-right: 10px;
-      font-size: 18px;
+      font-size: c.$font18px;
       color: c.$green-color;
     }
   }
   h4 {
-    font-size: 16px;
+    font-size: c.$font16px;
     font-weight: 700;
     margin: 10px 0;
   }
@@ -46,5 +46,8 @@
   padding: 2px;
   svg {
     margin: 5px 7px 0 0;
+  }
+  span {
+    font-size: c.$font16px;
   }
 }

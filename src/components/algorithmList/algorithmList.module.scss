@@ -1,0 +1,22 @@
+@use "styles/module" as c;
+
+.algorithms {
+  position: relative;
+  width: 100%;
+  margin-top: 8.125rem;
+  padding-left: 1.25rem;
+  margin-bottom: 6.25rem;
+  @media (max-width: c.$laptop) {
+    padding: 0;
+    margin-top: 1.25rem;
+    width: calc(100vw - 2.5rem);
+  }
+}
+
+.heading {
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  @media (max-width: c.$laptop) {
+    margin: 0.938rem 0 1.875rem 0;
+  }
+}
