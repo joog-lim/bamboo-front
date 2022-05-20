@@ -30,8 +30,8 @@ const AlgorithmFilter: React.FC = () => {
     algorithmListFilterState
   );
 
-  const [_data, setData] = useRecoilState(algorithmState);
-  const [_isReLoading, setReLoading] = useRecoilState(reLoadingState);
+  const setData = useSetRecoilState(algorithmListState);
+  const setReLoading = useSetRecoilState(isLoadingState);
 
   const onClickAlgorithmBtn = (tag: string) => {
     if (algorithmFilter === tag) {
