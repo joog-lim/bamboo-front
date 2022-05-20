@@ -1,17 +1,17 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import {useRecoilState, useSetRecoilState} from "recoil";
 
 import s from "./algorithmFilter.module.scss";
 import {
-  algorithmFilterState,
-  algorithmState,
-  reLoadingState,
+  algorithmListFilterState,
+  algorithmListState,
+  isLoadingState,
 } from "recoil/atom";
-import { AlgorithmType } from "src/types/types";
+import { AlgorithmListStateType } from "src/types/types";
 
 const tags: string[] = ["대기", "수락", "거절", "신고"];
 
-const algorithmsState: { [idx: string]: AlgorithmType } = {
+const algorithmsState: { [idx: string]: AlgorithmListStateType } = {
   대기: "PENDING",
   수락: "ACCEPTED",
   거절: "REJECTED",
@@ -27,7 +27,7 @@ const algorithmsStateEng = {
 
 const AlgorithmFilter: React.FC = () => {
   const [algorithmFilter, setAlgorithmFilter] = useRecoilState(
-    algorithmFilterState
+    algorithmListFilterState
   );
 
   const [_data, setData] = useRecoilState(algorithmState);
@@ -42,7 +42,7 @@ const AlgorithmFilter: React.FC = () => {
         algorithmNumber: 0,
         createdAt: 0,
         idx: 0,
-        emojiis: [],
+        isEmoji: [],
         emojiCount: 0,
         isClicked: false,
       },

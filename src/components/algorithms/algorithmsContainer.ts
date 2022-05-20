@@ -1,5 +1,5 @@
-import { algorithm } from "types/api";
+import { Algorithm } from "types/api";
 
 export interface algorithmsProps {
-  data: algorithm;
+  data: Algorithm;
 }

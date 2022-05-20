@@ -12,15 +12,15 @@ import { AxiosResponse } from "axios";
 
 class Algorithm {
   getAlgorithm(
-    isLogin: boolean,
-    isAdmin: boolean,
+		isGuest: boolean,
+		isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
   ): Promise<void | AxiosResponse<getAlgorithmsRes>> {
     try {
       return RequestApiV2({
         url: algorithmController.getAlgorithm(cursor, status, isAdmin),
-        canHeader: isLogin,
+        canHeader: !isGuest,
       });
     } catch (e: any) {
       throw new Error(e);

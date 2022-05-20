@@ -5,13 +5,13 @@ import s from "./sidebar.module.scss";
 import HeadingPresenter from "components/heading/headingPresenter";
 import { tags } from "./sidebarContainer";
 import { useGetQuestion, useCreatePost, transfer } from "./sidebarContainer";
-import { hasTokenState } from "recoil/atom";
 import { useEffect } from "react";
 import RequestApi from "utils/libs/requestApi";
 import { AxiosResponse } from "axios";
+import {currentUserStateState} from "recoil/selectors";
 
 const SideBar: React.FC = () => {
-  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
+  const { isAdmin, isGuest } = useRecoilValue(currentUserStateState);
   const [tagClicked, setTagClicked] = useState<boolean>(false);
   const question = useGetQuestion();
   const [count, setCount] = useState<Array<{ status: string; count: number }>>([
@@ -103,7 +103,7 @@ const SideBar: React.FC = () => {
             ))}
           </ul>
         </button>
-        {!isLogin && (
+        {isGuest && (
           <input
             className={s.fullInput}
             placeholder={`Q. ${

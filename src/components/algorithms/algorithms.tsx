@@ -1,7 +1,7 @@
 import style from "./style.module.scss";
 import Header from "./item/headerPresenter";
 import { algorithmsProps } from "./algorithmsContainer";
-import { hasTokenState, algorithmFilterState } from "recoil/atom";
+import { algorithmListFilterState } from "recoil/atom";
 import { useRecoilValue } from "recoil";
 import { Leaf } from "assets/svg";
 import { useState } from "react";
@@ -9,17 +9,18 @@ import emojiController from "utils/api/emoji";
 import { AxiosResponse } from "axios";
 import { emojiRes } from "types/api";
 import SpinnerBar from "components/spinner/spinnerPresenter";
+import {currentUserStateState} from "recoil/selectors";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
-  const AlgorithmFilter = useRecoilValue(algorithmFilterState);
+  const { isAdmin, isGuest } = useRecoilValue(currentUserStateState);
+  const AlgorithmFilter = useRecoilValue(algorithmListFilterState);
   const [emojiCnt, setEmojiCnt] = useState<number>(p.data.emojiCount);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(p.data.isClicked);
   const idx = p.data.idx;
   const addEmoji = () => {
     emojiController
-      .addEmoji(isLogin, idx)
+      .addEmoji(!isGuest, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
         if (res?.status !== 200) {
           setEmojiClick(false);
@@ -30,7 +31,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   const deleteEmoji = () => {
     emojiController
-      .deleteEmoji(isLogin, idx)
+      .deleteEmoji(!isGuest, idx)
       .then((res: AxiosResponse<emojiRes> | void) => {
         if (res?.status !== 200) {
           setEmojiClick(true);

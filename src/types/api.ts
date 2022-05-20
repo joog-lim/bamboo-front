@@ -1,4 +1,4 @@
-import { AlgorithmType } from "./types";
+import { AlgorithmListStateType } from "./types";
 
 export interface errRes {
   success?: boolean;
@@ -20,29 +20,29 @@ export interface defaultAlgorithm {
   tag?: string;
 }
 
-export interface algorithm extends defaultAlgorithm {
+export interface Algorithm extends defaultAlgorithm {
   createdAt: number;
   idx: number;
   algorithmNumber: number;
   reason?: string;
-  emojiis: Array<number>;
+  isEmoji: Array<number>;
   emojiCount: number;
   isClicked: boolean;
 }
 
 export interface getAlgorithmsRes {
   data: {
-    data: algorithm[];
+    data: Algorithm[];
     nextCursor: number;
     hasNext: boolean;
-    status: AlgorithmType;
+    status: AlgorithmListStateType;
   };
   message: string;
   success: boolean;
 }
 
 export interface getPostRes {
-  posts: algorithm[];
+  posts: Algorithm[];
   cursor: number;
   hasNext: boolean;
 }

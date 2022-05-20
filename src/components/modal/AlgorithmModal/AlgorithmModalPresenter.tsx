@@ -6,7 +6,7 @@ import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
 import modalController from "../modal";
 import Algorithm from "src/utils/api/algorithm";
 import SpinnerBar from "components/spinner/spinnerPresenter";
-import { loadingState } from "recoil/atom";
+import { isLoadingState } from "recoil/atom";
 import { useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
 import { deleteRes, modifyRes, reportRes, setStatusRes } from "types/api";
@@ -21,8 +21,8 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
   //좋은 방법이 있다면 알려주세요.
   const [content, setContent] = useState("default32rewfdas");
   const [title, setTitle] = useState("default32rewfdas");
-  const [_reason, setReason] = useState("");
-  const [isLoading, setIsLoading] = useRecoilState(loadingState);
+  const [, setReason] = useState("");
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
 
   const [openModal, closeModal] = modalController(setModalIsOpen);
 

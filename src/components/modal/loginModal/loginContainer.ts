@@ -1,7 +1,7 @@
-import { SetterOrUpdater, useRecoilState } from "recoil";
+import {SetterOrUpdater, useSetRecoilState} from "recoil";
 import { Styles } from "react-modal";
 
-import { hasTokenState } from "recoil/atom";
+import { userStateState } from "recoil/atom";
 import auth from "utils/api/auth";
 
 export const customStyles: Styles = {
@@ -21,7 +21,7 @@ const useLogin = (
   closeModal: () => void,
   setIsLoading: SetterOrUpdater<boolean>
 ) => {
-  const [_, setIsLogin] = useRecoilState(hasTokenState);
+  const setUserState = useSetRecoilState(userStateState);
 
   return async (token: string) => {
     window.localStorage.setItem("token", token);
@@ -32,7 +32,7 @@ const useLogin = (
         "refreshToken",
         res?.data.data.refreshToken || ""
       );
-      setIsLogin({ isAdmin: res?.data.data.isAdmin, isLogin: true });
+      setUserState(res?.data.data.isAdmin ? "ADMIN" : "USER");
       setIsLoading(false);
       closeModal();
       localStorage.setItem("isAdmin", res?.data.data.isAdmin);
