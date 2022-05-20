@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
@@ -29,7 +30,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             {
               "/": (
                 <>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.HOME}>홈</Link>
                   </li>
                   <li>
@@ -48,7 +49,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   <li>
                     <Link href={config.LINK.RULE}>규칙</Link>
                   </li>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.ABOUT}>더보기</Link>
                   </li>
                 </>
@@ -58,7 +59,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   <li>
                     <Link href={config.LINK.HOME}>홈</Link>
                   </li>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.RULE}>규칙</Link>
                   </li>
                   <li>

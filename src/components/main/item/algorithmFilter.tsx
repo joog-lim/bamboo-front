@@ -52,7 +52,7 @@ const AlgorithmFilter: React.FC = () => {
   };
 
   return (
-    <button className={s.algoritmFilterBtn}>
+    <button className={s.algorithmFilterBtn}>
       {algorithmsStateEng[algorithmFilter]}
       <ul>
         {React.Children.map(tags, (tag: string) => (
