@@ -55,12 +55,13 @@ const SideBar: React.FC = () => {
     }, 100);
   };
 
-  return isAdmin ? (
-    <section>
-      <HeadingPresenter
-        heading={"모두에게 하고픈 말,"}
-        explanation={"무엇인가요?"}
-      />
+  return (
+		<section>
+			<HeadingPresenter
+				heading={"모두에게 하고픈 말,"}
+				explanation={"무엇인가요?"}
+			/>
+			{ isAdmin ? (
       <article className={s.admin}>
         <h3>알고리즘 현황</h3>
         <br />
@@ -71,13 +72,7 @@ const SideBar: React.FC = () => {
           </Fragment>
         ))}
       </article>
-    </section>
-  ) : (
-    <section>
-      <HeadingPresenter
-        heading={"모두에게 하고픈 말,"}
-        explanation={"무엇인가요?"}
-      />
+  	) : (
       <div className={s.inputWrapper}>
         <input
           className={s.title}
@@ -124,12 +119,13 @@ const SideBar: React.FC = () => {
               setContent(value);
             }}
             value={content}
-          ></textarea>
+          />
           <button onClick={tryCreatePost} className={s.submitBtn}>
             전송
           </button>
         </div>
       </div>
+			)}
     </section>
   );
 };
