@@ -11,14 +11,14 @@ import { AlgorithmListStateType } from "src/types/types";
 
 const tags: string[] = ["대기", "수락", "거절", "신고"];
 
-const algorithmsState: { [idx: string]: AlgorithmListStateType } = {
+const algorithmsStateKorToEng: { [idx: string]: AlgorithmListStateType } = {
   대기: "PENDING",
   수락: "ACCEPTED",
   거절: "REJECTED",
   신고: "REPORTED",
 };
 
-const algorithmsStateEng = {
+const algorithmsStateEngToKor = {
   PENDING: "대기",
   ACCEPTED: "수락",
   REJECTED: "거절",
@@ -47,13 +47,13 @@ const AlgorithmFilter: React.FC = () => {
         isClicked: false,
       },
     ]);
-    setAlgorithmFilter(algorithmsState[tag]);
+    setAlgorithmFilter(algorithmsStateKorToEng[tag]);
     setReLoading(true);
   };
 
   return (
     <button className={s.algorithmFilterBtn}>
-      {algorithmsStateEng[algorithmFilter]}
+      {algorithmsStateEngToKor[algorithmFilter]}
       <ul>
         {React.Children.map(tags, (tag: string) => (
           <li onClick={() => onClickAlgorithmBtn(tag)}>{tag}</li>
