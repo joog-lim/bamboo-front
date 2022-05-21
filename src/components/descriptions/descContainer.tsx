@@ -1,13 +1,12 @@
 import HeadingPresenter from "components/heading/headingPresenter";
 import s from "./desc.module.scss";
-import Rule, { resRuleData } from "utils/api/rule";
+import Rule from "utils/api/rule";
 import { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
 import React from "react";
 import { contactList, intro, questionList } from "src/constants/about";
 
 export type descType = "about" | "rule";
-
 /*
  * This component is made for descPresenter.
  * This component has a different result from the string due to prop.
@@ -20,7 +19,6 @@ export const DescHeading: React.FC<{ desc: descType }> = ({ desc }) => {
     explanation: s.explanation,
     greenLine: s.greenLine,
   })[desc];
-  console.log(desc);
   return (
     <>
       <HeadingPresenter
@@ -63,11 +61,23 @@ export const DescAbout: React.FC = () => {
   );
 };
 
-const useGetRuleContents = () => {
-  const [rule, setRule] = useState<any | null>({
-    data: [
-      {
-        content: {
+interface RuleContent {
+  _id: number;
+  title: string;
+  content: string;
+  subContent?: RuleContent[];
+  description?: string[];
+}
+
+interface Rule {
+  content: RuleContent[];
+}
+
+const useGetRule = (): Rule | null => {
+  const [rule, setRule] = useState<{ data: Rule } | null>({
+    data: {
+      content: [
+        {
           _id: 0,
           title: "대기 중",
           content: "대기 중",
@@ -79,45 +89,59 @@ const useGetRuleContents = () => {
             },
           ],
         },
-      },
-    ],
+      ],
+    },
   });
+
   useEffect(() => {
-    Rule.getRule().then((res: AxiosResponse<resRuleData> | void) =>
+    Rule.getRule().then((res: AxiosResponse<{ data: Rule }> | void) =>
       setRule(res?.data || null),
     );
   }, []);
-  return rule;
+
+  return rule?.data || null;
 };
 
 export const DescRule: React.FC = () => {
-  const rules = useGetRuleContents();
-  let element;
-  if (rules?.data.content) {
-    element = rules?.data.content.map((content: any) => {
-      if (content.subContent) {
-        return (
-          <Fragment key={content._id}>
-            <h2 key={content._id + "title"}>{content.title}</h2>
-            <p key={content._id + "content"}>{content.content}</p>
-            {content.subContent.map((content: any) => {
-              return (
-                <Fragment key={content._id}>
-                  <h3 key={content._id + "title"}>{content.title}</h3>
-                  <p key={content._id + "content"}>{content.content}</p>
-                </Fragment>
-              );
-            })}
-          </Fragment>
-        );
-      }
-      return (
-        <Fragment key={content._id}>
-          <h2>{content.title}</h2>
-          <p>{content.content}</p>
-        </Fragment>
-      );
-    });
-  }
-  return <div className={s.descAboutWrapper}>{element}</div>;
+  const rule = useGetRule();
+  return (
+    <div className={s.descRuleWrapper}>
+      {rule ? <RuleRender content={rule.content} /> : <>rule rendering error</>}
+    </div>
+  );
+};
+
+interface RuleRenderProps {
+  content: RuleContent[];
+}
+
+const RuleRender: React.FC<RuleRenderProps> = ({ content }) => {
+  return (
+    <>
+      {content.map((content: RuleContent) => {
+        if (content.subContent) {
+          return (
+            <Fragment key={content._id}>
+              <h2 key={content._id + "title"}>{content.title}</h2>
+              <p key={content._id + "content"}>{content.content}</p>
+              <RuleRender content={content.subContent} />
+            </Fragment>
+          );
+        } else {
+          return (
+            <Fragment key={content._id}>
+              <h2 key={content._id + "title"}>{content.title}</h2>
+              <p key={content._id + "content"}>{content.content}</p>
+              {content.description &&
+                content.description.map((description: string, num: number) => {
+                  <p key={content._id + "description" + num}>
+                    {content.description || ""}
+                  </p>;
+                })}
+            </Fragment>
+          );
+        }
+      })}
+    </>
+  );
 };
