@@ -26,7 +26,6 @@ export const defaultStyles: ReactModal.Styles = {
   },
   content: {
     zIndex: 3,
-    inset: "40px",
     overflow: "hidden",
     borderRadius: "5px",
     outline: "none",
@@ -37,7 +36,7 @@ export const defaultStyles: ReactModal.Styles = {
     height: "50vh",
     background: "#FFFFFF",
     border: "none",
-    padding: "40px",
+    padding: "2.5rem",
     boxSizing: "border-box",
     position: "relative",
   },

@@ -9,13 +9,13 @@ export const algorithmController = {
     }count=15&criteria=${cursor}&status=${status}`;
   },
   deleteAlgorithm: (idx: number) => {
-    return `/algorithm/${idx}`;
+    return `/algorithm/information/${idx}`;
   },
   modifyAlgorithm: (idx: number) => {
-    return `/algorithm/${idx}`;
+    return `/algorithm/content/${idx}`;
   },
   setStatusAlgorithm: (idx: number) => {
-    return `/algorithm/${idx}/status`;
+    return `/algorithm/status/${idx}`;
   },
 };
 

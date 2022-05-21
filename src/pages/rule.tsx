@@ -3,8 +3,10 @@ import config from "constants/config.json";
 import styles from "styles/wrap.module.scss";
 import Head from "next/head";
 import DescPresenter from "src/components/descriptions/descPresenter";
+import { useRouter } from "next/router";
 
 const Rule: React.FC = () => {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -24,7 +26,9 @@ const Rule: React.FC = () => {
         />
         <meta property="og:url" content="https://joog-lim.info/rule" />
       </Head>
-      <HeaderPresenter location={config.LINK.RULE} />
+      {router.query.webView !== "mobile" && (
+        <HeaderPresenter location={config.LINK.RULE} />
+      )}
       <div className={styles.wrap}>
         <DescPresenter desc={"rule"} />
       </div>

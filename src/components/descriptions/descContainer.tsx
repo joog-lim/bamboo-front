@@ -4,7 +4,11 @@ import Rule from "utils/api/rule";
 import { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
 import React from "react";
+<<<<<<< HEAD
 import { contactList, intro, questionList } from "src/constants/about";
+=======
+import SpinnerBar from "components/spinner/spinnerPresenter";
+>>>>>>> 545098448153521986bc3eb80f602a713157f41a
 
 export type descType = "about" | "rule";
 /*
@@ -142,6 +146,5 @@ const RuleRender: React.FC<RuleRenderProps> = ({ content }) => {
           );
         }
       })}
-    </>
-  );
+    </>)
 };

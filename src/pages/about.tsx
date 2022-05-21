@@ -3,8 +3,10 @@ import config from "constants/config.json";
 import styles from "styles/wrap.module.scss";
 import Head from "next/head";
 import DescPresenter from "src/components/descriptions/descPresenter";
+import { useRouter } from "next/router";
 
 const About: React.FC = () => {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -24,7 +26,9 @@ const About: React.FC = () => {
         />
         <meta property="og:url" content="https://joog-lim.info/about" />
       </Head>
-      <HeaderPresenter location={config.LINK.ABOUT} />
+      {router.query.webView !== "mobile" && (
+        <HeaderPresenter location={config.LINK.ABOUT} />
+      )}
       <div className={styles.wrap}>
         <DescPresenter desc={"about"} />
       </div>
