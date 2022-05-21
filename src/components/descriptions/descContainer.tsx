@@ -4,11 +4,7 @@ import Rule from "utils/api/rule";
 import { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
 import React from "react";
-<<<<<<< HEAD
 import { contactList, intro, questionList } from "src/constants/about";
-=======
-import SpinnerBar from "components/spinner/spinnerPresenter";
->>>>>>> 545098448153521986bc3eb80f602a713157f41a
 
 export type descType = "about" | "rule";
 /*
@@ -73,12 +69,12 @@ interface RuleContent {
   description?: string[];
 }
 
-interface Rule {
+interface RuleType {
   content: RuleContent[];
 }
 
-const useGetRule = (): Rule | null => {
-  const [rule, setRule] = useState<{ data: Rule } | null>({
+const useGetRule = (): RuleType | null => {
+  const [rule, setRule] = useState<{ data: RuleType } | null>({
     data: {
       content: [
         {
@@ -98,7 +94,7 @@ const useGetRule = (): Rule | null => {
   });
 
   useEffect(() => {
-    Rule.getRule().then((res: AxiosResponse<{ data: Rule }> | void) =>
+    Rule.getRule().then((res: AxiosResponse<{ data: RuleType }> | void) =>
       setRule(res?.data || null),
     );
   }, []);
@@ -137,14 +133,15 @@ const RuleRender: React.FC<RuleRenderProps> = ({ content }) => {
               <h2 key={content._id + "title"}>{content.title}</h2>
               <p key={content._id + "content"}>{content.content}</p>
               {content.description &&
-                content.description.map((description: string, num: number) => {
+                content.description.map((description: string, num: number) => (
                   <p key={content._id + "description" + num}>
-                    {content.description || ""}
-                  </p>;
-                })}
+                    {description || ""}
+                  </p>
+                ))}
             </Fragment>
           );
         }
       })}
-    </>)
+    </>
+  );
 };
