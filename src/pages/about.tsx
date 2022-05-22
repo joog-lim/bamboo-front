@@ -30,7 +30,7 @@ const About: React.FC = () => {
         <HeaderPresenter location={config.LINK.ABOUT} />
       )}
       <div className={styles.wrap}>
-        <DescPresenter descType={"about"} />
+        <DescPresenter desc={"about"} />
       </div>
     </>
   );

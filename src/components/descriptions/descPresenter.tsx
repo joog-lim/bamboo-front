@@ -1,18 +1,16 @@
 import s from "./desc.module.scss";
 import * as c from "./descContainer";
 
-const DescPresenter: React.FC<c.descPresenterProps> = (
-  p: c.descPresenterProps
-) => {
+const DescPresenter: React.FC<{ desc: c.descType }> = ({ desc }) => {
   return (
     <main className={s.main}>
-      <c.DescHeading descType={p.descType} />
+      <c.DescHeading desc={desc} />
       <section className={s.descContentWrapper}>
         {
           {
             about: <c.DescAbout />,
             rule: <c.DescRule />,
-          }[p.descType]
+          }[desc]
         }
       </section>
     </main>

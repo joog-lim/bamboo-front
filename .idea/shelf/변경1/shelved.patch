@@ -1,0 +1,44 @@
+Index: src/components/main/item/algorithmFilter.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\nimport {useRecoilState, useSetRecoilState} from \"recoil\";\n\nimport s from \"./algorithmFilter.module.scss\";\nimport {\n  algorithmListFilterState,\n  algorithmListState,\n  isLoadingState,\n} from \"recoil/atom\";\nimport { AlgorithmListStateType } from \"src/types/types\";\n\nconst tags: string[] = [\"대기\", \"수락\", \"거절\", \"신고\"];\n\nconst algorithmsState: { [idx: string]: AlgorithmListStateType } = {\n  대기: \"PENDING\",\n  수락: \"ACCEPTED\",\n  거절: \"REJECTED\",\n  신고: \"REPORTED\",\n};\n\nconst algorithmsStateEng = {\n  PENDING: \"대기\",\n  ACCEPTED: \"수락\",\n  REJECTED: \"거절\",\n  REPORTED: \"신고\",\n};\n\nconst AlgorithmFilter: React.FC = () => {\n  const [algorithmFilter, setAlgorithmFilter] = useRecoilState(\n    algorithmListFilterState\n  );\n\n  const setData = useSetRecoilState(algorithmListState);\n  const setReLoading = useSetRecoilState(isLoadingState);\n\n  const onClickAlgorithmBtn = (tag: string) => {\n    if (algorithmFilter === tag) {\n      return;\n    }\n    setData([\n      {\n        algorithmNumber: 0,\n        createdAt: 0,\n        idx: 0,\n        isEmoji: [],\n        emojiCount: 0,\n        isClicked: false,\n      },\n    ]);\n    setAlgorithmFilter(algorithmsState[tag]);\n    setReLoading(true);\n  };\n\n  return (\n    <button className={s.algoritmFilterBtn}>\n      {algorithmsStateEng[algorithmFilter]}\n      <ul>\n        {React.Children.map(tags, (tag: string) => (\n          <li onClick={() => onClickAlgorithmBtn(tag)}>{tag}</li>\n        ))}\n      </ul>\n    </button>\n  );\n};\n\nexport default AlgorithmFilter;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/main/item/algorithmFilter.tsx b/src/components/main/item/algorithmFilter.tsx
+--- a/src/components/main/item/algorithmFilter.tsx	(revision ded911ca6e52e9b324507651d91840d886bb8b55)
++++ b/src/components/main/item/algorithmFilter.tsx	(date 1653008624161)
+@@ -11,14 +11,14 @@
+ 
+ const tags: string[] = ["대기", "수락", "거절", "신고"];
+ 
+-const algorithmsState: { [idx: string]: AlgorithmListStateType } = {
++const algorithmsStateKorToEng: { [idx: string]: AlgorithmListStateType } = {
+   대기: "PENDING",
+   수락: "ACCEPTED",
+   거절: "REJECTED",
+   신고: "REPORTED",
+ };
+ 
+-const algorithmsStateEng = {
++const algorithmsStateEngToKor = {
+   PENDING: "대기",
+   ACCEPTED: "수락",
+   REJECTED: "거절",
+@@ -47,13 +47,13 @@
+         isClicked: false,
+       },
+     ]);
+-    setAlgorithmFilter(algorithmsState[tag]);
++    setAlgorithmFilter(algorithmsStateKorToEng[tag]);
+     setReLoading(true);
+   };
+ 
+   return (
+-    <button className={s.algoritmFilterBtn}>
+-      {algorithmsStateEng[algorithmFilter]}
++    <button className={s.algorithmFilterBtn}>
++      {algorithmsStateEngToKor[algorithmFilter]}
+       <ul>
+         {React.Children.map(tags, (tag: string) => (
+           <li onClick={() => onClickAlgorithmBtn(tag)}>{tag}</li>
