@@ -1,7 +1,7 @@
-import { authController } from "../libs/requestUrls";
-import RequestApiV2 from "../libs/requestApi";
 import { AxiosResponse } from "axios";
 import { authRes } from "types/api";
+import { authController } from "../libs/requestUrls";
+import RequestApiV2 from "../libs/requestApi";
 
 class Auth {
   login(): Promise<void | AxiosResponse> {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import verify from "utils/api/verity";
 import Algorithm from "src/utils/api/algorithm";
 import { AxiosResponse } from "axios";
+
 export const useCreatePost = (question: verifyType) => {
   const [title, setTitle] = useState<any>("");
   const [content, setContent] = useState<string>("");

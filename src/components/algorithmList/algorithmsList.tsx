@@ -1,52 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import AlgorithmFilter from "components/main/item/algorithmFilter";
-import { algorithm, getAlgorithmsRes } from "types/api";
-import Algorithm from "utils/api/algorithm";
+import { Algorithm, getAlgorithmsRes } from "types/api";
+import AlgorithmAPI from "utils/api/algorithm";
 import {
-  hasTokenState,
-  algorithmFilterState,
-  algorithmState,
-  reLoadingState,
+  algorithmListFilterState,
+  algorithmListState,
+  isLoadingState,
 } from "recoil/atom";
+import { currentUserStateState } from "recoil/selectors";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { AxiosResponse } from "axios";
 import Algorithms from "components/algorithms/algorithms";
+
 import s from "./algorithmList.module.scss";
 
 const AlgorithmList: React.FC = () => {
-  const { isAdmin, isLogin } = useRecoilValue(hasTokenState);
-  const algorithmFilter = useRecoilValue(algorithmFilterState);
-  const [isReLoading, setReLoading] = useRecoilState(reLoadingState);
+  const [isReLoading, setReLoading] = useRecoilState(isLoadingState);
+  const [algorithm, setAlgorithm] = useRecoilState(algorithmListState);
 
-  const [algorithm, setAlgorithm] = useRecoilState(algorithmState);
-  const [isHasNext, setIsHasNext] = useState(true);
+  const { isAdmin, isGuest } = useRecoilValue(currentUserStateState);
+  const currentAlgorithmFilter = useRecoilValue(algorithmListFilterState);
+  const [isHasNext, setIsHasNext] = useState<boolean>(true);
   const [cursor, setCursor] = useState<number>();
+
   let hasNext: boolean | undefined = true;
   let cursor2: number | undefined;
-
-  let posts: algorithm[] | undefined;
+  let posts: Algorithm[] | undefined;
 
   const getPostList = () => {
-    Algorithm.getAlgorithm(isLogin, isAdmin, cursor2, algorithmFilter).then(
-      (res: AxiosResponse<getAlgorithmsRes> | void) => {
-        if (res?.data) {
-          const algorithmData = res.data.data;
-          posts = algorithmData.data;
-          cursor2 = algorithmData.nextCursor;
-          hasNext = algorithmData.hasNext;
-          setAlgorithm([algorithm.concat(posts || algorithm)][0]);
-          setIsHasNext(algorithmData.hasNext || false);
-          setCursor(algorithmData.nextCursor);
-        }
+    AlgorithmAPI.getAlgorithm(
+      isAdmin,
+      isGuest,
+      cursor2,
+      currentAlgorithmFilter
+    ).then((res: AxiosResponse<getAlgorithmsRes> | void) => {
+      if (res?.data) {
+        const algorithmData = res.data.data;
+        posts = algorithmData.data;
+        cursor2 = algorithmData.nextCursor;
+        hasNext = algorithmData.hasNext;
+        setAlgorithm([algorithm.concat(posts || algorithm)][0]);
+        setIsHasNext(algorithmData.hasNext || false);
+        setCursor(algorithmData.nextCursor);
       }
-    );
+    });
   };
 
   const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
+    const { scrollHeight } = document.documentElement;
+    const { scrollTop } = document.documentElement;
+    const { clientHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight * 0.9 && hasNext) {
       getPostList();
@@ -78,9 +82,11 @@ const AlgorithmList: React.FC = () => {
   return (
     <article className={s.algorithms}>
       {isAdmin && <AlgorithmFilter />}
-      {isAdmin && <h3 className={s.heading}>{algorithmFilter} 인 알고리즘</h3>}
+      {isAdmin && (
+        <h3 className={s.heading}>{currentAlgorithmFilter} 인 알고리즘</h3>
+      )}
       {React.Children.toArray(
-        algorithm.slice(1)?.map((item: algorithm) => <Algorithms data={item} />)
+        algorithm.slice(1)?.map((item: Algorithm) => <Algorithms data={item} />)
       )}
       <div>
         {hasNext ? (

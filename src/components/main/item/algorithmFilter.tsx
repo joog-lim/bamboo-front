@@ -1,24 +1,24 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-import s from "./algorithmFilter.module.scss";
 import {
-  algorithmFilterState,
-  algorithmState,
-  reLoadingState,
+  algorithmListFilterState,
+  algorithmListState,
+  isLoadingState,
 } from "recoil/atom";
-import { AlgorithmType } from "src/types/types";
+import { AlgorithmListStateType } from "src/types/types";
+import s from "./algorithmFilter.module.scss";
 
 const tags: string[] = ["대기", "수락", "거절", "신고"];
 
-const algorithmsState: { [idx: string]: AlgorithmType } = {
+const algorithmsStateKorToEng: { [idx: string]: AlgorithmListStateType } = {
   대기: "PENDING",
   수락: "ACCEPTED",
   거절: "REJECTED",
   신고: "REPORTED",
 };
 
-const algorithmsStateEng = {
+const algorithmsStateEngToKor = {
   PENDING: "대기",
   ACCEPTED: "수락",
   REJECTED: "거절",
@@ -27,11 +27,11 @@ const algorithmsStateEng = {
 
 const AlgorithmFilter: React.FC = () => {
   const [algorithmFilter, setAlgorithmFilter] = useRecoilState(
-    algorithmFilterState
+    algorithmListFilterState
   );
 
-  const [_data, setData] = useRecoilState(algorithmState);
-  const [_isReLoading, setReLoading] = useRecoilState(reLoadingState);
+  const setData = useSetRecoilState(algorithmListState);
+  const setReLoading = useSetRecoilState(isLoadingState);
 
   const onClickAlgorithmBtn = (tag: string) => {
     if (algorithmFilter === tag) {
@@ -42,18 +42,18 @@ const AlgorithmFilter: React.FC = () => {
         algorithmNumber: 0,
         createdAt: 0,
         idx: 0,
-        emojiis: [],
+        isEmoji: [],
         emojiCount: 0,
         isClicked: false,
       },
     ]);
-    setAlgorithmFilter(algorithmsState[tag]);
+    setAlgorithmFilter(algorithmsStateKorToEng[tag]);
     setReLoading(true);
   };
 
   return (
-    <button className={s.algoritmFilterBtn}>
-      {algorithmsStateEng[algorithmFilter]}
+    <button className={s.algorithmFilterBtn}>
+      {algorithmsStateEngToKor[algorithmFilter]}
       <ul>
         {React.Children.map(tags, (tag: string) => (
           <li onClick={() => onClickAlgorithmBtn(tag)}>{tag}</li>

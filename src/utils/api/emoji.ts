@@ -1,7 +1,7 @@
-import { emojiController } from "../libs/requestUrls";
-import RequestApiV2 from "../libs/requestApi";
 import { AxiosResponse } from "axios";
 import { emojiRes } from "types/api";
+import { emojiController } from "../libs/requestUrls";
+import RequestApiV2 from "../libs/requestApi";
 
 class Emoji {
   addEmoji(
@@ -9,14 +9,14 @@ class Emoji {
     number: number
   ): Promise<void | AxiosResponse<emojiRes>> {
     const data = {
-      number: number,
+      number,
     };
     try {
       return RequestApiV2({
         url: emojiController.updateEmoji(),
         method: "POST",
         canHeader: isLogin,
-        data: data,
+        data,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -28,14 +28,14 @@ class Emoji {
     number: number
   ): Promise<void | AxiosResponse<emojiRes>> {
     const data = {
-      number: number,
+      number,
     };
     try {
       return RequestApiV2({
         url: emojiController.updateEmoji(),
         method: "DELETE",
         canHeader: isLogin,
-        data: data,
+        data,
       });
     } catch (e: any) {
       throw new Error(e);

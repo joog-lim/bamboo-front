@@ -19,7 +19,7 @@ const errHandler: Function = (err: Error) => {
   try {
     alert(errMessageObject[err.message] || err.message);
   } catch (e) {
-    alert("알 수 없는 에러가 발생하였습니다." + err.message);
+    alert(`알 수 없는 에러가 발생하였습니다.${err.message}`);
   }
 };
 

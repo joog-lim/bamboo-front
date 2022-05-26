@@ -1,22 +1,21 @@
+import React, { useEffect } from "react";
 import Link from "next/link";
-import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
-import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
-import { useRecoilState } from "recoil";
-import { hasTokenState } from "recoil/atom";
+import { useSetRecoilState } from "recoil";
+import { userStateState } from "recoil/atom";
+import { HeaderProps } from "./headerContainer";
+import S from "./header.module.scss";
 
 import LoginModal from "../modal/loginModal/loginModaPresenterl";
-import { useEffect } from "react";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
-  const [_hasToken, setHasToken] = useRecoilState(hasTokenState);
+  const setUserState = useSetRecoilState(userStateState);
   useEffect(() => {
     localStorage.getItem("token") &&
-      setHasToken({
-        isLogin: true,
-        isAdmin: localStorage.getItem("isAdmin") === "true",
-      });
+      setUserState(
+        localStorage.getItem("isAdmin") === "true" ? "ADMIN" : "USER"
+      );
   }, []);
 
   return (
@@ -32,7 +31,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
             {
               "/": (
                 <>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.HOME}>홈</Link>
                   </li>
                   <li>
@@ -51,7 +50,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   <li>
                     <Link href={config.LINK.RULE}>규칙</Link>
                   </li>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.ABOUT}>더보기</Link>
                   </li>
                 </>
@@ -61,7 +60,7 @@ const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
                   <li>
                     <Link href={config.LINK.HOME}>홈</Link>
                   </li>
-                  <li className={S.highligth}>
+                  <li className={S.highLight}>
                     <Link href={config.LINK.RULE}>규칙</Link>
                   </li>
                   <li>

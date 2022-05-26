@@ -6,8 +6,8 @@ const AlgorithmListView: React.FC = () => {
   return (
     <section className={styles.wrap}>
       <HeadingPresenter
-        heading={"모두에게 하고픈 말,"}
-        explanation={"무엇인가요?"}
+        heading="모두에게 하고픈 말,"
+        explanation="무엇인가요?"
       />
       <AlgorithmList />
     </section>

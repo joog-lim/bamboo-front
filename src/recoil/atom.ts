@@ -1,40 +1,32 @@
 import { atom } from "recoil";
-import { algorithm } from "types/api";
-import { AlgorithmType, hasToken } from "types/types";
+import { Algorithm } from "types/api";
+import { AlgorithmListStateType, UserStateType } from "types/types";
 
-export const hasTokenState = atom<hasToken>({
-  key: "hasTokenState",
-  default: {
-    isLogin: false,
-    isAdmin: false,
-  },
+export const userStateState = atom<UserStateType>({
+  key: "userStateState",
+  default: "GUEST",
 });
 
-export const algorithmFilterState = atom<AlgorithmType>({
-  key: "algorithmFilterState",
+export const algorithmListFilterState = atom<AlgorithmListStateType>({
+  key: "algorithmListFilterState",
   default: "ACCEPTED",
 });
 
-export const algorithmState = atom<algorithm[]>({
-  key: "algorithmState",
+export const algorithmListState = atom<Algorithm[]>({
+  key: "algorithmListState",
   default: [
     {
       algorithmNumber: 0,
       createdAt: 0,
       idx: 0,
-      emojiis: [],
+      isEmoji: [],
       emojiCount: 0,
       isClicked: false,
     },
   ],
 });
 
-export const loadingState = atom<boolean>({
-  key: "loadingState",
-  default: false,
-});
-
-export const reLoadingState = atom<boolean>({
-  key: "reLoadingState",
+export const isLoadingState = atom<boolean>({
+  key: "isLoadingState",
   default: false,
 });
