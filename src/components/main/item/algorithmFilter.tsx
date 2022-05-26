@@ -1,13 +1,13 @@
 import React from "react";
-import {useRecoilState, useSetRecoilState} from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
-import s from "./algorithmFilter.module.scss";
 import {
   algorithmListFilterState,
   algorithmListState,
   isLoadingState,
 } from "recoil/atom";
 import { AlgorithmListStateType } from "src/types/types";
+import s from "./algorithmFilter.module.scss";
 
 const tags: string[] = ["대기", "수락", "거절", "신고"];
 

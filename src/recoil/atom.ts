@@ -3,14 +3,14 @@ import { Algorithm } from "types/api";
 import { AlgorithmListStateType, UserStateType } from "types/types";
 
 export const userStateState = atom<UserStateType>({
-	key: "userStateState",
-	default: "GUEST"
+  key: "userStateState",
+  default: "GUEST",
 });
 
 export const algorithmListFilterState = atom<AlgorithmListStateType>({
   key: "algorithmListFilterState",
   default: "ACCEPTED",
-})
+});
 
 export const algorithmListState = atom<Algorithm[]>({
   key: "algorithmListState",
@@ -30,4 +30,3 @@ export const isLoadingState = atom<boolean>({
   key: "isLoadingState",
   default: false,
 });
-

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import HeadingPresenter from "components/heading/headingPresenter";
-import s from "./desc.module.scss";
 import Rule, { resRuleData } from "utils/api/rule";
-import { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { AxiosResponse } from "axios";
-import React from "react";
 import SpinnerBar from "components/spinner/spinnerPresenter";
+import s from "./desc.module.scss";
 
 // outer interface
 export interface descPresenterProps {
@@ -80,7 +79,7 @@ export const DescAbout: React.FC = () => {
         A. 광대숲은 모든 글이 관리자의 허가를 맡아서 올라가기에 올라갈 때 시간이
         걸릴 수 있습니다. 또한 부적절한 내용으로 검토 및 삭제가 되었을 수
         있습니다. 자세한 사항은{" "}
-        <Link href={"/rule"}>
+        <Link href="/rule">
           <span className={s.href}>규칙</span>
         </Link>
         을 참고해주세요.
@@ -140,13 +139,13 @@ export const DescRule: React.FC = () => {
       if (content.subContent) {
         return (
           <Fragment key={content._id}>
-            <h2 key={content._id + "title"}>{content.title}</h2>
-            <p key={content._id + "content"}>{content.content}</p>
+            <h2 key={`${content._id}title`}>{content.title}</h2>
+            <p key={`${content._id}content`}>{content.content}</p>
             {content.subContent.map((content: any) => {
               return (
                 <Fragment key={content._id}>
-                  <h3 key={content._id + "title"}>{content.title}</h3>
-                  <p key={content._id + "content"}>{content.content}</p>
+                  <h3 key={`${content._id}title`}>{content.title}</h3>
+                  <p key={`${content._id}content`}>{content.content}</p>
                 </Fragment>
               );
             })}

@@ -1,5 +1,3 @@
-import { algorithmController } from "../libs/requestUrls";
-import RequestApiV2 from "../libs/requestApi";
 import {
   createAlgorithmRes,
   deleteRes,
@@ -9,11 +7,13 @@ import {
   setStatusRes,
 } from "types/api";
 import { AxiosResponse } from "axios";
+import { algorithmController } from "../libs/requestUrls";
+import RequestApiV2 from "../libs/requestApi";
 
 class Algorithm {
   getAlgorithm(
-		isGuest: boolean,
-		isAdmin: boolean,
+    isGuest: boolean,
+    isAdmin: boolean,
     cursor: number | string = "",
     status = "ACCEPTED"
   ): Promise<void | AxiosResponse<getAlgorithmsRes>> {
@@ -47,7 +47,7 @@ class Algorithm {
       return RequestApiV2({
         method: "POST",
         url: algorithmController.createAlgorithm(),
-        data: data,
+        data,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -65,7 +65,7 @@ class Algorithm {
       return RequestApiV2({
         method: "DELETE",
         url: algorithmController.deleteAlgorithm(idx),
-        data: data,
+        data,
         canHeader: true,
       });
     } catch (e: any) {
@@ -85,7 +85,7 @@ class Algorithm {
       return RequestApiV2({
         method: "PATCH",
         url: algorithmController.setStatusAlgorithm(idx),
-        data: data,
+        data,
       });
     } catch (e: any) {
       throw new Error(e);
@@ -105,7 +105,7 @@ class Algorithm {
       return RequestApiV2({
         method: "PATCH",
         url: algorithmController.modifyAlgorithm(idx),
-        data: data,
+        data,
         canHeader: true,
       });
     } catch (e: any) {
@@ -126,7 +126,7 @@ class Algorithm {
       return RequestApiV2({
         method: "PATCH",
         url: algorithmController.setStatusAlgorithm(idx),
-        data: data,
+        data,
         canHeader: true,
       });
     } catch (e: any) {

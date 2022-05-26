@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import S from "./header.module.scss";
 import * as I from "src/assets/svg/index";
-import { HeaderProps } from "./headerContainer";
 import config from "constants/config.json";
-import { useSetRecoilState} from "recoil";
+import { useSetRecoilState } from "recoil";
 import { userStateState } from "recoil/atom";
+import { HeaderProps } from "./headerContainer";
+import S from "./header.module.scss";
 
 import LoginModal from "../modal/loginModal/loginModaPresenterl";
-import { useEffect } from "react";
 
 const HeaderPresenter: React.FC<HeaderProps> = (p: HeaderProps) => {
   const setUserState = useSetRecoilState(userStateState);
   useEffect(() => {
     localStorage.getItem("token") &&
-      setUserState(localStorage.getItem("isAdmin") === "true" ? "ADMIN" : "USER");
+      setUserState(
+        localStorage.getItem("isAdmin") === "true" ? "ADMIN" : "USER"
+      );
   }, []);
 
   return (

@@ -109,7 +109,7 @@ export interface modifyRes extends errRes {
   id?: string;
 }
 
-//report algorithm
+// report algorithm
 
 export interface reportReq {
   reason: string;

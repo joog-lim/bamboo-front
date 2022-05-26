@@ -1,4 +1,4 @@
-const Leaf: React.FC<{ isClick: boolean }> = (p) => {
+const Leaf: React.FC<{ isClick: boolean }> = p => {
   return (
     <svg
       width="18"

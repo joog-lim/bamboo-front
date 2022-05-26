@@ -5,6 +5,7 @@ const AlgorithmStateTypeObject = {
   REPORTED: "REPORTED",
 } as const;
 
-export type AlgorithmListStateType = typeof AlgorithmStateTypeObject[keyof typeof AlgorithmStateTypeObject];
+export type AlgorithmListStateType =
+  typeof AlgorithmStateTypeObject[keyof typeof AlgorithmStateTypeObject];
 
 export type UserStateType = "GUEST" | "USER" | "ADMIN";

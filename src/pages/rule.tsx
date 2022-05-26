@@ -30,7 +30,7 @@ const Rule: React.FC = () => {
         <HeaderPresenter location={config.LINK.RULE} />
       )}
       <div className={styles.wrap}>
-        <DescPresenter descType={"rule"} />
+        <DescPresenter descType="rule" />
       </div>
     </>
   );

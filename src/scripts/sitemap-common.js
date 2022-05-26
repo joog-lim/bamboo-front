@@ -10,7 +10,7 @@ const getDate = new Date().toISOString();
 const DOMAIN = "https://joog-lim.info";
 
 //
-const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
+const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
 (async () => {
   // 포함할 페이지와 제외할 페이지 등록
@@ -25,7 +25,7 @@ const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
   // 파일 경로를 도메인 형태로 변경
   const pagesSitemap = `
     ${pages
-      .map((page) => {
+      .map(page => {
         const path = page
           .replace("../pages/", "")
           .replace(".tsx", "")

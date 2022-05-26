@@ -1,11 +1,11 @@
 import { useRecoilValue } from "recoil";
-import s from "./header.module.scss";
-import { HeaderProps, getDate } from "./headerContainer";
 import AlgorithmModal from "components/modal/AlgorithmModal/AlgorithmModalPresenter";
 import Algorithm from "src/utils/api/algorithm";
 import { AxiosResponse } from "axios";
 import { setStatusRes } from "types/api";
-import {currentUserStateState} from "recoil/selectors";
+import { currentUserStateState } from "recoil/selectors";
+import { HeaderProps, getDate } from "./headerContainer";
+import s from "./header.module.scss";
 
 const Header: React.FC<HeaderProps> = (p: HeaderProps) => {
   const { isAdmin } = useRecoilValue(currentUserStateState);

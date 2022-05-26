@@ -1,4 +1,4 @@
-//알고리즘 관리
+// 알고리즘 관리
 export const algorithmController = {
   createAlgorithm: () => {
     return `/algorithm/`;
@@ -19,7 +19,7 @@ export const algorithmController = {
   },
 };
 
-//계정
+// 계정
 export const authController = {
   login: () => {
     return `/login`;
@@ -29,14 +29,14 @@ export const authController = {
   },
 };
 
-//이모지
+// 이모지
 export const emojiController = {
   updateEmoji: () => {
     return `/leaf/`;
   },
 };
 
-//확인
+// 확인
 export const verifyController = {
   getQuestion: () => {
     return `/verify`;

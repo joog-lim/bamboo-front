@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-import s from "./algorithmModal.module.scss";
-import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
-import modalController from "../modal";
 import Algorithm from "src/utils/api/algorithm";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { isLoadingState } from "recoil/atom";
 import { useRecoilState } from "recoil";
 import { AxiosResponse } from "axios";
 import { deleteRes, modifyRes, reportRes, setStatusRes } from "types/api";
+import modalController from "../modal";
+import { customStyles, algorithmModalProps } from "./AlgorithmModalContainer";
+import s from "./algorithmModal.module.scss";
 
 const AlgorithmModal: React.FC<algorithmModalProps> = (
   p: algorithmModalProps
 ) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  //여기 초기값은 의미없는 값입니다.
-  //input에서 입력을 하였는 지 판별하기 위해 넣었습니다.
-  //좋은 방법이 있다면 알려주세요.
+  // 여기 초기값은 의미없는 값입니다.
+  // input에서 입력을 하였는 지 판별하기 위해 넣었습니다.
+  // 좋은 방법이 있다면 알려주세요.
   const [content, setContent] = useState("default32rewfdas");
   const [title, setTitle] = useState("default32rewfdas");
   const [, setReason] = useState("");
@@ -116,7 +116,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
           ariaHideApp={false}
           contentLabel="Algorithm Modal"
         >
-          {isLoading && <SpinnerBar background={true} />}
+          {isLoading && <SpinnerBar background />}
           <h1 className={p.isRed ? s.redH1 : s.greenH1}>{p.children}하기</h1>
           {p.isHeading ? (
             <input
@@ -130,7 +130,7 @@ const AlgorithmModal: React.FC<algorithmModalProps> = (
               type="text"
               className={s.password}
               placeholder="제목을 입력하세요."
-              autoFocus={true}
+              autoFocus
               required
               value={title === "default32rewfdas" ? p.title : title}
               onChange={({ target: { value } }) => setTitle(value)}

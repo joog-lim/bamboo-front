@@ -1,4 +1,4 @@
-import {SetterOrUpdater, useSetRecoilState} from "recoil";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import { Styles } from "react-modal";
 
 import { userStateState } from "recoil/atom";
@@ -14,8 +14,8 @@ export const customStyles: Styles = {
   },
 };
 
-export const WELCOME_ADMIN_TEXT: string = "관리자님 환영합니다!";
-export const WELCOME_USER_TEXT: string = "학교 계정으로 로그인해주세요!";
+export const WELCOME_ADMIN_TEXT = "관리자님 환영합니다!";
+export const WELCOME_USER_TEXT = "학교 계정으로 로그인해주세요!";
 
 const useLogin = (
   closeModal: () => void,

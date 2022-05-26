@@ -1,6 +1,3 @@
-import style from "./style.module.scss";
-import Header from "./item/headerPresenter";
-import { algorithmsProps } from "./algorithmsContainer";
 import { algorithmListFilterState } from "recoil/atom";
 import { useRecoilValue } from "recoil";
 import { Leaf } from "assets/svg";
@@ -9,7 +6,10 @@ import emojiController from "utils/api/emoji";
 import { AxiosResponse } from "axios";
 import { emojiRes } from "types/api";
 import SpinnerBar from "components/spinner/spinnerPresenter";
-import {currentUserStateState} from "recoil/selectors";
+import { currentUserStateState } from "recoil/selectors";
+import { algorithmsProps } from "./algorithmsContainer";
+import Header from "./item/headerPresenter";
+import style from "./style.module.scss";
 
 const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
   const AlgorithmFilter = useRecoilValue(algorithmListFilterState);
   const [emojiCnt, setEmojiCnt] = useState<number>(p.data.emojiCount);
   const [isEmojiClick, setEmojiClick] = useState<boolean>(p.data.isClicked);
-  const idx = p.data.idx;
+  const { idx } = p.data;
   const addEmoji = () => {
     emojiController
       .addEmoji(!isGuest, idx)
@@ -53,7 +53,7 @@ const Algorithms: React.FC<algorithmsProps> = (p: algorithmsProps) => {
 
   return (
     <article className={style.algorithmsBox}>
-      {isLoading && <SpinnerBar background={true} />}
+      {isLoading && <SpinnerBar background />}
       <Header
         idx={idx}
         status={AlgorithmFilter}

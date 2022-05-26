@@ -8,19 +8,19 @@ import {
   algorithmListState,
   isLoadingState,
 } from "recoil/atom";
-import {currentUserStateState} from "recoil/selectors";
+import { currentUserStateState } from "recoil/selectors";
 import SpinnerBar from "components/spinner/spinnerPresenter";
 import { AxiosResponse } from "axios";
 import Algorithms from "components/algorithms/algorithms";
+
 import s from "./algorithmList.module.scss";
 
 const AlgorithmList: React.FC = () => {
-	const [isReLoading, setReLoading] = useRecoilState(isLoadingState);
-	const [algorithm, setAlgorithm] = useRecoilState(algorithmListState);
+  const [isReLoading, setReLoading] = useRecoilState(isLoadingState);
+  const [algorithm, setAlgorithm] = useRecoilState(algorithmListState);
 
-  const {isAdmin, isGuest} = useRecoilValue(currentUserStateState);
-  const currentAlgorithmFilter = useRecoilValue(algorithmListFilterState);;
-
+  const { isAdmin, isGuest } = useRecoilValue(currentUserStateState);
+  const currentAlgorithmFilter = useRecoilValue(algorithmListFilterState);
   const [isHasNext, setIsHasNext] = useState<boolean>(true);
   const [cursor, setCursor] = useState<number>();
 
@@ -29,25 +29,28 @@ const AlgorithmList: React.FC = () => {
   let posts: Algorithm[] | undefined;
 
   const getPostList = () => {
-		AlgorithmAPI.getAlgorithm(isAdmin, isGuest, cursor2, currentAlgorithmFilter).then(
-      (res: AxiosResponse<getAlgorithmsRes> | void) => {
-        if (res?.data) {
-          const algorithmData = res.data.data;
-          posts = algorithmData.data;
-          cursor2 = algorithmData.nextCursor;
-          hasNext = algorithmData.hasNext;
-          setAlgorithm([algorithm.concat(posts || algorithm)][0]);
-          setIsHasNext(algorithmData.hasNext || false);
-          setCursor(algorithmData.nextCursor);
-        }
+    AlgorithmAPI.getAlgorithm(
+      isAdmin,
+      isGuest,
+      cursor2,
+      currentAlgorithmFilter
+    ).then((res: AxiosResponse<getAlgorithmsRes> | void) => {
+      if (res?.data) {
+        const algorithmData = res.data.data;
+        posts = algorithmData.data;
+        cursor2 = algorithmData.nextCursor;
+        hasNext = algorithmData.hasNext;
+        setAlgorithm([algorithm.concat(posts || algorithm)][0]);
+        setIsHasNext(algorithmData.hasNext || false);
+        setCursor(algorithmData.nextCursor);
       }
-    );
+    });
   };
 
   const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
+    const { scrollHeight } = document.documentElement;
+    const { scrollTop } = document.documentElement;
+    const { clientHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight * 0.9 && hasNext) {
       getPostList();
@@ -79,7 +82,9 @@ const AlgorithmList: React.FC = () => {
   return (
     <article className={s.algorithms}>
       {isAdmin && <AlgorithmFilter />}
-      {isAdmin && <h3 className={s.heading}>{currentAlgorithmFilter} 인 알고리즘</h3>}
+      {isAdmin && (
+        <h3 className={s.heading}>{currentAlgorithmFilter} 인 알고리즘</h3>
+      )}
       {React.Children.toArray(
         algorithm.slice(1)?.map((item: Algorithm) => <Algorithms data={item} />)
       )}

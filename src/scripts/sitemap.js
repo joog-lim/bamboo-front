@@ -5,7 +5,7 @@ const prettier = require("prettier");
 const getDate = new Date().toISOString();
 const DOMAIN = "https://joog-lim.info";
 
-const formatted = (sitemap) => prettier.format(sitemap, { parser: "html" });
+const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
 // public/sitemap 내부의 모든 .gz 파일을 불러와 참조하도록 합니다.
 async () => {
@@ -13,7 +13,7 @@ async () => {
 
   const sitemapIndex = `
     ${pages
-      .map((page) => {
+      .map(page => {
         const path = page.replace("../../public/", "");
         return `
           <sitemap>
