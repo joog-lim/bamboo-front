@@ -1,0 +1,22 @@
+{
+  "extends": ["next/core-web-vitals","airbnb", "airbnb-typescript", "plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-alert": "off"
+  },
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": [
+        "*.ts", "*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ]
+    }
+  ]
+}
